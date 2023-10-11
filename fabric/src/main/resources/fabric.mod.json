@@ -18,6 +18,9 @@
   "entrypoints": {
     "main": [
       "dev.niostone.interstellar.fabric.InterstellarFabric"
+    ],
+    "modmenu": [
+      "dev.niostone.interstellar.fabric.ModMenuIntegration"
     ]
   },
   "mixins": [

@@ -1,6 +1,5 @@
 package dev.niostone.interstellar.fabric;
 
-import dev.niostone.interstellar.ModExpectPlatform;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.nio.file.Path;
