@@ -28,5 +28,15 @@
     "fabric": "*",
     "minecraft": ">=1.19.2",
     "architectury": ">=6.5.77"
+  },
+  "custom": {
+    "modmenu": {
+      "parent": {
+        "id": "interstellar",
+        "name": "Create: Interstellar",
+        "description":"Explore the universe in style.",
+        "icon": "assets/interstellar/icon.png"
+      }
+    }
   }
 }

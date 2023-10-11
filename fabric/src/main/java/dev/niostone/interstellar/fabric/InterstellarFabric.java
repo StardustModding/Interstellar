@@ -1,11 +1,11 @@
-package net.examplemod.fabric;
+package dev.niostone.interstellar.fabric;
 
-import net.examplemod.ExampleMod;
+import dev.niostone.interstellar.Interstellar;
 import net.fabricmc.api.ModInitializer;
 
-public class ExampleModFabric implements ModInitializer {
+public class InterstellarFabric implements ModInitializer {
     @Override
     public void onInitialize() {
-        ExampleMod.init();
+        Interstellar.init();
     }
 }

@@ -1,15 +1,15 @@
-package net.examplemod.forge;
+package dev.niostone.interstellar.forge;
 
 import dev.architectury.platform.forge.EventBuses;
-import net.examplemod.ExampleMod;
+import dev.niostone.interstellar.Interstellar;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(ExampleMod.MOD_ID)
-public class ExampleModForge {
-    public ExampleModForge() {
+@Mod(Interstellar.MOD_ID)
+public class InterstellarForge {
+    public InterstellarForge() {
         // Submit our event bus to let architectury register our content on the right time
-        EventBuses.registerModEventBus(ExampleMod.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
-        ExampleMod.init();
+        EventBuses.registerModEventBus(Interstellar.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
+        Interstellar.init();
     }
 }

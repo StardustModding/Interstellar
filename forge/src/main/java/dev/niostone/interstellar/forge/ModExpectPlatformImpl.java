@@ -1,14 +1,11 @@
-package net.examplemod.forge;
+package dev.niostone.interstellar.forge;
 
-import net.examplemod.ExampleExpectPlatform;
+import dev.niostone.interstellar.ModExpectPlatform;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 import java.nio.file.Path;
 
-public class ExampleExpectPlatformImpl {
-    /**
-     * This is our actual method to {@link ExampleExpectPlatform#getConfigDirectory()}.
-     */
+public class ModExpectPlatformImpl {
     public static Path getConfigDirectory() {
         return FMLPaths.CONFIGDIR.get();
     }
