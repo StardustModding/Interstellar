@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"
+#issueTrackerURL = ""
+license = "MIT"
+
+[[mods]]
+modId = "interstellar"
+version = "${version}"
+displayName = "Create: Interstellar"
+authors = "Nionics, RedstoneWizard08"
+description = '''
+Explore the universe in style.
+'''
+#logoFile = ""
+
+[[dependencies.examplemod]]
+modId = "forge"
+mandatory = true
+versionRange = "[43,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.examplemod]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.examplemod]]
+modId = "architectury"
+mandatory = true
+versionRange = "[6.5.77,)"
+ordering = "AFTER"
+side = "BOTH"

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "interstellar",
+  "version": "${version}",
+  "name": "Create: Interstellar",
+  "description": "Explore the universe in style.",
+  "authors": [
+    "Nionics",
+    "RedstoneWizard08"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Niostone/Interstellar",
+    "sources": "https://github.com/Niostone/Interstellar"
+  },
+  "license": "MIT",
+  "icon": "assets/interstellar/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.niostone.interstellar.fabric.InterstellarFabric"
+    ]
+  },
+  "mixins": [
+    "interstellar.mixins.json",
+    "interstellar-common.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.19.2",
+    "architectury": ">=6.5.77"
+  }
+}
