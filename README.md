@@ -1,6 +1,6 @@
 # Create: Interstellar
 
-An addon for [Create](https://modrinth.com/mod/create-fabric) based on
+An addon for [Create](https://modrinth.com/mod/create) based on
 [Ad Astra](https://modrinth.com/mod/ad-astra) and
 [Galacticraft](https://modrinth.com/mod/galacticraft-legacy) with a massive
 amount of content and things to explore, focused on ultra-high quality
