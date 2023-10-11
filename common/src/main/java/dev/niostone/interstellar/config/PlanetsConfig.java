@@ -1,30 +1,31 @@
 package dev.niostone.interstellar.config;
 
+import dev.niostone.interstellar.config.defaults.DefaultPlanetConfigs;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
 @Config(name = "planets")
 public class PlanetsConfig implements ConfigData {
-    @ConfigEntry.Category("earth")
-    @ConfigEntry.Gui.TransitiveObject
-    public PlanetConfig earth;
-
     @ConfigEntry.Category("mercury")
     @ConfigEntry.Gui.TransitiveObject
-    public PlanetConfig mercury;
+    public PlanetConfig mercury = DefaultPlanetConfigs.MERCURY;
 
     @ConfigEntry.Category("venus")
     @ConfigEntry.Gui.TransitiveObject
-    public PlanetConfig venus;
+    public PlanetConfig venus = DefaultPlanetConfigs.VENUS;
+
+    @ConfigEntry.Category("earth")
+    @ConfigEntry.Gui.TransitiveObject
+    public PlanetConfig earth = DefaultPlanetConfigs.EARTH;
 
     @ConfigEntry.Category("moon")
     @ConfigEntry.Gui.TransitiveObject
-    public PlanetConfig moon;
+    public PlanetConfig moon = DefaultPlanetConfigs.MOON;
 
     @ConfigEntry.Category("mars")
     @ConfigEntry.Gui.TransitiveObject
-    public PlanetConfig mars;
+    public PlanetConfig mars = DefaultPlanetConfigs.MARS;
 
     @ConfigEntry.Category("jupiter")
     @ConfigEntry.Gui.TransitiveObject
