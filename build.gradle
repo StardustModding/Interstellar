@@ -44,6 +44,11 @@ allprojects {
             name = "Shedaniel Maven"
             url = "https://maven.shedaniel.me"
         }
+
+        maven {
+            name = "WispForest Maven"
+            url = "https://maven.wispforest.io"
+        }
     }
 
     tasks.withType(JavaCompile).tap {
