@@ -1,6 +1,23 @@
 plugins {
     id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "io.github.pacifistmc.forgix" version "1.2.6"
     id "dev.architectury.loom" version "1.2-SNAPSHOT" apply false
+}
+
+forgix {
+    group = maven_group
+    mergedJarName = "$mod_id-$minecraft_version-${mod_version}.jar"
+    outputDir = "build/libs/merged"
+    
+    forge {
+        projectName = "forge"
+        jarLocation = "build/libs/$mod_id-forge-$minecraft_version-${mod_version}.jar"
+    }
+    
+    fabric {
+        projectName = "fabric"
+        jarLocation = "build/libs/$mod_id-fabric-$minecraft_version-${mod_version}.jar"
+    }
 }
 
 architectury {
@@ -39,6 +56,9 @@ allprojects {
     java {
         withSourcesJar()
     }
+
+    build.finalizedBy(mergeJars)
+    assemble.finalizedBy(mergeJars)
 }
 
 subprojects {
