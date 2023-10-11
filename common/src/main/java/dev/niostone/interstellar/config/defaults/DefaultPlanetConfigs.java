@@ -89,4 +89,68 @@ public class DefaultPlanetConfigs {
             .radiation(true)
             .tier(2)
             .build();
+    
+    public static final PlanetConfig SATURN =
+        new PlanetConfigBuilder(Interstellar.MOD_ID, "saturn")
+            .enable(true)
+            .dimension(1005)
+            .withPressure(140.0f)
+            // I couldn't find anything. :(
+            .withRadiation(0.0f)
+            // 75% hydrogen, 25% helium
+            .gas(new GasConfig(Interstellar.MOD_ID, "hydrogen", 105.0f))
+            .gas(new GasConfig(Interstellar.MOD_ID, "helium", 35.0f))
+            .oxygen(true)
+            .pressure(true)
+            .radiation(true)
+            .tier(5)
+            .build();
+    
+    public static final PlanetConfig URANUS =
+        new PlanetConfigBuilder(Interstellar.MOD_ID, "uranus")
+            .enable(true)
+            .dimension(1006)
+            .withPressure(100000.0f)
+            // I couldn't find anything. :(
+            .withRadiation(0.0f)
+            // 60% hydrogen, 38% helium, 2% ammonia (based on estimates)
+            .gas(new GasConfig(Interstellar.MOD_ID, "hydrogen", 60000.0f))
+            .gas(new GasConfig(Interstellar.MOD_ID, "helium", 38000.0f))
+            .gas(new GasConfig(Interstellar.MOD_ID, "ammonia", 2000.0f))
+            .oxygen(true)
+            .pressure(true)
+            .radiation(true)
+            .tier(6)
+            .build();
+    
+    public static final PlanetConfig NEPTUNE =
+        new PlanetConfigBuilder(Interstellar.MOD_ID, "neptune")
+            .enable(true)
+            .dimension(1007)
+            .withPressure(10000000.0f)
+            // I couldn't find anything. :(
+            .withRadiation(0.0f)
+            // 60% hydrogen, 38% helium, 2% methane (based on estimates)
+            .gas(new GasConfig(Interstellar.MOD_ID, "hydrogen", 6000000.0f))
+            .gas(new GasConfig(Interstellar.MOD_ID, "helium", 3800000.0f))
+            .gas(new GasConfig(Interstellar.MOD_ID, "methane", 200000.0f))
+            .oxygen(true)
+            .pressure(true)
+            .radiation(true)
+            .tier(7)
+            .build();
+    
+    public static final PlanetConfig PLUTO =
+        new PlanetConfigBuilder(Interstellar.MOD_ID, "pluto")
+            .enable(true)
+            .dimension(1008)
+            // It's almost 0, so whatever.
+            .withPressure(0.0f)
+            // I couldn't find anything. :(
+            .withRadiation(0.0f)
+            .oxygen(true)
+            .pressure(true)
+            .radiation(true)
+            .tier(8)
+            .build();
 }

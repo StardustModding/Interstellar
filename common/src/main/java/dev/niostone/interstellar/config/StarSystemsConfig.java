@@ -1,5 +1,6 @@
 package dev.niostone.interstellar.config;
 
+import dev.niostone.interstellar.config.defaults.DefaultStarSystemConfigs;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
@@ -8,7 +9,7 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry;
 public class StarSystemsConfig implements ConfigData {
     @ConfigEntry.Category("sol")
     @ConfigEntry.Gui.TransitiveObject
-    public StarSystemConfig sol;
+    public StarSystemConfig sol = DefaultStarSystemConfigs.SOL;
 
     @ConfigEntry.Category("keplerBelt")
     @ConfigEntry.Gui.TransitiveObject

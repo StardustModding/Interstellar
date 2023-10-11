@@ -27,25 +27,27 @@ public class PlanetsConfig implements ConfigData {
     @ConfigEntry.Gui.TransitiveObject
     public PlanetConfig mars = DefaultPlanetConfigs.MARS;
 
-    @ConfigEntry.Category("jupiter")
-    @ConfigEntry.Gui.TransitiveObject
-    public PlanetConfig jupiter;
+    // Just realized that this is a gas giant, don't know how we're
+    // going to handle this.
+    // @ConfigEntry.Category("jupiter")
+    // @ConfigEntry.Gui.TransitiveObject
+    // public PlanetConfig jupiter;
 
     @ConfigEntry.Category("saturn")
     @ConfigEntry.Gui.TransitiveObject
-    public PlanetConfig saturn;
+    public PlanetConfig saturn = DefaultPlanetConfigs.SATURN;
 
     @ConfigEntry.Category("uranus")
     @ConfigEntry.Gui.TransitiveObject
-    public PlanetConfig uranus;
+    public PlanetConfig uranus = DefaultPlanetConfigs.URANUS;
 
     @ConfigEntry.Category("neptune")
     @ConfigEntry.Gui.TransitiveObject
-    public PlanetConfig neptune;
+    public PlanetConfig neptune = DefaultPlanetConfigs.NEPTUNE;
 
     @ConfigEntry.Category("pluto")
     @ConfigEntry.Gui.TransitiveObject
-    public PlanetConfig pluto;
+    public PlanetConfig pluto = DefaultPlanetConfigs.PLUTO;
 
     @ConfigEntry.Category("keplerAsteroids")
     @ConfigEntry.Gui.TransitiveObject
