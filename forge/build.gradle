@@ -48,11 +48,13 @@ configurations {
 
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
+    modImplementation "dev.galacticraft:dyndims-forge:$dynamicdimensions_version"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+    include "dev.galacticraft:dyndims-forge:$dynamicdimensions_version"
 }
 
 processResources {

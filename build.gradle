@@ -49,6 +49,21 @@ allprojects {
             name = "WispForest Maven"
             url = "https://maven.wispforest.io"
         }
+
+        maven {
+            name = "Galacticraft Maven"
+            url = "https://maven.galacticraft.net/repository/maven-releases/"
+        }
+
+        maven {
+            name = "Kyrptonaught Maven"
+            url = "https://maven.kyrptonaught.dev"
+        }
+
+        maven {
+            name = "BadAsIntended Maven"
+            url = "https://maven.bai.lol"
+        }
     }
 
     tasks.withType(JavaCompile).tap {
