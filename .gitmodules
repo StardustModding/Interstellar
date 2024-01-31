@@ -1,0 +1,6 @@
+[submodule "rapier"]
+	path = rapier
+	url = https://github.com/RedstoneWizard08/rapier-java
+[submodule "flapigen"]
+	path = flapigen
+	url = https://github.com/RedstoneWizard08/flapigen-rs

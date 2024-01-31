@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = [
+    "./rapier",
+    "./flapigen/macroslib",
+    "./flapigen/jni_tests",
+    "./flapigen/cpp_tests",
+    "./flapigen/android-example",
+    "./flapigen/android-tests",
+    "./flapigen/debug-util",
+    "./flapigen/cpp-example/rust-part",
+    "./flapigen/python_tests",
+]
