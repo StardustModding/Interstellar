@@ -1,1 +1,13 @@
-accessWidener   v2  named
+accessWidener v2 named
+
+accessible class net/minecraft/client/gui/screens/LoadingOverlay$LogoTexture
+accessible class net/minecraft/client/renderer/texture/SimpleTexture$TextureImage
+
+accessible field net/minecraft/client/gui/screens/LoadingOverlay MOJANG_STUDIOS_LOGO_LOCATION Lnet/minecraft/resources/ResourceLocation;
+accessible field net/minecraft/client/gui/screens/LoadingOverlay LOGO_BACKGROUND_COLOR I
+accessible field net/minecraft/core/MappedRegistry frozen Z
+
+mutable field net/minecraft/client/gui/screens/LoadingOverlay MOJANG_STUDIOS_LOGO_LOCATION Lnet/minecraft/resources/ResourceLocation;
+mutable field net/minecraft/client/gui/screens/LoadingOverlay LOGO_BACKGROUND_COLOR I
+mutable field net/minecraft/client/renderer/texture/SimpleTexture location Lnet/minecraft/resources/ResourceLocation;
+mutable field net/minecraft/core/MappedRegistry frozen Z

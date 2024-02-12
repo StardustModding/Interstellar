@@ -1,15 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "interstellar",
+  "id": "${mod_id}",
   "version": "${version}",
-  "name": "Create: Interstellar",
+  "name": "Interstellar",
   "description": "Explore the universe in style.",
   "authors": [
     "Nionics",
-    "RedstoneWizard08"
+    "RedstoneWizard08",
+    "Bogdanasaurus",
+    "Stardust Modding Contributors"
   ],
   "contact": {
-    "homepage": "https://github.com/Niostone/Interstellar",
+    "homepage": "https://github.com/StardustModding/Interstellar",
     "sources": "https://github.com/Niostone/Interstellar"
   },
   "license": "MIT",
@@ -17,10 +19,22 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.niostone.interstellar.fabric.InterstellarFabric"
+      {
+        "adapter": "kotlin",
+        "value": "dev.niostone.interstellar.fabric.InterstellarFabric"
+      }
+    ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.niostone.interstellar.fabric.client.InterstellarFabricClient"
+      }
     ],
     "modmenu": [
-      "dev.niostone.interstellar.fabric.ModMenuIntegration"
+      {
+        "adapter": "kotlin",
+        "value": "dev.niostone.interstellar.fabric.ModMenuIntegration"
+      }
     ]
   },
   "mixins": [
@@ -29,18 +43,9 @@
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.19.2",
-    "architectury": ">=6.5.77",
-    "cloth-config": ">=8.3.103"
-  },
-  "custom": {
-    "modmenu": {
-      "parent": {
-        "id": "interstellar",
-        "name": "Create: Interstellar",
-        "description":"Explore the universe in style.",
-        "icon": "assets/interstellar/icon.png"
-      }
-    }
+    "minecraft": ">=${minecraft_version}",
+    "architectury": ">=${architectury_version}",
+    "fabric-language-kotlin": ">=${fabric_kotlin_version}",
+    "cloth-config": ">=${cloth_config_version}"
   }
 }
