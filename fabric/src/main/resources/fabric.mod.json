@@ -21,19 +21,19 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "dev.niostone.interstellar.fabric.InterstellarFabric"
+        "value": "org.stardustmodding.interstellar.fabric.InterstellarFabric"
       }
     ],
     "client": [
       {
         "adapter": "kotlin",
-        "value": "dev.niostone.interstellar.fabric.client.InterstellarFabricClient"
+        "value": "org.stardustmodding.interstellar.fabric.client.InterstellarFabricClient"
       }
     ],
     "modmenu": [
       {
         "adapter": "kotlin",
-        "value": "dev.niostone.interstellar.fabric.ModMenuIntegration"
+        "value": "org.stardustmodding.interstellar.fabric.ModMenuIntegration"
       }
     ]
   },

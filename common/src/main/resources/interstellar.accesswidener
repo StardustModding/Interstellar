@@ -3,6 +3,7 @@ accessWidener v2 named
 accessible class net/minecraft/client/gui/screens/LoadingOverlay$LogoTexture
 accessible class net/minecraft/client/renderer/texture/SimpleTexture$TextureImage
 
+accessible field net/minecraft/world/entity/ai/attributes/DefaultAttributes SUPPLIERS Ljava/util/Map;
 accessible field net/minecraft/client/gui/screens/LoadingOverlay MOJANG_STUDIOS_LOGO_LOCATION Lnet/minecraft/resources/ResourceLocation;
 accessible field net/minecraft/client/gui/screens/LoadingOverlay LOGO_BACKGROUND_COLOR I
 accessible field net/minecraft/core/MappedRegistry frozen Z
