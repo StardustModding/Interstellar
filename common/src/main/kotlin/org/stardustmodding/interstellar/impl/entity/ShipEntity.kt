@@ -1,23 +1,23 @@
 package org.stardustmodding.interstellar.impl.entity
 
-import net.minecraft.nbt.CompoundTag
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EntityType
-import net.minecraft.world.level.Level
-import net.minecraft.world.level.block.state.BlockState
+import net.minecraft.block.BlockState
+import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityType
+import net.minecraft.nbt.NbtCompound
+import net.minecraft.world.World
 
-class ShipEntity(type: EntityType<*>, level: Level) : Entity(type, level) {
+class ShipEntity(type: EntityType<*>, world: World) : Entity(type, world) {
     val blocks: MutableList<BlockState> = mutableListOf()
 
-    override fun defineSynchedData() {
+    override fun initDataTracker() {
 
     }
 
-    override fun readAdditionalSaveData(compound: CompoundTag) {
+    override fun readCustomDataFromNbt(nbt: NbtCompound?) {
 
     }
 
-    override fun addAdditionalSaveData(compound: CompoundTag) {
+    override fun writeCustomDataToNbt(nbt: NbtCompound?) {
 
     }
 }

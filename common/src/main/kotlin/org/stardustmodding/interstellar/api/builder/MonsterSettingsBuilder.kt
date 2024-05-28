@@ -1,7 +1,7 @@
 package org.stardustmodding.interstellar.api.builder
 
-import net.minecraft.util.valueproviders.IntProvider
-import net.minecraft.world.level.dimension.DimensionType
+import net.minecraft.util.math.intprovider.IntProvider
+import net.minecraft.world.dimension.DimensionType
 
 class MonsterSettingsBuilder {
     var piglinSafe: Boolean? = null

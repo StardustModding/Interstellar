@@ -83,16 +83,8 @@ allprojects {
 subprojects {
     apply(plugin = "dev.architectury.loom")
 
-    val loom = project.extensions.getByName<LoomGradleExtensionAPI>("loom")
-
     dependencies {
         "minecraft"("com.mojang:minecraft:${rootProject.property("minecraft_version")}")
-
-        // "mappings"(loom.layered {
-        //     officialMojangMappings()
-        //     parchment("org.parchmentmc.data:parchment-${rootProject.property("minecraft_version")}:${rootProject.property("parchment_version")}@zip")
-        // })
-
         "mappings"("net.fabricmc:yarn:${rootProject.property("yarn_mappings")}:v2")
     }
 }

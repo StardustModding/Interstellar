@@ -1,0 +1,7 @@
+.build
+bin
+lib
+lib64
+include
+share
+.built

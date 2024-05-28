@@ -1,23 +1,23 @@
 package org.stardustmodding.interstellar.impl.init
 
+import net.minecraft.entity.EntityType
+import net.minecraft.entity.SpawnGroup
+import net.minecraft.registry.Registry
+import net.minecraft.registry.RegistryKeys
+import net.minecraft.server.MinecraftServer
 import org.stardustmodding.interstellar.impl.Interstellar
 import org.stardustmodding.interstellar.impl.entity.ShipEntity
-import net.minecraft.core.Registry
-import net.minecraft.core.registries.BuiltInRegistries
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.entity.EntityType
-import net.minecraft.world.entity.MobCategory
 
 object Entities {
     var SHIP: EntityType<ShipEntity>? = null
 
-    fun register() {
+    fun register(server: MinecraftServer) {
         SHIP = Registry.register(
-            BuiltInRegistries.ENTITY_TYPE,
-            ResourceLocation(Interstellar.MOD_ID, "ship"),
-            EntityType.Builder.of({ type, level ->
+            server.registryManager.get(RegistryKeys.ENTITY_TYPE),
+            Interstellar.id("ship"),
+            EntityType.Builder.create({ type, level ->
                 ShipEntity(type, level)
-            }, MobCategory.MISC).build("ship")
+            }, SpawnGroup.MISC).build("ship")
         )
     }
 }

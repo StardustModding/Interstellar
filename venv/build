@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -xe
+
+PYTHON="3.10.0"
+URL="https://www.python.org/ftp/python/$PYTHON/Python-$PYTHON.tgz"
+DIR="$(realpath "$(dirname "$0")")"
+
+[[ -f "$DIR/.built" ]] && exit 0
+[[ ! -d "$DIR/.build" ]] && mkdir -p "$DIR/.build"
+
+cd "$DIR/.build"
+
+curl -fsSL "$URL" | tar -xz --strip-components 1
+LDFLAGS="-lgcov" CC="clang" ./configure --enable-optimizations --prefix="$DIR"
+make install
+
+source "$DIR/activate"
+"$PYTHON" -m ensurepip
+$PIP install --upgrade --force-reinstall --prefix "$DIR" cryptography netifaces
+$PIP install --upgrade --force-reinstall --prefix "$DIR" projector-installer
+
+touch "$DIR/.built"

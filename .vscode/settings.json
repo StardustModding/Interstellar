@@ -1,0 +1,13 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "groovy.java.home": "/usr/lib/jvm/java-17-openjdk-arm64",
+    "java.jdt.ls.java.home": "/usr/lib/jvm/java-17-openjdk-arm64",
+    "java.import.gradle.java.home": "/usr/lib/jvm/java-17-openjdk-arm64",
+    "kotlin.java.home": "/usr/lib/jvm/java-17-openjdk-arm64",
+    "kotlin.languageServer.enabled": true,
+    "kotlin.scripts.enabled": true,
+    "kotlin.scripts.buildScriptsEnabled": true,
+    "kotlin.indexing.enabled": true,
+    "kotlin.java.opts": "-Xmx8192M",
+    "java.compile.nullAnalysis.mode": "automatic"
+}

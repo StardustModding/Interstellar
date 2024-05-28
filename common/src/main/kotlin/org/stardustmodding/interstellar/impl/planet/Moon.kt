@@ -1,18 +1,28 @@
 package org.stardustmodding.interstellar.impl.planet
 
 import com.google.common.collect.ImmutableList
-import net.minecraft.core.Holder
-import net.minecraft.core.registries.Registries
-import net.minecraft.data.worldgen.SurfaceRuleData
-import net.minecraft.resources.ResourceKey
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.tags.TagKey
-import net.minecraft.util.valueproviders.UniformInt
-import net.minecraft.world.level.biome.FixedBiomeSource
-import net.minecraft.world.level.block.Blocks
-import net.minecraft.world.level.chunk.ChunkGenerator
-import net.minecraft.world.level.dimension.DimensionType
-import net.minecraft.world.level.levelgen.*
+import net.minecraft.block.Blocks
+import net.minecraft.registry.RegistryKeys
+import net.minecraft.registry.entry.RegistryEntry
+import net.minecraft.registry.tag.TagKey
+import net.minecraft.util.Identifier
+import net.minecraft.util.math.intprovider.UniformIntProvider
+import net.minecraft.util.math.noise.DoublePerlinNoiseSampler.NoiseParameters
+import net.minecraft.world.biome.source.FixedBiomeSource
+import net.minecraft.world.biome.source.util.MultiNoiseUtil
+import net.minecraft.world.biome.source.util.MultiNoiseUtil.NoiseHypercube
+import net.minecraft.world.dimension.DimensionType
+import net.minecraft.world.gen.YOffset
+import net.minecraft.world.gen.chunk.ChunkGenerator
+import net.minecraft.world.gen.chunk.ChunkGeneratorSettings
+import net.minecraft.world.gen.chunk.GenerationShapeConfig
+import net.minecraft.world.gen.chunk.NoiseChunkGenerator
+import net.minecraft.world.gen.densityfunction.DensityFunctionTypes
+import net.minecraft.world.gen.densityfunction.DensityFunctions
+import net.minecraft.world.gen.noise.NoiseHelper
+import net.minecraft.world.gen.noise.NoiseRouter
+import net.minecraft.world.gen.surfacebuilder.MaterialRules
+import net.minecraft.world.gen.surfacebuilder.MaterialRules.MaterialRule
 import org.stardustmodding.interstellar.api.builder.DimensionTypeBuilder
 import org.stardustmodding.interstellar.api.builder.MonsterSettingsBuilder
 import org.stardustmodding.interstellar.impl.Interstellar
@@ -32,53 +42,53 @@ class Moon: Planet {
                 .coordinateScale(1.0)
                 .ambientLight(4.0f)
                 .logicalHeight(384)
-                .effectsLocation(ResourceLocation("minecraft", "overworld"))
-                .infiniburn(TagKey.create(Registries.BLOCK, ResourceLocation(Interstellar.MOD_ID, "infiniburn_moon")))
+                .effectsLocation(Identifier("minecraft", "overworld"))
+                .infiniburn(TagKey.of(RegistryKeys.BLOCK, Interstellar.id("infiniburn_moon")))
                 .minY(-64)
                 .height(384)
                 .monsterSettings(MonsterSettingsBuilder()
                         .piglinSafe(true)
                         .hasRaids(false)
                         .blockLightLimit(0)
-                        .lightTest(UniformInt.of(0, 4))
+                        .lightTest(UniformIntProvider.create(0, 4))
                         .build())
                 .build()
     }
 
     override fun getChunkGenerator(): ChunkGenerator {
-        return NoiseBasedChunkGenerator(
+        return NoiseChunkGenerator(
                 FixedBiomeSource(Biomes.MOON_PLAINS!!),
-                Holder.direct(this.getGeneratorSettings())
+                RegistryEntry.of(this.getGeneratorSettings())
         )
     }
 
-    override fun getGeneratorSettings(): NoiseGeneratorSettings {
-        return NoiseGeneratorSettings(
-                NoiseSettings.create(-64, 128, 1, 2),
-                Blocks.STONE.defaultBlockState(), // defaultBlock
-                Blocks.AIR.defaultBlockState(), // defaultFluid
+    override fun getGeneratorSettings(): ChunkGeneratorSettings {
+        return ChunkGeneratorSettings(
+                GenerationShapeConfig.create(-64, 128, 1, 2),
+                Blocks.STONE.defaultState, // defaultBlock
+                Blocks.AIR.defaultState, // defaultFluid
                 NoiseRouter(
-                        DensityFunctions.constant(0.0), // barrier
-                        DensityFunctions.constant(0.0), // fluidLevelFloodedness
-                        DensityFunctions.constant(0.0), // fluidLevelSpread
-                        DensityFunctions.constant(0.0), // lava
-                        DensityFunctions.constant(0.0), // temperature
-                        DensityFunctions.constant(0.0), // vegetation
-                        DensityFunctions.constant(0.0), // crontinents
-                        DensityFunctions.constant(0.0), // erosion
-                        DensityFunctions.constant(0.0), // depth
-                        DensityFunctions.constant(0.0), // ridges
-                        DensityFunctions.constant(0.0), // initialDensityWithoutJaggedness
-                        DensityFunctions.interpolated(
+                        DensityFunctionTypes.constant(0.0), // barrier
+                        DensityFunctionTypes.constant(0.0), // fluidLevelFloodedness
+                        DensityFunctionTypes.constant(0.0), // fluidLevelSpread
+                        DensityFunctionTypes.constant(0.0), // lava
+                        DensityFunctionTypes.constant(0.0), // temperature
+                        DensityFunctionTypes.constant(0.0), // vegetation
+                        DensityFunctionTypes.constant(0.0), // crontinents
+                        DensityFunctionTypes.constant(0.0), // erosion
+                        DensityFunctionTypes.constant(0.0), // depth
+                        DensityFunctionTypes.constant(0.0), // ridges
+                        DensityFunctionTypes.constant(0.0), // initialDensityWithoutJaggedness
+                        DensityFunctionTypes.interpolated(
                             RegistryLookup.DENSITY_FUNCTIONS?.get(
-                                ResourceLocation("minecraft", "overworld/base_3d_noise")
+                                Identifier("minecraft", "overworld/base_3d_noise")
                             )!!
                         ), // finalDensity
-                        DensityFunctions.constant(0.0), // veinToggle
-                        DensityFunctions.constant(0.0), // veinRidged
-                        DensityFunctions.constant(0.0) // veinGap
+                        DensityFunctionTypes.constant(0.0), // veinToggle
+                        DensityFunctionTypes.constant(0.0), // veinRidged
+                        DensityFunctionTypes.constant(0.0) // veinGap
                 ),
-                getSurfaceRules(), // surfaceRule
+                getMaterialRules(), // surfaceRule
                 mutableListOf(), // spawnTarget
                 0, // seaLevel
                 true, // disableMobGeneration
@@ -88,49 +98,49 @@ class Moon: Planet {
         )
     }
 
-    override fun getLocation(): ResourceLocation {
-        return ResourceLocation(Interstellar.MOD_ID, "moon")
+    override fun getLocation(): Identifier {
+        return Interstellar.id("moon")
     }
 
-    private fun getSurfaceRules(): SurfaceRules.RuleSource {
-        val builder = ImmutableList.builder<SurfaceRules.RuleSource>()
+    private fun getMaterialRules(): MaterialRule {
+        val builder = ImmutableList.builder<MaterialRule>()
 
         builder.add(
-            SurfaceRules.ifTrue(
-                SurfaceRules.not(
-                    SurfaceRules.verticalGradient(
+            MaterialRules.condition(
+                MaterialRules.not(
+                    MaterialRules.verticalGradient(
                         "stone_roof",
-                        VerticalAnchor.belowTop(5),
-                        VerticalAnchor.top()
+                        YOffset.belowTop(5),
+                        YOffset.getTop()
                     )
-                ), SurfaceRules.state(Blocks.STONE.defaultBlockState())
+                ), MaterialRules.block(Blocks.STONE.defaultState)
             )
         )
 
         builder.add(
-            SurfaceRules.ifTrue(
-                SurfaceRules.verticalGradient(
+            MaterialRules.condition(
+                MaterialRules.verticalGradient(
                     "bedrock_floor",
-                    VerticalAnchor.bottom(),
-                    VerticalAnchor.aboveBottom(5)
-                ), SurfaceRules.state(Blocks.BEDROCK.defaultBlockState())
+                    YOffset.getBottom(),
+                    YOffset.aboveBottom(5)
+                ), MaterialRules.block(Blocks.BEDROCK.defaultState)
             )
         )
 
         builder.add(
-            SurfaceRules.ifTrue(
-                SurfaceRules.verticalGradient(
+            MaterialRules.condition(
+                MaterialRules.verticalGradient(
                     "deepslate",
-                    VerticalAnchor.absolute(0),
-                    VerticalAnchor.absolute(8)
-                ), SurfaceRules.state(Blocks.DEEPSLATE.defaultBlockState())
+                    YOffset.fixed(0),
+                    YOffset.fixed(8)
+                ), MaterialRules.block(Blocks.DEEPSLATE.defaultState)
             )
         )
 
-        return SurfaceRules.sequence(*builder.build().toArray { i: Int ->
-            arrayOfNulls<SurfaceRules.RuleSource>(
+        return MaterialRules.sequence(*builder.build().toArray { i: Int ->
+            arrayOfNulls<MaterialRule>(
                 i
             )
-        } as Array<SurfaceRules.RuleSource?>)
+        } as Array<MaterialRule?>)
     }
 }

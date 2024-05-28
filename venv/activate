@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ -z "$DIR" ]]; then
+    DIR="$(realpath "$(dirname "$0")")"
+fi
+
+export PYTHONHOME="$DIR"
+export PYTHON="$DIR/bin/python3"
+export PYTHONPATH="$DIR/lib/python3.10:$DIR/lib/python3.10/site-packages"
+export VIRTUAL_ENV="$DIR"
+export PATH="$DIR/bin:$PATH"
+export PIP="$PYTHON -m pip"

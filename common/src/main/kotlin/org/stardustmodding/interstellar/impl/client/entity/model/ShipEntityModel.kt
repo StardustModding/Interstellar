@@ -1,21 +1,21 @@
 package org.stardustmodding.interstellar.impl.client.entity.model
 
-import com.mojang.blaze3d.vertex.PoseStack
-import com.mojang.blaze3d.vertex.VertexConsumer
+import net.minecraft.client.model.ModelData
 import org.stardustmodding.interstellar.impl.entity.ShipEntity
-import net.minecraft.client.model.EntityModel
-import net.minecraft.client.model.geom.ModelPart
-import net.minecraft.client.model.geom.builders.LayerDefinition
-import net.minecraft.client.model.geom.builders.MeshDefinition
+import net.minecraft.client.model.ModelPart
+import net.minecraft.client.model.TexturedModelData
+import net.minecraft.client.render.VertexConsumer
+import net.minecraft.client.render.entity.model.EntityModel
+import net.minecraft.client.util.math.MatrixStack
 
 class ShipEntityModel(private val parts: MutableList<ModelPart>) : EntityModel<ShipEntity>() {
-    fun getTexturedModelData(): LayerDefinition {
-        val data = MeshDefinition()
+    fun getTexturedModelData(): TexturedModelData {
+        val data = ModelData()
 
-        return LayerDefinition.create(data, 64, 64)
+        return TexturedModelData.of(data, 64, 64)
     }
 
-    override fun setupAnim(
+    override fun setAngles(
         entity: ShipEntity,
         limbSwing: Float,
         limbSwingAmount: Float,
@@ -26,8 +26,8 @@ class ShipEntityModel(private val parts: MutableList<ModelPart>) : EntityModel<S
 
     }
 
-    override fun renderToBuffer(
-        poseStack: PoseStack,
+    override fun render(
+        matrices: MatrixStack,
         buffer: VertexConsumer,
         packedLight: Int,
         packedOverlay: Int,
@@ -38,7 +38,7 @@ class ShipEntityModel(private val parts: MutableList<ModelPart>) : EntityModel<S
     ) {
         parts.forEach {
             it.render(
-                poseStack,
+                matrices,
                 buffer,
                 packedLight,
                 packedOverlay,

@@ -2,7 +2,7 @@ package org.stardustmodding.interstellar.api.builder
 
 import  org.stardustmodding.interstellar.impl.config.GasConfig
 import org.stardustmodding.interstellar.impl.config.PlanetConfig
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Identifier
 
 class PlanetConfigBuilder {
     val config: PlanetConfig
@@ -11,7 +11,7 @@ class PlanetConfigBuilder {
         this.config = PlanetConfig(name)
     }
 
-    constructor(name: ResourceLocation) {
+    constructor(name: Identifier) {
         this.config = PlanetConfig(name.toString())
     }
 

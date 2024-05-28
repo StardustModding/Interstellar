@@ -1,18 +1,16 @@
 package org.stardustmodding.interstellar.impl.init
 
-import net.minecraft.core.Holder
-import org.stardustmodding.interstellar.impl.Interstellar
+import net.minecraft.registry.Registry
+import net.minecraft.registry.entry.RegistryEntry
+import net.minecraft.world.biome.Biome
 import org.stardustmodding.interstellar.impl.util.RegistryLookup
 import org.stardustmodding.interstellar.impl.world.biome.MoonPlains
-import net.minecraft.core.Registry
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.level.biome.Biome
 
 object Biomes {
-    var MOON_PLAINS: Holder.Reference<Biome>? = null
+    var MOON_PLAINS: RegistryEntry.Reference<Biome>? = null
 
     fun register() {
-        MOON_PLAINS = Registry.registerForHolder(
+        MOON_PLAINS = Registry.registerReference(
             RegistryLookup.BIOMES!!,
             MoonPlains().getLocation(),
             MoonPlains().getBiome()

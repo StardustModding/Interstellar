@@ -1,39 +1,39 @@
 package org.stardustmodding.interstellar.impl.world.biome
 
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.level.biome.Biome
-import net.minecraft.world.level.biome.BiomeGenerationSettings
-import net.minecraft.world.level.biome.BiomeSpecialEffects
-import net.minecraft.world.level.biome.MobSpawnSettings
+import net.minecraft.util.Identifier
+import net.minecraft.world.biome.Biome
+import net.minecraft.world.biome.BiomeEffects
+import net.minecraft.world.biome.GenerationSettings
+import net.minecraft.world.biome.SpawnSettings
 import org.stardustmodding.interstellar.impl.Interstellar
 
 class MoonPlains : CustomBiome {
     override fun getBiome(): Biome {
-        return Biome.BiomeBuilder()
+        return Biome.Builder()
             .temperature(0.0f)
             .downfall(0.0f)
-            .hasPrecipitation(false)
-            .temperatureAdjustment(Biome.TemperatureModifier.FROZEN)
-            .specialEffects(
-                BiomeSpecialEffects.Builder()
+            .precipitation(false)
+            .temperatureModifier(Biome.TemperatureModifier.FROZEN)
+            .effects(
+                BiomeEffects.Builder()
                     .skyColor(0)
                     .fogColor(1710618)
                     .waterColor(9219048)
                     .waterFogColor(9079551)
-                    .grassColorOverride(6513507)
-                    .foliageColorOverride(7895160)
+                    .grassColor(6513507)
+                    .foliageColor(7895160)
                     .build()
             )
             .generationSettings(
-                BiomeGenerationSettings.PlainBuilder()
+                GenerationSettings.Builder()
 //                   .addCarver(GenerationStep.Carving.AIR, RegistryLookup.CARVERS.getHolderOrThrow(Carvers.CAVE))
                    .build()
             )
-            .mobSpawnSettings(MobSpawnSettings.Builder().build())
+            .spawnSettings(SpawnSettings.Builder().build())
             .build()
     }
 
-    override fun getLocation(): ResourceLocation {
-        return ResourceLocation(Interstellar.MOD_ID, "moon_plains")
+    override fun getLocation(): Identifier {
+        return Interstellar.id("moon_plains")
     }
 }

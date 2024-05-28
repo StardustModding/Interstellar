@@ -14,7 +14,7 @@ dependencies {
 
     modApi("dev.architectury:architectury:${rootProject.property("architectury_version")}")
     modApi("me.shedaniel.cloth:cloth-config:${rootProject.property("cloth_config_version")}")
-    modApi("dev.galacticraft:dynamicdimensions-common:${rootProject.property("dyndims_version")}")
+    modImplementation("dev.galacticraft:dynamicdimensions-common:${rootProject.property("dyndims_version")}")
 
     include("io.wispforest:owo-sentinel:${project.property("owo_version")}")
 }
@@ -23,3 +23,6 @@ tasks.processResources {
     inputs.property("version", version)
 }
 
+tasks.remapJar {
+    nestedJars.setFrom()
+}

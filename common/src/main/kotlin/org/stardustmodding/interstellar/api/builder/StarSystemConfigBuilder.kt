@@ -1,7 +1,7 @@
 package org.stardustmodding.interstellar.api.builder
 
+import net.minecraft.util.Identifier
 import org.stardustmodding.interstellar.impl.config.StarSystemConfig
-import net.minecraft.resources.ResourceLocation
 
 class StarSystemConfigBuilder {
     val config: StarSystemConfig
@@ -10,7 +10,7 @@ class StarSystemConfigBuilder {
         this.config = StarSystemConfig(name);
     }
 
-    constructor(name: ResourceLocation) {
+    constructor(name: Identifier) {
         this.config = StarSystemConfig(name.toString());
     }
 

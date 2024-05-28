@@ -1,7 +1,7 @@
 package org.stardustmodding.interstellar.impl.client.init
 
-import net.minecraft.client.model.geom.ModelLayerLocation
+import net.minecraft.client.render.entity.model.EntityModelLayer
 
 object ClientEntities {
-    var MODEL_SHIP_LAYER: ModelLayerLocation? = null
+    var MODEL_SHIP_LAYER: EntityModelLayer? = null
 }

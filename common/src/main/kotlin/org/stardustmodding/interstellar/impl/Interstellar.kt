@@ -13,28 +13,28 @@ import me.shedaniel.autoconfig.ConfigData
 import me.shedaniel.autoconfig.annotation.Config
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer
-import net.minecraft.commands.CommandBuildContext
-import net.minecraft.commands.CommandSourceStack
-import net.minecraft.commands.Commands
-import net.minecraft.core.registries.Registries
-import net.minecraft.network.chat.Component
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.world.item.CreativeModeTab
-import net.minecraft.world.item.Item
-import net.minecraft.world.item.ItemStack
+import net.minecraft.command.CommandRegistryAccess
+import net.minecraft.item.Item
+import net.minecraft.item.ItemGroup
+import net.minecraft.item.ItemStack
+import net.minecraft.registry.RegistryKeys
+import net.minecraft.server.command.CommandManager
+import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.text.Text
+import net.minecraft.util.Identifier
 
 object Interstellar {
     const val MOD_ID = "interstellar"
 
-    private val items = DeferredRegister.create(MOD_ID, Registries.ITEM)
+    private val items = DeferredRegister.create(MOD_ID, RegistryKeys.ITEM)
 
     // This isn't a real item!
     private val rocket = items.register(
         "rocket"
-    ) { Item(Item.Properties()) }
+    ) { Item(Item.Settings()) }
 
     private val creativeTab =
-        CreativeTabRegistry.create(Component.translatable(ResourceLocation(MOD_ID, "creative_tab").toLanguageKey())
+        CreativeTabRegistry.create(Text.translatable(id("creative_tab").toTranslationKey())
         ) {
             ItemStack(
                 rocket.get()
@@ -47,6 +47,11 @@ object Interstellar {
         DimensionTpCommand()
     )
 
+    @JvmStatic
+    fun id(id: String): Identifier {
+        return Identifier(MOD_ID, id)
+    }
+
     fun getConfig(): InterstellarConfig? {
         return config
     }
@@ -55,7 +60,7 @@ object Interstellar {
         return items
     }
 
-    fun getTab(): CreativeModeTab {
+    fun getTab(): ItemGroup {
         return creativeTab
     }
 
@@ -77,9 +82,9 @@ object Interstellar {
         LifecycleEvent.SERVER_STARTED.register(Initializer::init)
 
         CommandRegistrationEvent.EVENT.register(CommandRegistrationEvent {
-            dispatcher: CommandDispatcher<CommandSourceStack>,
-            _: CommandBuildContext,
-            _: Commands.CommandSelection ->
+                dispatcher: CommandDispatcher<ServerCommandSource>,
+                _: CommandRegistryAccess,
+                _: CommandManager.RegistrationEnvironment ->
                 for (cmd in commands) {
                     cmd.register(dispatcher)
                 }

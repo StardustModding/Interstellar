@@ -3,7 +3,7 @@ package org.stardustmodding.interstellar.impl.config;
 import org.stardustmodding.interstellar.impl.Interstellar
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Identifier
 
 @Config(name = "gases")
 class GasConfig: ConfigData {
@@ -17,7 +17,7 @@ class GasConfig: ConfigData {
         this.quantity = quantity;
     }
 
-    constructor(id: ResourceLocation, quantity: Float) {
+    constructor(id: Identifier, quantity: Float) {
         this.id = id.toString();
         this.quantity = quantity;
     }

@@ -1,10 +1,9 @@
 package org.stardustmodding.interstellar.api.builder
 
-import net.minecraft.resources.ResourceLocation
-import net.minecraft.tags.TagKey
-import net.minecraft.world.level.block.Block
-import net.minecraft.world.level.dimension.DimensionType
-
+import net.minecraft.block.Block
+import net.minecraft.registry.tag.TagKey
+import net.minecraft.util.Identifier
+import net.minecraft.world.dimension.DimensionType
 import java.util.OptionalLong
 
 class DimensionTypeBuilder {
@@ -20,7 +19,7 @@ class DimensionTypeBuilder {
     private var height: Int? = null
     private var logicalHeight: Int? = null
     private var infiniburn: TagKey<Block>? = null
-    private var effectsLocation: ResourceLocation? = null
+    private var effectsLocation: Identifier? = null
     private var ambientLight: Float? = null
     private var monsterSettings: DimensionType.MonsterSettings? = null
 
@@ -36,7 +35,7 @@ class DimensionTypeBuilder {
     fun height(value: Int) = apply { this.height = value }
     fun logicalHeight(value: Int) = apply { this.logicalHeight = value }
     fun infiniburn(value: TagKey<Block>) = apply { this.infiniburn = value }
-    fun effectsLocation(value: ResourceLocation) = apply { this.effectsLocation = value }
+    fun effectsLocation(value: Identifier) = apply { this.effectsLocation = value }
     fun ambientLight(value: Float) = apply { this.ambientLight = value }
     fun monsterSettings(value: DimensionType.MonsterSettings) = apply { this.monsterSettings = value }
 
