@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MC_VERSION="1.19.2"
+MC_VERSION="1.20.1"
 
 # Forge
 FORGE_PAGE="$(curl -fsSL "https://files.minecraftforge.net/net/minecraftforge/forge/index_$MC_VERSION.html")"
@@ -41,4 +41,3 @@ FABRIC_L_LATEST_VERSION="$FABRIC_L_LATEST_MINOR.$FABRIC_L_LATEST_PATCH"
 echo "Forge: $MC_VERSION-$FORGE_LATEST_VERSION"
 echo "Fabric: $FABRIC_LATEST_VERSION+$MC_VERSION"
 echo "Fabric Loader: $FABRIC_L_LATEST_VERSION"
-

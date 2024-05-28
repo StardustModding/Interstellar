@@ -21,3 +21,4 @@ classes/
 .envrc
 .env*
 .env
+.ignored

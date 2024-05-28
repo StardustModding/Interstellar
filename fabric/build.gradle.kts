@@ -66,7 +66,6 @@ tasks.remapJar {
 
 tasks.jar {
     archiveClassifier.set("dev")
-//    archivesName.set("${rootProject.property("mod_id")}-fabric-${rootProject.property("minecraft_version")}")
 }
 
 tasks.sourcesJar {

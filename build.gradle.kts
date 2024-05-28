@@ -88,9 +88,11 @@ subprojects {
     dependencies {
         "minecraft"("com.mojang:minecraft:${rootProject.property("minecraft_version")}")
 
-        "mappings"(loom.layered {
-            officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-1.20.1:2023.09.03@zip")
-        })
+        // "mappings"(loom.layered {
+        //     officialMojangMappings()
+        //     parchment("org.parchmentmc.data:parchment-${rootProject.property("minecraft_version")}:${rootProject.property("parchment_version")}@zip")
+        // })
+
+        "mappings"("net.fabricmc:yarn:${rootProject.property("yarn_mappings")}:v2")
     }
 }
