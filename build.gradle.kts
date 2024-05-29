@@ -96,10 +96,10 @@ subprojects {
     configure<PublishingExtension> {
         publications {
             create<MavenPublication>("mod") {
-                // groupId = "org.stardustmodding.interstellar"
-                // artifactId = "interstellar-${project.name}"
-                // version = rootProject.property("mod_version")!! as String
-                // pom.packaging = "jar"
+                groupId = "org.stardustmodding.interstellar"
+                artifactId = "interstellar-${project.name}"
+                version = rootProject.property("mod_version")!! as String
+                pom.packaging = "jar"
 
                 if (tasks.names.contains("remapJar")) {
                     artifact(tasks.named<RemapJarTask>("remapJar"))
