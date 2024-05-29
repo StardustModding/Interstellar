@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR="$(realpath "$(dirname "$0")")"
+
+source "$DIR/activate"
+
+"$DIR/bin/projector" run
