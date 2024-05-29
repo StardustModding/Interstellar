@@ -2,7 +2,8 @@ import net.fabricmc.loom.api.LoomGradleExtensionAPI
 
 plugins {
     id("java")
-    kotlin("jvm") version "1.8.22"
+    kotlin("jvm") version "1.9.22"
+    id("org.jetbrains.dokka") version "1.9.20"
     id("architectury-plugin") version "3.4-SNAPSHOT"
     id("dev.architectury.loom") version "1.6-SNAPSHOT" apply false
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
@@ -81,6 +82,7 @@ allprojects {
 }
 
 subprojects {
+    apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "dev.architectury.loom")
 
     dependencies {
