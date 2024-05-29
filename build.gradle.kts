@@ -116,11 +116,11 @@ subprojects {
                 version = rootProject.property("mod_version")!! as String
                 pom.packaging = "jar"
 
-                // if (tasks.names.contains("remapJar")) {
-                //     artifact(tasks.named<RemapJarTask>("remapJar").get().archiveFile)
-                // } else {
-                //     artifact(tasks.named<ShadowJar>("shadowJar").get().archiveFile)
-                // }
+                if (tasks.names.contains("remapJar")) {
+                    artifact(tasks.named<RemapJarTask>("remapJar").get().archiveFile)
+                } else {
+                    artifact(tasks.named<ShadowJar>("shadowJar").get().archiveFile)
+                }
 
                 // artifact(tasks.kotlinSourcesJar.get().archiveFile)
             }
@@ -131,7 +131,7 @@ subprojects {
                 maven {
                     name = "GitHubPackages"
                     url = uri("https://maven.pkg.github.com/StardustModding/Interstellar")
-                    
+
                     credentials {
                         username = System.getenv("GITHUB_ACTOR")
                         password = System.getenv("GITHUB_TOKEN")
