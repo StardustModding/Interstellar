@@ -47,6 +47,14 @@
     "minecraft": ">=${minecraft_version}",
     "architectury": ">=${architectury_version}",
     "fabric-language-kotlin": ">=${fabric_kotlin_version}",
-    "cloth-config": ">=${cloth_config_version}"
+    "cloth-config": ">=${cloth_config_version}",
+    "badpackets": ">=0.4.0"
+  },
+  "custom": {
+    "loom:inject_interfaces": {
+      "net/minecraft/server/MinecraftServer": [
+        "dev/galacticraft/dynamicdimensions/api/DynamicDimensionRegistry"
+      ]
+    }
   }
 }
