@@ -116,13 +116,13 @@ subprojects {
                 version = rootProject.property("mod_version")!! as String
                 pom.packaging = "jar"
 
-                if (tasks.names.contains("remapJar")) {
-                    artifact(tasks.named<RemapJarTask>("remapJar").get().archiveFile)
-                } else {
-                    artifact(tasks.named<ShadowJar>("shadowJar").get().archiveFile)
-                }
+                // if (tasks.names.contains("remapJar")) {
+                //     artifact(tasks.named<RemapJarTask>("remapJar").get().archiveFile)
+                // } else {
+                //     artifact(tasks.named<ShadowJar>("shadowJar").get().archiveFile)
+                // }
 
-                artifact(tasks.kotlinSourcesJar.get().archiveFile)
+                // artifact(tasks.kotlinSourcesJar.get().archiveFile)
             }
         }
 
@@ -134,6 +134,17 @@ subprojects {
                     credentials {
                         username = System.getenv("GITHUB_ACTOR")
                         password = System.getenv("GITHUB_TOKEN")
+                    }
+                }
+            }
+
+            if (System.getenv("MAVEN_USER") != null && System.getenv("MAVEN_PASSWORD") != null) {
+                maven {
+                    name = "StardustModding"
+                    url = uri("https://repo.kadaroja.com/snapshots/")
+                    credentials {
+                        username = System.getenv("MAVEN_USER")
+                        password = System.getenv("MAVEN_PASSWORD")
                     }
                 }
             }
