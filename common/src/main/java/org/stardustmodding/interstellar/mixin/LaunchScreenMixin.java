@@ -6,7 +6,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.SplashOverlay;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper.Argb;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,10 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Environment(EnvType.CLIENT)
 @Mixin(SplashOverlay.class)
 public class LaunchScreenMixin {
-    /**
-     * @author RedstoneWizard08
-     * @reason Registering custom image
-     */
+    @SuppressWarnings("OverwriteAuthorRequired")
     @Overwrite
     public static void init(MinecraftClient minecraft) {
         minecraft.getTextureManager().registerTexture(Interstellar.id("textures/gui/loading_logo.png"), new SplashOverlay.LogoTexture());

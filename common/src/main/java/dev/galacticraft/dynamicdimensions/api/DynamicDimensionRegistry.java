@@ -90,7 +90,7 @@ public interface DynamicDimensionRegistry {
      *
      * @param chunkGenerator The chunk generator.
      * @param id             The ID of the dimension.
-     *                       This ID must be unique and unused in the {@link net.minecraft.registry.RegistryKeys#DIMENSION_TYPE} registry and the {@link net.minecraft.world.level.levelgen.WorldDimensions#dimensions()} registry.
+     *                       This ID must be unique and unused in the {@link net.minecraft.registry.RegistryKeys#DIMENSION_TYPE} registry and the {@link net.minecraft.world.dimension.DimensionOptionsRegistryHolder#dimensions()} registry.
      * @param type           The dimension type.
      * @return whether a dimension with the given id was created
      * @since 0.6.0
@@ -104,7 +104,7 @@ public interface DynamicDimensionRegistry {
      *
      * @param chunkGenerator The chunk generator.
      * @param id             The ID of the dimension.
-     *                       This ID must be unique and unused in the {@link net.minecraft.registry.RegistryKeys#DIMENSION_TYPE} registry and the {@link net.minecraft.world.level.levelgen.WorldDimensions#dimensions()} registry.
+     *                       This ID must be unique and unused in the {@link net.minecraft.registry.RegistryKeys#DIMENSION_TYPE} registry and the {@link net.minecraft.world.dimension.DimensionOptionsRegistryHolder#dimensions()} registry.
      * @param type           The dimension type.
      * @return whether a dimension with the given id was created
      * @since 0.6.0

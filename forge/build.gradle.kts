@@ -47,24 +47,6 @@ dependencies {
     implementation("thedarkcolour:kotlinforforge:${rootProject.property("kotlin_for_forge_version")}")
 }
 
-tasks.processResources {
-    inputs.property("group", rootProject.property("maven_group"))
-    inputs.property("version", project.version)
-
-    filesMatching("META-INF/mods.toml") {
-        expand(mapOf(
-            "group" to rootProject.property("maven_group"),
-            "version" to project.version,
-
-            "mod_id" to rootProject.property("mod_id"),
-            "minecraft_version" to rootProject.property("minecraft_version"),
-            "architectury_version" to rootProject.property("architectury_version"),
-            "kotlin_for_forge_version" to rootProject.property("kotlin_for_forge_version"),
-            "cloth_config_version" to rootProject.property("cloth_config_version"),
-        ))
-    }
-}
-
 tasks.shadowJar {
     exclude("fabric.mod.json")
     exclude("architectury.common.json")

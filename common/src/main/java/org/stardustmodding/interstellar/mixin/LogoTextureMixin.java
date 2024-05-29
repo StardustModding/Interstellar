@@ -24,13 +24,9 @@ public abstract class LogoTextureMixin extends ResourceTexture {
         super(resourceLocation);
     }
 
-    /**
-     * @author RedstoneWizard08
-     * @reason Replacing the logo texture
-     */
     @Overwrite
-    @SuppressWarnings("DataFlowIssue")
-    public @NotNull ResourceTexture.TextureData loadTextureData(ResourceManager resourceManager) {
+    @SuppressWarnings({"DataFlowIssue", "OverwriteAuthorRequired"})
+    protected @NotNull ResourceTexture.TextureData loadTextureData(ResourceManager resourceManager) {
         this.location = Interstellar.id("textures/gui/loading_logo.png");
 
         try {

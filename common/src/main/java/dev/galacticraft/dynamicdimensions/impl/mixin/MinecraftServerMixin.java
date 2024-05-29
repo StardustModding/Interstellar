@@ -102,7 +102,7 @@ public abstract class MinecraftServerMixin implements DynamicDimensionRegistry {
     private boolean tickingLevels = false;
 
     @Shadow
-    private ResourceManager resourceManagerHolder;
+    private MinecraftServer.ResourceManagerHolder resourceManagerHolder;
     @Shadow
     @Final
     private Executor workerExecutor;
@@ -388,7 +388,7 @@ public abstract class MinecraftServerMixin implements DynamicDimensionRegistry {
 
     @Unique
     private void reloadTags() {
-        for (TagManagerLoader.RegistryTags<?> result : ((ReloadableServerResourcesAccessor) this.resourceManagerHolder).getTagManager().getRegistryTags()) {
+        for (TagManagerLoader.RegistryTags<?> result : ((ReloadableServerResourcesAccessor) this.resourceManagerHolder.resourceManager()).getTagManager().getRegistryTags()) {
             if (result.key() == RegistryKeys.DIMENSION_TYPE) {
                 Registry<DimensionType> types = this.getCombinedDynamicRegistries().getCombinedRegistryManager().get(RegistryKeys.DIMENSION_TYPE);
                 types.clearTags();

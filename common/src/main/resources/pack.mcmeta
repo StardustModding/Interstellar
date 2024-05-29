@@ -1,6 +1,6 @@
 {
     "pack": {
-        "description": "${mod_name} ${mod_version}",
+        "description": "Interstellar ${version}",
         "pack_format": 9
     }
 }

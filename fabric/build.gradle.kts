@@ -35,21 +35,6 @@ dependencies {
     modImplementation("net.fabricmc:fabric-language-kotlin:${rootProject.property("fabric_kotlin_version")}")
 }
 
-tasks.processResources {
-    filesMatching("fabric.mod.json") {
-        expand(mapOf(
-            "group" to rootProject.property("maven_group"),
-            "version" to project.version,
-
-            "mod_id" to rootProject.property("mod_id"),
-            "minecraft_version" to rootProject.property("minecraft_version"),
-            "architectury_version" to rootProject.property("architectury_version"),
-            "fabric_kotlin_version" to rootProject.property("fabric_kotlin_version"),
-            "cloth_config_version" to rootProject.property("cloth_config_version"),
-        ))
-    }
-}
-
 tasks.shadowJar {
     exclude("architectury.common.json")
     configurations = listOf(shadowCommon)
