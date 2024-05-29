@@ -9,6 +9,7 @@ loom {
     forge.apply {
         mixinConfig("interstellar-common.mixins.json")
         mixinConfig("interstellar.mixins.json")
+        mixinConfig("dynamicdimensions.mixins.json")
 
         convertAccessWideners.set(true)
         extraAccessWideners.add(loom.accessWidenerPath.get().asFile.name)
@@ -68,18 +69,24 @@ tasks.shadowJar {
     exclude("fabric.mod.json")
     exclude("architectury.common.json")
     configurations = listOf(shadowCommon)
+    archiveBaseName.set(archiveBaseName.get() + "-forge")
     archiveClassifier.set("dev-shadow")
+    archiveVersion.set("${version}+${rootProject.property("minecraft_version")}")
 }
 
 tasks.remapJar {
     injectAccessWidener.set(true)
     inputFile.set(tasks.shadowJar.get().archiveFile)
     dependsOn(tasks.shadowJar)
+    archiveBaseName.set(archiveBaseName.get() + "-forge")
     archiveClassifier.set(null as String?)
+    archiveVersion.set("${version}+${rootProject.property("minecraft_version")}")
 }
 
 tasks.jar {
+    archiveBaseName.set(archiveBaseName.get() + "-forge")
     archiveClassifier.set("dev")
+    archiveVersion.set("${version}+${rootProject.property("minecraft_version")}")
 }
 
 tasks.sourcesJar {

@@ -14,6 +14,13 @@ architectury {
     minecraft = rootProject.property("minecraft_version").toString()
 }
 
+forgix {
+    group = "org.stardustmodding.interstellar"
+    mergedJarName = "interstellar"
+    outputDir = "build/libs/merged"
+    mergedJarName = "interstellar-universal-${rootProject.property("mod_version")}+${rootProject.property("minecraft_version")}.jar"
+}
+
 allprojects {
     apply(plugin = "java")
     apply(plugin = "kotlin")
@@ -89,5 +96,11 @@ subprojects {
     dependencies {
         "minecraft"("com.mojang:minecraft:${rootProject.property("minecraft_version")}")
         "mappings"("net.fabricmc:yarn:${rootProject.property("yarn_mappings")}:v2")
+    }
+
+    if (tasks.names.contains("remapJar")) {
+        tasks.named("remapJar") {
+            finalizedBy(rootProject.tasks.mergeJars)
+        }
     }
 }
