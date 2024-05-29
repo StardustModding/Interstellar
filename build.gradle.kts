@@ -1,4 +1,6 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import net.fabricmc.loom.api.LoomGradleExtensionAPI
+import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
     id("java")
@@ -90,6 +92,8 @@ allprojects {
 }
 
 subprojects {
+    apply(plugin = "java-library")
+    apply(plugin = "maven-publish")
     apply(plugin = "org.jetbrains.dokka")
     apply(plugin = "dev.architectury.loom")
 
@@ -103,4 +107,46 @@ subprojects {
             finalizedBy(rootProject.tasks.mergeJars)
         }
     }
+
+    configure<PublishingExtension> {
+        publications {
+            create<MavenPublication>("mod") {
+                groupId = "org.stardustmodding.interstellar"
+                artifactId = "interstellar-${project.name}"
+                version = rootProject.property("mod_version")!! as String
+                pom.packaging = "jar"
+
+                if (tasks.names.contains("remapJar")) {
+                    artifact(tasks.named<RemapJarTask>("remapJar").get().archiveFile)
+                } else {
+                    artifact(tasks.named<ShadowJar>("shadowJar").get().archiveFile)
+                }
+
+                artifact(tasks.kotlinSourcesJar.get().archiveFile)
+            }
+        }
+
+        repositories {
+            if (System.getenv("GITHUB_ACTOR") != null && System.getenv("GITHUB_TOKEN") != null) {
+                maven {
+                    name = "GitHubPackages"
+                    url = uri("https://maven.pkg.github.com/StardustModding/Interstellar")
+                    credentials {
+                        username = System.getenv("GITHUB_ACTOR")
+                        password = System.getenv("GITHUB_TOKEN")
+                    }
+                }
+            }
+
+            mavenLocal()
+        }
+    }
+
+//    publishing {
+//        publications {
+//            create<MavenPublication>("mavenJava") {
+//
+//            }
+//        }
+//    }
 }

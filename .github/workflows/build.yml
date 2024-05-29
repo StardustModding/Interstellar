@@ -4,6 +4,9 @@ on: [ push ]
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
     - name: Checkout sources
       uses: actions/checkout@v4
@@ -18,4 +21,10 @@ jobs:
     - uses: burrunan/gradle-cache-action@v1
       with:
         arguments: build
+        gradle-version: wrapper
+    - uses: burrunan/gradle-cache-action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        arguments: publish
         gradle-version: wrapper
