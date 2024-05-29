@@ -131,6 +131,7 @@ subprojects {
                 maven {
                     name = "GitHubPackages"
                     url = uri("https://maven.pkg.github.com/StardustModding/Interstellar")
+                    
                     credentials {
                         username = System.getenv("GITHUB_ACTOR")
                         password = System.getenv("GITHUB_TOKEN")
@@ -142,6 +143,7 @@ subprojects {
                 maven {
                     name = "StardustModding"
                     url = uri("https://repo.kadaroja.com/snapshots/")
+
                     credentials {
                         username = System.getenv("MAVEN_USER")
                         password = System.getenv("MAVEN_PASSWORD")
