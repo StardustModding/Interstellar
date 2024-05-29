@@ -154,12 +154,4 @@ subprojects {
             mavenLocal()
         }
     }
-
-//    publishing {
-//        publications {
-//            create<MavenPublication>("mavenJava") {
-//
-//            }
-//        }
-//    }
 }
