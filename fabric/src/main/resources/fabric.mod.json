@@ -1,62 +1,52 @@
 {
   "schemaVersion": 1,
   "id": "${mod_id}",
-  "version": "${mod_version}",
-  "name": "${mod_name}",
-  "icon": "${mod_id}.png",
-  "description": "${mod_description}",
-  "license": "MIT",
-  "contact": {
-    "homepage": "https://galacticraft.dev/",
-    "sources": "https://github.com/TeamGalacticraft/DynamicDimensions/",
-    "issues": "https://github.com/TeamGalacticraft/DynamicDimensions/issues/"
-  },
+  "version": "${version}",
+  "name": "Interstellar",
+  "description": "Explore the universe in style.",
   "authors": [
-    {
-      "name": "Team Galacticraft",
-      "contact": {
-        "homepage": "https://github.com/TeamGalacticraft/",
-        "discord": "https://discord.gg/n3QqhMYyFK"
-      }
-    }
+    "Nionics",
+    "RedstoneWizard08",
+    "Bogdanasaurus",
+    "Stardust Modding Contributors"
   ],
-  "contributors": [
-    {
-      "name": "marcus8448",
-      "contact": {
-        "homepage": "https://github.com/marcus8448"
-      }
-    }
-  ],
+  "contact": {
+    "homepage": "https://github.com/StardustModding/Interstellar",
+    "sources": "https://github.com/Niostone/Interstellar"
+  },
+  "license": "MIT",
+  "icon": "assets/interstellar/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.galacticraft.dynamicdimensions.impl.fabric.DynamicDimensionsFabric"
+      {
+        "adapter": "kotlin",
+        "value": "org.stardustmodding.interstellar.fabric.InterstellarFabric"
+      }
     ],
     "client": [
-      "dev.galacticraft.dynamicdimensions.impl.fabric.client.DynamicDimensionsFabricClient"
+      {
+        "adapter": "kotlin",
+        "value": "org.stardustmodding.interstellar.fabric.client.InterstellarFabricClient"
+      }
+    ],
+    "modmenu": [
+      {
+        "adapter": "kotlin",
+        "value": "org.stardustmodding.interstellar.fabric.ModMenuIntegration"
+      }
     ]
   },
   "mixins": [
-    "${mod_id}.mixins.json"
+    "interstellar.mixins.json",
+    "interstellar-common.mixins.json",
+    "dynamicdimensions.mixins.json"
   ],
-  "accessWidener": "${mod_id}.accesswidener",
   "depends": {
-    "fabricloader": ">=0.14",
-    "minecraft": ">=1.20.1",
-    "badpackets": ">=0.4.0"
-  },
-  "custom": {
-    "modmenu": {
-      "badges": [
-        "library"
-      ],
-      "parent": "galacticraft-api"
-    },
-    "loom:inject_interfaces": {
-      "net/minecraft/server/MinecraftServer": [
-        "dev/galacticraft/dynamicdimensions/api/DynamicDimensionRegistry"
-      ]
-    }
+    "fabric": "*",
+    "minecraft": ">=${minecraft_version}",
+    "architectury": ">=${architectury_version}",
+    "fabric-language-kotlin": ">=${fabric_kotlin_version}",
+    "cloth-config": ">=${cloth_config_version}"
   }
 }
