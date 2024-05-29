@@ -1,5 +1,4 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import net.fabricmc.loom.api.LoomGradleExtensionAPI
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
@@ -9,18 +8,10 @@ plugins {
     id("architectury-plugin") version "3.4-SNAPSHOT"
     id("dev.architectury.loom") version "1.6-SNAPSHOT" apply false
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
-    id("io.github.pacifistmc.forgix") version "1.2.9"
 }
 
 architectury {
     minecraft = rootProject.property("minecraft_version").toString()
-}
-
-forgix {
-    group = "org.stardustmodding.interstellar"
-    mergedJarName = "interstellar"
-    outputDir = "build/libs/merged"
-    mergedJarName = "interstellar-universal-${rootProject.property("mod_version")}+${rootProject.property("minecraft_version")}.jar"
 }
 
 allprojects {
@@ -102,12 +93,6 @@ subprojects {
         "mappings"("net.fabricmc:yarn:${rootProject.property("yarn_mappings")}:v2")
     }
 
-    if (tasks.names.contains("remapJar")) {
-        tasks.named("remapJar") {
-            finalizedBy(rootProject.tasks.mergeJars)
-        }
-    }
-
     configure<PublishingExtension> {
         publications {
             create<MavenPublication>("mod") {
@@ -117,12 +102,12 @@ subprojects {
                 // pom.packaging = "jar"
 
                 if (tasks.names.contains("remapJar")) {
-                    artifact(tasks.named<RemapJarTask>("remapJar").get().archiveFile)
+                    artifact(tasks.named<RemapJarTask>("remapJar"))
                 } else {
-                    artifact(tasks.named<ShadowJar>("shadowJar").get().archiveFile)
+                    artifact(tasks.named<ShadowJar>("shadowJar"))
                 }
 
-                artifact(tasks.kotlinSourcesJar.get().archiveFile)
+                artifact(tasks.kotlinSourcesJar)
             }
         }
 
