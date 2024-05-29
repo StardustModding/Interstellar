@@ -14,6 +14,14 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
+    - name: Delete SNAPSHOT packages
+      uses: Savrov/github-action-version-cleaner@release/1.0.0
+      with:
+        github-repository: ${{ github.repository }}
+        package-type: maven
+        version-tag: SNAPSHOT
+        is-version-tag-strict: true
+        github-token: ${{ secrets.DELETE_TOKEN }}
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v3
     - uses: burrunan/gradle-cache-action@v1
