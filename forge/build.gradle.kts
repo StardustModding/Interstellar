@@ -41,8 +41,7 @@ dependencies {
     modApi("dev.architectury:architectury-forge:${rootProject.property("architectury_version")}")
     modApi("me.shedaniel.cloth:cloth-config:${rootProject.property("cloth_config_version")}")
     modApi("me.shedaniel.cloth:cloth-config-forge:${rootProject.property("cloth_config_version")}")
-    modApi("dev.galacticraft:dynamicdimensions-common:${rootProject.property("dyndims_version")}")
-    modApi("dev.galacticraft:dynamicdimensions-forge:${rootProject.property("dyndims_version")}")
+    modRuntimeOnly("lol.bai:badpackets:forge-${rootProject.property("badpackets_version")}")
 
     implementation("thedarkcolour:kotlinforforge:${rootProject.property("kotlin_for_forge_version")}")
 }

@@ -30,8 +30,7 @@ dependencies {
     modApi("com.terraformersmc:modmenu:${rootProject.property("modmenu_version")}")
     modApi("me.shedaniel.cloth:cloth-config:${rootProject.property("cloth_config_version")}")
     modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.property("cloth_config_version")}")
-    modApi("dev.galacticraft:dynamicdimensions-common:${rootProject.property("dyndims_version")}")
-    modApi("dev.galacticraft:dynamicdimensions-fabric:${rootProject.property("dyndims_version")}")
+    modRuntimeOnly("lol.bai:badpackets:fabric-${rootProject.property("badpackets_version")}")
 
     modImplementation("net.fabricmc:fabric-language-kotlin:${rootProject.property("fabric_kotlin_version")}")
 }
