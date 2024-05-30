@@ -1,4 +1,5 @@
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("java")
@@ -14,7 +15,9 @@ architectury {
 }
 
 dependencies {
-    subprojects
+    subprojects.filter {
+        it.name != "dokka"
+    }
 }
 
 tasks.build.get().finalizedBy(tasks.named("shadowJar"))
@@ -24,16 +27,18 @@ tasks.processResources {
 
     for (file in listOf("fabric.mod.json", "mods.toml", "pack.mcmeta")) {
         filesMatching(file) {
-            expand(mapOf(
-                "group" to rootProject.property("maven_group"),
-                "version" to project.version,
+            expand(
+                mapOf(
+                    "group" to rootProject.property("maven_group"),
+                    "version" to project.version,
 
-                "mod_id" to rootProject.property("mod_id"),
-                "minecraft_version" to rootProject.property("minecraft_version"),
-                "architectury_version" to rootProject.property("architectury_version"),
-                "fabric_kotlin_version" to rootProject.property("fabric_kotlin_version"),
-                "cloth_config_version" to rootProject.property("cloth_config_version"),
-            ))
+                    "mod_id" to rootProject.property("mod_id"),
+                    "minecraft_version" to rootProject.property("minecraft_version"),
+                    "architectury_version" to rootProject.property("architectury_version"),
+                    "fabric_kotlin_version" to rootProject.property("fabric_kotlin_version"),
+                    "cloth_config_version" to rootProject.property("cloth_config_version"),
+                )
+            )
         }
     }
 }
@@ -43,8 +48,8 @@ allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "java-library")
     apply(plugin = "maven-publish")
-    apply(plugin = "architectury-plugin")
     apply(plugin = "org.jetbrains.dokka")
+    apply(plugin = "architectury-plugin")
     apply(plugin = "com.github.johnrengelman.shadow")
 
     base.archivesName.set(rootProject.property("archives_base_name").toString())
@@ -52,6 +57,7 @@ allprojects {
     group = rootProject.property("maven_group").toString()
 
     repositories {
+        mavenLocal()
         mavenCentral()
 
         maven {
@@ -92,6 +98,9 @@ allprojects {
 
     dependencies {
         compileOnly("org.jetbrains.kotlin:kotlin-stdlib")
+//        dokkaPlugin(rootProject.project("dokka"))
+//        dokkaPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.9.20")
+//        dokkaPlugin("org.stardustmodding.interstellar:interstellar-dokka:0.1.0:all")
     }
 
     tasks.withType<JavaCompile> {
@@ -112,21 +121,67 @@ allprojects {
 
         for (file in listOf("fabric.mod.json", "mods.toml", "pack.mcmeta")) {
             filesMatching(file) {
-                expand(mapOf(
-                    "group" to rootProject.property("maven_group"),
-                    "version" to project.version,
+                expand(
+                    mapOf(
+                        "group" to rootProject.property("maven_group"),
+                        "version" to project.version,
 
-                    "mod_id" to rootProject.property("mod_id"),
-                    "minecraft_version" to rootProject.property("minecraft_version"),
-                    "architectury_version" to rootProject.property("architectury_version"),
-                    "fabric_kotlin_version" to rootProject.property("fabric_kotlin_version"),
-                    "cloth_config_version" to rootProject.property("cloth_config_version"),
-                ))
+                        "mod_id" to rootProject.property("mod_id"),
+                        "minecraft_version" to rootProject.property("minecraft_version"),
+                        "architectury_version" to rootProject.property("architectury_version"),
+                        "fabric_kotlin_version" to rootProject.property("fabric_kotlin_version"),
+                        "cloth_config_version" to rootProject.property("cloth_config_version"),
+                    )
+                )
             }
         }
     }
 
     tasks.register<Javadoc>("javadocAll") {
+        val docletProj = rootProject.project("doclet")
+        val classes = docletProj.layout.buildDirectory.get().dir("classes").asFileTree
+        val resources = docletProj.sourceSets.main.get().resources.asFileTree
+
+        isFailOnError = false
+        setMaxMemory("2G")
+
+        val opts = options as StandardJavadocDocletOptions
+
+        opts.source = "17"
+        opts.encoding = "UTF-8"
+        opts.charSet = "UTF-8"
+        opts.memberLevel = JavadocMemberLevel.PRIVATE
+        opts.splitIndex(true)
+
+        opts.links(
+            "https://guava.dev/releases/31.1-jre/api/docs/",
+            "https://asm.ow2.io/javadoc/",
+            "https://docs.oracle.com/en/java/javase/17/docs/api/",
+            "https://jenkins.liteloader.com/job/Mixin/javadoc/",
+            "https://maven.fabricmc.net/docs/yarn-${rootProject.property("yarn_mappings")}/"
+        )
+
+        opts.tags(
+            "author:a",
+            "reason:m:\"Reason:\"",
+            "apiNote:a:API Note:",
+            "implSpec:a:Implementation Requirements:",
+            "implNote:a:Implementation Note:",
+        )
+
+        opts.taglets("org.stardustmodding.docs.taglet.MappingTaglet")
+        opts.use()
+        opts.addBooleanOption("-allow-script-in-comments", true)
+        opts.classpath(classes.toList())
+        opts.addBooleanOption("Xdoclint:html", true)
+        opts.addBooleanOption("Xdoclint:syntax", true)
+        opts.addBooleanOption("Xdoclint:reference", true)
+        opts.addBooleanOption("Xdoclint:accessibility", true)
+        opts.addStringOption("-notimestamp")
+        opts.addStringOption("Xdoclint:none", "-quiet")
+
+        dependsOn(docletProj.tasks.named("build"))
+
         source(subprojects.map {
             it.sourceSets.main.get().allJava
         })
@@ -134,6 +189,22 @@ allprojects {
         classpath = files(subprojects.map {
             it.sourceSets.main.get().compileClasspath
         })
+
+        doFirst {
+            @Suppress("NAME_SHADOWING") val opts = options as StandardJavadocDocletOptions
+
+            opts.tagletPath = docletProj.sourceSets.main.get().output.classesDirs.files.toList()
+            opts.header(resources.filter { it.name == "javadoc_header.txt" }.singleFile.readText().trim())
+            opts.addFileOption("-add-stylesheet", resources.filter { it.name == "style.css" }.singleFile)
+        }
+
+        doLast {
+            project.copy {
+                from(resources)
+                include("copy_on_click.js")
+                into(destinationDir!!.path)
+            }
+        }
 
         setDestinationDir(file("${layout.buildDirectory.get()}/docs/javadoc"))
     }
@@ -153,12 +224,19 @@ allprojects {
     }
 
     tasks.register<DokkaTask>("dokkaAll") {
+        dependsOn(rootProject.project("dokka").tasks.named("compileKotlin"))
+        dependsOn(rootProject.project("dokka").tasks.named("build"))
+
         dokkaSourceSets {
             subprojects.map {
-                it.sourceSets.main.get().allJava
+                create(it.name) {
+                    sourceRoots.from(it.sourceSets.main.get().kotlin)
+                    includeNonPublic.set(true)
+                }
             }
         }
 
+        failOnWarning.set(false)
         outputDirectory.set(file("${layout.buildDirectory.get()}/docs/dokka"))
     }
 
@@ -173,6 +251,20 @@ allprojects {
         }
 
         archiveClassifier.set("dokka")
+        archiveVersion.set("${version}+${rootProject.property("minecraft_version")}")
+    }
+
+    tasks.register<Jar>("prodJar") {
+        from(tasks.named("compileKotlin"))
+        from(sourceSets.main.get().resources)
+
+        if (project.name == rootProject.name) {
+            archiveBaseName.set(archiveBaseName.get())
+        } else {
+            archiveBaseName.set(archiveBaseName.get() + "-" + project.name)
+        }
+
+        archiveClassifier.set(null as String?)
         archiveVersion.set("${version}+${rootProject.property("minecraft_version")}")
     }
 
@@ -196,6 +288,7 @@ allprojects {
     tasks.named("shadowJar").get().finalizedBy(
         tasks.named("javadocJar"),
         tasks.named("dokkaJar"),
+        tasks.named("prodJar"),
         tasks.kotlinSourcesJar,
     )
 
@@ -219,6 +312,7 @@ allprojects {
                 }
 
                 artifact(tasks.kotlinSourcesJar)
+                artifact(tasks.named("prodJar"))
                 artifact(tasks.named("dokkaJar"))
                 artifact(tasks.named("javadocJar"))
             }
