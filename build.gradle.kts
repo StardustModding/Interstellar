@@ -15,9 +15,7 @@ architectury {
 }
 
 dependencies {
-    subprojects.filter {
-        it.name != "dokka"
-    }
+    subprojects
 }
 
 tasks.build.get().finalizedBy(tasks.named("shadowJar"))
@@ -98,9 +96,6 @@ allprojects {
 
     dependencies {
         compileOnly("org.jetbrains.kotlin:kotlin-stdlib")
-//        dokkaPlugin(rootProject.project("dokka"))
-//        dokkaPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.9.20")
-//        dokkaPlugin("org.stardustmodding.interstellar:interstellar-dokka:0.1.0:all")
     }
 
     tasks.withType<JavaCompile> {
@@ -224,9 +219,6 @@ allprojects {
     }
 
     tasks.register<DokkaTask>("dokkaAll") {
-        dependsOn(rootProject.project("dokka").tasks.named("compileKotlin"))
-        dependsOn(rootProject.project("dokka").tasks.named("build"))
-
         dokkaSourceSets {
             subprojects.map {
                 create(it.name) {
