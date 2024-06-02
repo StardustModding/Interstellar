@@ -4,7 +4,6 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.util.Identifier
 import net.minecraft.world.dimension.DimensionType
 import net.minecraft.world.gen.chunk.ChunkGenerator
-import org.jetbrains.annotations.ApiStatus
 import org.stardustmodding.dynamicdimensions.impl.platform.Services
 
 /**
@@ -24,7 +23,7 @@ fun interface DynamicDimensionLoadCallback {
             Services.PLATFORM.registerLoadEvent(callback)
         }
 
-        @ApiStatus.Internal
+        @JvmStatic
         fun invoke(server: MinecraftServer, loader: DynamicDimensionLoader) {
             Services.PLATFORM.invokeLoadEvent(server, loader)
         }

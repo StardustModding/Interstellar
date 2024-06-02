@@ -3,7 +3,6 @@ package org.stardustmodding.dynamicdimensions.api.event
 import net.minecraft.registry.RegistryKey
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.world.World
-import org.jetbrains.annotations.ApiStatus
 import org.stardustmodding.dynamicdimensions.impl.platform.Services
 
 /**
@@ -18,7 +17,7 @@ fun interface DimensionAddedCallback {
             Services.PLATFORM.registerAddedEvent(callback)
         }
 
-        @ApiStatus.Internal
+        @JvmStatic
         fun invoke(key: RegistryKey<World?>, level: ServerWorld) {
             Services.PLATFORM.invokeAddedEvent(key, level)
         }
