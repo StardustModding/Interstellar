@@ -51,8 +51,9 @@ public abstract class PrimaryLevelDataMixin implements PrimaryLevelDataAccessor 
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public void setDynamicList(@NotNull List<RegistryKey<World>> dynamicDimensions) {
-        this.dynamicDimensions = dynamicDimensions;
+    public void setDynamicList(@NotNull List<? extends RegistryKey<World>> dynamicDimensions) {
+        this.dynamicDimensions = (List<RegistryKey<World>>) dynamicDimensions;
     }
 }
