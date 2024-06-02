@@ -1,6 +1,6 @@
 package org.stardustmodding.interstellar.impl.planet
 
-import dev.galacticraft.dynamicdimensions.api.DynamicDimensionRegistry
+import org.stardustmodding.dynamicdimensions.api.DynamicDimensionRegistry
 import net.minecraft.util.Identifier
 import net.minecraft.world.dimension.DimensionType
 import net.minecraft.world.gen.chunk.ChunkGenerator

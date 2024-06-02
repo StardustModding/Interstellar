@@ -39,8 +39,7 @@
   },
   "mixins": [
     "interstellar.mixins.json",
-    "interstellar-common.mixins.json",
-    "dynamicdimensions.mixins.json"
+    "interstellar-common.mixins.json"
   ],
   "depends": {
     "fabric": "*",

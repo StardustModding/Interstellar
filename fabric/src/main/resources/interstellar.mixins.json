@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "dev.niostone.interstellar.fabric.mixin",
+  "package": "org.stardustmodding.interstellar.fabric.mixin",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "client": [

@@ -27,9 +27,59 @@
       <option name="url" value="https://maven.wispforest.io" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://maven.architectury.dev/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="TerraformersMC Maven" />
+      <option name="name" value="TerraformersMC Maven" />
+      <option name="url" value="https://maven.terraformersmc.com/releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomGlobalMinecraft" />
+      <option name="name" value="LoomGlobalMinecraft" />
+      <option name="url" value="file:/$USER_HOME$/.gradle/caches/fabric-loom/minecraftMaven/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Forge" />
+      <option name="name" value="Forge" />
+      <option name="url" value="https://maven.minecraftforge.net/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomTransformedForgeDependencies" />
+      <option name="name" value="LoomTransformedForgeDependencies" />
+      <option name="url" value="file:/$USER_HOME$/.gradle/caches/fabric-loom/forge/transformed-dependencies-v1/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Mojang" />
+      <option name="name" value="Mojang" />
+      <option name="url" value="https://libraries.minecraft.net/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomLocalRemappedMods" />
+      <option name="name" value="LoomLocalRemappedMods" />
+      <option name="url" value="file:/$PROJECT_DIR$/.gradle/loom-cache/remapped_mods/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomLocalMinecraft" />
+      <option name="name" value="LoomLocalMinecraft" />
+      <option name="url" value="file:/$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Fabric" />
+      <option name="name" value="Fabric" />
+      <option name="url" value="https://maven.fabricmc.net/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="Galacticraft Maven" />
       <option name="name" value="Galacticraft Maven" />
       <option name="url" value="https://maven.galacticraft.net/repository/maven-releases/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="BadAsIntended Maven" />
+      <option name="name" value="BadAsIntended Maven" />
+      <option name="url" value="https://maven.bai.lol" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="Kyrptonaught Maven" />
@@ -47,54 +97,24 @@
       <option name="url" value="https://maven.parchmentmc.org" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="maven" />
-      <option name="name" value="maven" />
-      <option name="url" value="https://maven.architectury.dev/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="TerraformersMC Maven" />
-      <option name="name" value="TerraformersMC Maven" />
-      <option name="url" value="https://maven.terraformersmc.com/releases" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="Forge" />
-      <option name="name" value="Forge" />
-      <option name="url" value="https://maven.minecraftforge.net/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="Mojang" />
-      <option name="name" value="Mojang" />
-      <option name="url" value="https://libraries.minecraft.net/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="LoomLocalMinecraft" />
-      <option name="name" value="LoomLocalMinecraft" />
-      <option name="url" value="file:$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="LoomLocalRemappedMods" />
-      <option name="name" value="LoomLocalRemappedMods" />
-      <option name="url" value="file:$PROJECT_DIR$/.gradle/loom-cache/remapped_mods/" />
+      <option name="id" value="Kotlin for Forge" />
+      <option name="name" value="Kotlin for Forge" />
+      <option name="url" value="https://thedarkcolour.github.io/KotlinForForge/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="LoomGlobalMinecraft" />
       <option name="name" value="LoomGlobalMinecraft" />
-      <option name="url" value="file:$USER_HOME$/.gradle/caches/fabric-loom/minecraftMaven/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="Fabric" />
-      <option name="name" value="Fabric" />
-      <option name="url" value="https://maven.fabricmc.net/" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../.gradle/caches/fabric-loom/minecraftMaven/" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="LoomTransformedForgeDependencies" />
       <option name="name" value="LoomTransformedForgeDependencies" />
-      <option name="url" value="file:$USER_HOME$/.gradle/caches/fabric-loom/forge/transformed-dependencies-v1/" />
+      <option name="url" value="file:/$PROJECT_DIR$/../../.gradle/caches/fabric-loom/forge/transformed-dependencies-v1/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="Kotlin for Forge" />
-      <option name="name" value="Kotlin for Forge" />
-      <option name="url" value="https://thedarkcolour.github.io/KotlinForForge/" />
+      <option name="id" value="MavenLocal" />
+      <option name="name" value="MavenLocal" />
+      <option name="url" value="file:/$MAVEN_REPOSITORY$" />
     </remote-repository>
   </component>
 </project>

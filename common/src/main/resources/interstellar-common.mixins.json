@@ -6,8 +6,15 @@
   "mixins": [
   ],
   "client": [
-      "LaunchScreenMixin",
-      "LogoTextureMixin"
+    "LaunchScreenMixin",
+    "ChunkMapAccessor",
+    "DistanceManagerAccessor",
+    "RegistryEntryListNamedAccessor",
+    "MappedRegistryAccessor",
+    "MinecraftServerMixin",
+    "PrimaryLevelDataMixin",
+    "ReloadableServerResourcesAccessor",
+    "ServerChunkCacheAccessor"
   ],
   "server": [],
   "injectors": {
