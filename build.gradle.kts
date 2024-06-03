@@ -318,7 +318,7 @@ allprojects {
             if (System.getenv("MAVEN_USER") != null && System.getenv("MAVEN_PASSWORD") != null) {
                 maven {
                     name = "StardustModding"
-                    url = uri("https://repo.kadaroja.com/snapshots/")
+                    url = uri("https://maven.stardustmodding.org/snapshots/")
 
                     credentials {
                         username = System.getenv("MAVEN_USER")
