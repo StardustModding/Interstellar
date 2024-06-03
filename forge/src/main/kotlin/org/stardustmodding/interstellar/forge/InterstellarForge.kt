@@ -1,8 +1,8 @@
 package org.stardustmodding.interstellar.forge
 
 import dev.architectury.platform.forge.EventBuses
-import org.stardustmodding.interstellar.impl.Interstellar
 import net.minecraftforge.fml.common.Mod
+import org.stardustmodding.interstellar.impl.Interstellar
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
 @Suppress("unused")

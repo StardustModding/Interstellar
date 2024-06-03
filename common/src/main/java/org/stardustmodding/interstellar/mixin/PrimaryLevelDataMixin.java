@@ -1,6 +1,5 @@
 package org.stardustmodding.interstellar.mixin;
 
-import org.stardustmodding.dynamicdimensions.impl.accessor.PrimaryLevelDataAccessor;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.RegistryKey;
@@ -12,6 +11,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.stardustmodding.dynamicdimensions.impl.accessor.PrimaryLevelDataAccessor;
 
 import java.util.List;
 

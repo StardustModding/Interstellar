@@ -5,9 +5,6 @@ import dev.architectury.event.events.common.CommandRegistrationEvent
 import dev.architectury.event.events.common.LifecycleEvent
 import dev.architectury.registry.CreativeTabRegistry
 import dev.architectury.registry.registries.DeferredRegister
-import org.stardustmodding.interstellar.impl.command.DimensionTpCommand
-import org.stardustmodding.interstellar.impl.config.InterstellarConfig
-import org.stardustmodding.interstellar.impl.init.Initializer
 import me.shedaniel.autoconfig.AutoConfig
 import me.shedaniel.autoconfig.ConfigData
 import me.shedaniel.autoconfig.annotation.Config
@@ -22,6 +19,9 @@ import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
+import org.stardustmodding.interstellar.impl.command.DimensionTpCommand
+import org.stardustmodding.interstellar.impl.config.InterstellarConfig
+import org.stardustmodding.interstellar.impl.init.Initializer
 
 object Interstellar {
     const val MOD_ID = "interstellar"
@@ -34,7 +34,8 @@ object Interstellar {
     ) { Item(Item.Settings()) }
 
     private val creativeTab =
-        CreativeTabRegistry.create(Text.translatable(id("creative_tab").toTranslationKey())
+        CreativeTabRegistry.create(
+            Text.translatable(id("creative_tab").toTranslationKey())
         ) {
             ItemStack(
                 rocket.get()
@@ -67,12 +68,11 @@ object Interstellar {
     fun init() {
         AutoConfig.register(
             InterstellarConfig::class.java,
-            PartitioningSerializer.wrap<InterstellarConfig, ConfigData?> {
-                definition: Config?, configClass: Class<ConfigData?>? ->
-                    Toml4jConfigSerializer(
-                        definition,
-                        configClass
-                    )
+            PartitioningSerializer.wrap<InterstellarConfig, ConfigData?> { definition: Config?, configClass: Class<ConfigData?>? ->
+                Toml4jConfigSerializer(
+                    definition,
+                    configClass
+                )
             }
         )
 
@@ -81,13 +81,12 @@ object Interstellar {
 
         LifecycleEvent.SERVER_STARTED.register(Initializer::init)
 
-        CommandRegistrationEvent.EVENT.register(CommandRegistrationEvent {
-                dispatcher: CommandDispatcher<ServerCommandSource>,
-                _: CommandRegistryAccess,
-                _: CommandManager.RegistrationEnvironment ->
-                for (cmd in commands) {
-                    cmd.register(dispatcher)
-                }
+        CommandRegistrationEvent.EVENT.register(CommandRegistrationEvent { dispatcher: CommandDispatcher<ServerCommandSource>,
+                                                                           _: CommandRegistryAccess,
+                                                                           _: CommandManager.RegistrationEnvironment ->
+            for (cmd in commands) {
+                cmd.register(dispatcher)
+            }
         })
     }
 }

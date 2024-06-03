@@ -4,7 +4,7 @@ import net.minecraft.block.Block
 import net.minecraft.registry.tag.TagKey
 import net.minecraft.util.Identifier
 import net.minecraft.world.dimension.DimensionType
-import java.util.OptionalLong
+import java.util.*
 
 class DimensionTypeBuilder {
     private var fixedTime = OptionalLong.empty()
@@ -41,21 +41,21 @@ class DimensionTypeBuilder {
 
     fun build(): DimensionType {
         return DimensionType(
-                fixedTime,
-                hasSkyLight!!,
-                hasCeiling!!,
-                ultraWarm!!,
-                natural!!,
-                coordinateScale!!,
-                bedWorks!!,
-                respawnAnchorWorks!!,
-                minY!!,
-                height!!,
-                logicalHeight!!,
-                infiniburn!!,
-                effectsLocation!!,
-                ambientLight!!,
-                monsterSettings!!,
+            fixedTime,
+            hasSkyLight!!,
+            hasCeiling!!,
+            ultraWarm!!,
+            natural!!,
+            coordinateScale!!,
+            bedWorks!!,
+            respawnAnchorWorks!!,
+            minY!!,
+            height!!,
+            logicalHeight!!,
+            infiniburn!!,
+            effectsLocation!!,
+            ambientLight!!,
+            monsterSettings!!,
         )
     }
 }

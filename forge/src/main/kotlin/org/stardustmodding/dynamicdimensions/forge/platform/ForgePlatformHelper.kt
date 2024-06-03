@@ -8,9 +8,9 @@ import org.jetbrains.annotations.ApiStatus
 import org.stardustmodding.dynamicdimensions.api.event.DimensionAddedCallback
 import org.stardustmodding.dynamicdimensions.api.event.DimensionRemovedCallback
 import org.stardustmodding.dynamicdimensions.api.event.DynamicDimensionLoadCallback
+import org.stardustmodding.dynamicdimensions.forge.config.DynamicDimensionsConfigImpl
 import org.stardustmodding.dynamicdimensions.impl.config.DynamicDimensionsConfig
 import org.stardustmodding.dynamicdimensions.impl.platform.services.PlatformHelper
-import org.stardustmodding.dynamicdimensions.forge.config.DynamicDimensionsConfigImpl
 
 @ApiStatus.Internal
 class ForgePlatformHelper : PlatformHelper {

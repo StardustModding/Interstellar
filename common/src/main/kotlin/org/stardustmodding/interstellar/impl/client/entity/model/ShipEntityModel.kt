@@ -1,12 +1,12 @@
 package org.stardustmodding.interstellar.impl.client.entity.model
 
 import net.minecraft.client.model.ModelData
-import org.stardustmodding.interstellar.impl.entity.ShipEntity
 import net.minecraft.client.model.ModelPart
 import net.minecraft.client.model.TexturedModelData
 import net.minecraft.client.render.VertexConsumer
 import net.minecraft.client.render.entity.model.EntityModel
 import net.minecraft.client.util.math.MatrixStack
+import org.stardustmodding.interstellar.impl.entity.ShipEntity
 
 class ShipEntityModel(private val parts: MutableList<ModelPart>) : EntityModel<ShipEntity>() {
     fun getTexturedModelData(): TexturedModelData {

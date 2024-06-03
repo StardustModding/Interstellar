@@ -3,14 +3,6 @@ package org.stardustmodding.interstellar.mixin;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.DataFixer;
 import com.mojang.serialization.DataResult;
-import org.stardustmodding.dynamicdimensions.api.DynamicDimensionRegistry;
-import org.stardustmodding.dynamicdimensions.api.PlayerRemover;
-import org.stardustmodding.dynamicdimensions.api.event.DimensionAddedCallback;
-import org.stardustmodding.dynamicdimensions.api.event.DimensionRemovedCallback;
-import org.stardustmodding.dynamicdimensions.api.event.DynamicDimensionLoadCallback;
-import org.stardustmodding.dynamicdimensions.impl.accessor.PrimaryLevelDataAccessor;
-import org.stardustmodding.dynamicdimensions.impl.registry.RegistryUtil;
-import org.stardustmodding.dynamicdimensions.impl.Constants;
 import io.netty.buffer.Unpooled;
 import lol.bai.badpackets.api.PacketSender;
 import net.minecraft.nbt.NbtCompound;
@@ -51,6 +43,14 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.stardustmodding.dynamicdimensions.api.DynamicDimensionRegistry;
+import org.stardustmodding.dynamicdimensions.api.PlayerRemover;
+import org.stardustmodding.dynamicdimensions.api.event.DimensionAddedCallback;
+import org.stardustmodding.dynamicdimensions.api.event.DimensionRemovedCallback;
+import org.stardustmodding.dynamicdimensions.api.event.DynamicDimensionLoadCallback;
+import org.stardustmodding.dynamicdimensions.impl.Constants;
+import org.stardustmodding.dynamicdimensions.impl.accessor.PrimaryLevelDataAccessor;
+import org.stardustmodding.dynamicdimensions.impl.registry.RegistryUtil;
 
 import java.io.IOException;
 import java.net.Proxy;
@@ -74,9 +74,11 @@ public abstract class MinecraftServerMixin implements DynamicDimensionRegistry {
     private final @NotNull Map<RegistryKey<World>, PlayerRemover> levelsAwaitingDeletion = new HashMap<>();
     @Unique
     private final @NotNull List<RegistryKey<World>> dynamicDimensions = new ArrayList<>();
+    @Shadow
+    @Final
+    protected LevelStorage.Session session;
     @Unique
     private boolean tickingLevels = false;
-
     @Shadow
     private MinecraftServer.ResourceManagerHolder resourceManagerHolder;
     @Shadow
@@ -103,8 +105,6 @@ public abstract class MinecraftServerMixin implements DynamicDimensionRegistry {
 
     @Shadow
     public abstract CombinedDynamicRegistries<ServerDynamicRegistryType> getCombinedDynamicRegistries();
-
-    @Shadow @Final protected LevelStorage.Session session;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void initDynamicDimensions(Thread thread, LevelStorage.Session session, ResourcePackManager dataPackManager, SaveLoader saveLoader, Proxy proxy, DataFixer dataFixer, ApiServices apiServices, WorldGenerationProgressListenerFactory worldGenerationProgressListenerFactory, CallbackInfo ci) {

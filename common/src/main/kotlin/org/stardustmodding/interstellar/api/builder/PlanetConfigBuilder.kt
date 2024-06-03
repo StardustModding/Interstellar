@@ -1,8 +1,8 @@
 package org.stardustmodding.interstellar.api.builder
 
-import  org.stardustmodding.interstellar.impl.config.GasConfig
-import org.stardustmodding.interstellar.impl.config.PlanetConfig
 import net.minecraft.util.Identifier
+import org.stardustmodding.interstellar.impl.config.GasConfig
+import org.stardustmodding.interstellar.impl.config.PlanetConfig
 
 class PlanetConfigBuilder {
     val config: PlanetConfig

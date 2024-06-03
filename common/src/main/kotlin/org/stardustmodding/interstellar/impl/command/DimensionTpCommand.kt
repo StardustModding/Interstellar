@@ -8,13 +8,14 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.server.world.ServerWorld
 import org.stardustmodding.interstellar.api.command.ICommand
 
-class DimensionTpCommand: ICommand<ServerCommandSource> {
+class DimensionTpCommand : ICommand<ServerCommandSource> {
     override fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
-                literal("dtp")
-                        .then(argument("dimension", DimensionArgumentType.dimension())
-                                .executes(this::execute)
-                        )
+            literal("dtp")
+                .then(
+                    argument("dimension", DimensionArgumentType.dimension())
+                        .executes(this::execute)
+                )
         );
     }
 

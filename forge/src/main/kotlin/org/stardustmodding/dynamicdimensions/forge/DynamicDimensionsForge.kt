@@ -7,10 +7,10 @@ import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.config.ModConfig
 import net.minecraftforge.fml.loading.FMLEnvironment
 import org.jetbrains.annotations.ApiStatus
+import org.stardustmodding.dynamicdimensions.forge.config.DynamicDimensionsConfigImpl
 import org.stardustmodding.dynamicdimensions.impl.Constants
 import org.stardustmodding.dynamicdimensions.impl.client.network.DynamicDimensionsS2CPacketReceivers.registerReceivers
 import org.stardustmodding.dynamicdimensions.impl.command.DynamicDimensionsCommands.register
-import org.stardustmodding.dynamicdimensions.forge.config.DynamicDimensionsConfigImpl
 
 @Suppress("unused")
 @ApiStatus.Internal

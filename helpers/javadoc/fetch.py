@@ -1,8 +1,6 @@
-import os
 import requests
 
 from os import path
-from xml.etree import ElementTree as ET
 from zipfile import ZipFile
 
 script_dir = path.dirname(__file__)
@@ -13,8 +11,10 @@ props_path = path.join(path.dirname(__file__), "..", "..", "gradle.properties")
 with open(props_path, "r") as f:
     props_data = f.read().splitlines()
 
+
 def getprop(key: str):
     return [x for x in props_data if x.startswith(key)][0].split("=")[1]
+
 
 mc_ver = getprop("minecraft_version")
 parchment_ver = getprop("parchment_version")

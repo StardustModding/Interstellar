@@ -4,5 +4,5 @@ import me.shedaniel.autoconfig.ConfigData
 import me.shedaniel.autoconfig.annotation.Config
 
 @Config(name = "core")
-class CoreConfig: ConfigData {
+class CoreConfig : ConfigData {
 }

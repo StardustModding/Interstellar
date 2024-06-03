@@ -14,7 +14,7 @@ interface ICommand<S> {
         return LiteralArgumentBuilder.literal(name)
     }
 
-    fun <T>argument(name: String, type: ArgumentType<T>): RequiredArgumentBuilder<S, T> {
+    fun <T> argument(name: String, type: ArgumentType<T>): RequiredArgumentBuilder<S, T> {
         return RequiredArgumentBuilder.argument(name, type)
     }
 }

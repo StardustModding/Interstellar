@@ -1,10 +1,10 @@
 package org.stardustmodding.interstellar.impl.planet
 
-import org.stardustmodding.dynamicdimensions.api.DynamicDimensionRegistry
 import net.minecraft.util.Identifier
 import net.minecraft.world.dimension.DimensionType
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings
+import org.stardustmodding.dynamicdimensions.api.DynamicDimensionRegistry
 
 interface Planet {
     fun getDimensionType(): DimensionType

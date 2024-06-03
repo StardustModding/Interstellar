@@ -1,59 +1,59 @@
 {
-  "schemaVersion": 1,
-  "id": "${mod_id}",
-  "version": "${version}",
-  "name": "Interstellar",
-  "description": "Explore the universe in style.",
-  "authors": [
-    "Nionics",
-    "RedstoneWizard08",
-    "Bogdanasaurus",
-    "Stardust Modding Contributors"
-  ],
-  "contact": {
-    "homepage": "https://github.com/StardustModding/Interstellar",
-    "sources": "https://github.com/Niostone/Interstellar"
-  },
-  "license": "MIT",
-  "icon": "assets/interstellar/icon.png",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      {
-        "adapter": "kotlin",
-        "value": "org.stardustmodding.interstellar.fabric.InterstellarFabric"
-      }
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "Interstellar",
+    "description": "Explore the universe in style.",
+    "authors": [
+        "Nionics",
+        "RedstoneWizard08",
+        "Bogdanasaurus",
+        "Stardust Modding Contributors"
     ],
-    "client": [
-      {
-        "adapter": "kotlin",
-        "value": "org.stardustmodding.interstellar.fabric.client.InterstellarFabricClient"
-      }
+    "contact": {
+        "homepage": "https://github.com/StardustModding/Interstellar",
+        "sources": "https://github.com/Niostone/Interstellar"
+    },
+    "license": "MIT",
+    "icon": "assets/interstellar/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            {
+                "adapter": "kotlin",
+                "value": "org.stardustmodding.interstellar.fabric.InterstellarFabric"
+            }
+        ],
+        "client": [
+            {
+                "adapter": "kotlin",
+                "value": "org.stardustmodding.interstellar.fabric.client.InterstellarFabricClient"
+            }
+        ],
+        "modmenu": [
+            {
+                "adapter": "kotlin",
+                "value": "org.stardustmodding.interstellar.fabric.ModMenuIntegration"
+            }
+        ]
+    },
+    "mixins": [
+        "interstellar.mixins.json",
+        "interstellar-common.mixins.json"
     ],
-    "modmenu": [
-      {
-        "adapter": "kotlin",
-        "value": "org.stardustmodding.interstellar.fabric.ModMenuIntegration"
-      }
-    ]
-  },
-  "mixins": [
-    "interstellar.mixins.json",
-    "interstellar-common.mixins.json"
-  ],
-  "depends": {
-    "fabric": "*",
-    "minecraft": ">=${minecraft_version}",
-    "architectury": ">=${architectury_version}",
-    "fabric-language-kotlin": ">=${fabric_kotlin_version}",
-    "cloth-config": ">=${cloth_config_version}",
-    "badpackets": ">=0.4.0"
-  },
-  "custom": {
-    "loom:inject_interfaces": {
-      "net/minecraft/server/MinecraftServer": [
-        "dev/galacticraft/dynamicdimensions/api/DynamicDimensionRegistry"
-      ]
+    "depends": {
+        "fabric": "*",
+        "minecraft": ">=${minecraft_version}",
+        "architectury": ">=${architectury_version}",
+        "fabric-language-kotlin": ">=${fabric_kotlin_version}",
+        "cloth-config": ">=${cloth_config_version}",
+        "badpackets": ">=0.4.0"
+    },
+    "custom": {
+        "loom:inject_interfaces": {
+            "net/minecraft/server/MinecraftServer": [
+                "dev/galacticraft/dynamicdimensions/api/DynamicDimensionRegistry"
+            ]
+        }
     }
-  }
 }

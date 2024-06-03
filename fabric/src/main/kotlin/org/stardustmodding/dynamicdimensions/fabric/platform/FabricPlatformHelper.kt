@@ -9,9 +9,9 @@ import org.jetbrains.annotations.ApiStatus
 import org.stardustmodding.dynamicdimensions.api.event.DimensionAddedCallback
 import org.stardustmodding.dynamicdimensions.api.event.DimensionRemovedCallback
 import org.stardustmodding.dynamicdimensions.api.event.DynamicDimensionLoadCallback
-import org.stardustmodding.dynamicdimensions.impl.config.DynamicDimensionsConfig
 import org.stardustmodding.dynamicdimensions.fabric.DynamicDimensionsFabric
 import org.stardustmodding.dynamicdimensions.fabric.config.DynamicDimensionsConfigImpl.Companion.create
+import org.stardustmodding.dynamicdimensions.impl.config.DynamicDimensionsConfig
 import org.stardustmodding.dynamicdimensions.impl.platform.services.PlatformHelper
 
 @ApiStatus.Internal

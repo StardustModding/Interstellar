@@ -1,6 +1,5 @@
 package org.stardustmodding.dynamicdimensions.impl.client.network
 
-import lol.bai.badpackets.api.PacketSender
 import lol.bai.badpackets.api.S2CPacketReceiver
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.network.ClientPlayNetworkHandler
@@ -15,14 +14,14 @@ import org.stardustmodding.dynamicdimensions.impl.registry.RegistryUtil
 object DynamicDimensionsS2CPacketReceivers {
     @JvmStatic
     fun registerReceivers() {
-        S2CPacketReceiver.register(Constants.CREATE_WORLD_PACKET) { client: MinecraftClient, handler: ClientPlayNetworkHandler, buf: PacketByteBuf, responseSender: PacketSender? ->
+        S2CPacketReceiver.register(Constants.CREATE_WORLD_PACKET) { client, handler, buf, _ ->
             createDynamicWorld(
                 client,
                 handler,
                 buf
             )
         }
-        S2CPacketReceiver.register(Constants.DELETE_WORLD_PACKET) { client: MinecraftClient, handler: ClientPlayNetworkHandler, buf: PacketByteBuf, responseSender: PacketSender? ->
+        S2CPacketReceiver.register(Constants.DELETE_WORLD_PACKET) { client, handler, buf, _ ->
             deleteDynamicWorld(
                 client,
                 handler,

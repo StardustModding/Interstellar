@@ -27,7 +27,7 @@ class MoonPlains : CustomBiome {
             .generationSettings(
                 GenerationSettings.Builder()
 //                   .addCarver(GenerationStep.Carving.AIR, RegistryLookup.CARVERS.getHolderOrThrow(Carvers.CAVE))
-                   .build()
+                    .build()
             )
             .spawnSettings(SpawnSettings.Builder().build())
             .build()

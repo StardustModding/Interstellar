@@ -1,12 +1,12 @@
 package org.stardustmodding.interstellar.impl.config
 
-import org.stardustmodding.interstellar.impl.config.defaults.DefaultStarSystemConfigs
 import me.shedaniel.autoconfig.ConfigData
 import me.shedaniel.autoconfig.annotation.Config
 import me.shedaniel.autoconfig.annotation.ConfigEntry
+import org.stardustmodding.interstellar.impl.config.defaults.DefaultStarSystemConfigs
 
 @Config(name = "systems")
-class StarSystemsConfig: ConfigData {
+class StarSystemsConfig : ConfigData {
     @ConfigEntry.Category("sol")
     @ConfigEntry.Gui.CollapsibleObject
     val sol = DefaultStarSystemConfigs.SOL

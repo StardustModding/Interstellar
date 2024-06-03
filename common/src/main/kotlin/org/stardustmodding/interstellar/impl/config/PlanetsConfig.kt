@@ -1,12 +1,12 @@
 package org.stardustmodding.interstellar.impl.config
 
-import org.stardustmodding.interstellar.impl.config.defaults.DefaultPlanetConfigs
 import me.shedaniel.autoconfig.ConfigData
 import me.shedaniel.autoconfig.annotation.Config
 import me.shedaniel.autoconfig.annotation.ConfigEntry
+import org.stardustmodding.interstellar.impl.config.defaults.DefaultPlanetConfigs
 
 @Config(name = "planets")
-class PlanetsConfig: ConfigData {
+class PlanetsConfig : ConfigData {
     @ConfigEntry.Category("mercury")
     @ConfigEntry.Gui.CollapsibleObject
     val mercury = DefaultPlanetConfigs.MERCURY

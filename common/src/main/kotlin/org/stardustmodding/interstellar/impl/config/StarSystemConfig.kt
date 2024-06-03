@@ -1,11 +1,11 @@
 package org.stardustmodding.interstellar.impl.config
 
-import org.stardustmodding.interstellar.impl.Interstellar
 import me.shedaniel.autoconfig.ConfigData
 import me.shedaniel.autoconfig.annotation.Config
+import org.stardustmodding.interstellar.impl.Interstellar
 
 @Config(name = "system")
-class StarSystemConfig: ConfigData {
+class StarSystemConfig : ConfigData {
     var id: Int = -1
     var name: String
     var planets: MutableList<Int>

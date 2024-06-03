@@ -25,7 +25,8 @@ public interface MappedRegistryAccessor<T> {
     Map<TagKey<T>, RegistryEntryList.Named<T>> tags();
 
     @Accessor("valueToEntry")
-    @Nullable Map<T, RegistryEntry.Reference<T>> getUnregisteredIntrusiveHolders();
+    @Nullable
+    Map<T, RegistryEntry.Reference<T>> getUnregisteredIntrusiveHolders();
 
     @Accessor("rawIdToEntry")
     ObjectList<RegistryEntry.Reference<T>> getById();

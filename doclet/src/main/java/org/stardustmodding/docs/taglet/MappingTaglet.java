@@ -22,6 +22,21 @@ public class MappingTaglet implements Taglet {
     public MappingTaglet() {
     }
 
+    private static String escapeHtml(String s) {
+        // Escape html characters
+        StringBuilder result = new StringBuilder(s.length());
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c > 127 || c == '"' || c == '\'' || c == '<' || c == '>' || c == '&') {
+                result.append("&#").append((int) c).append(';');
+            } else {
+                result.append(c);
+            }
+        }
+
+        return result.toString();
+    }
+
     @Override
     public Set<Location> getAllowedLocations() {
         return EnumSet.of(Location.CONSTRUCTOR, Location.FIELD, Location.METHOD, Location.TYPE);
@@ -76,21 +91,6 @@ public class MappingTaglet implements Taglet {
                 """);
 
         return content.toString();
-    }
-
-    private static String escapeHtml(String s) {
-        // Escape html characters
-        StringBuilder result = new StringBuilder(s.length());
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if (c > 127 || c == '"' || c == '\'' || c == '<' || c == '>' || c == '&') {
-                result.append("&#").append((int) c).append(';');
-            } else {
-                result.append(c);
-            }
-        }
-
-        return result.toString();
     }
 }
  
