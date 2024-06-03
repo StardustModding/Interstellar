@@ -1,4 +1,4 @@
-package org.stardustmodding.interstellar.impl
+package org.stardustmodding.interstellar.impl.client
 
 import dev.architectury.event.events.client.ClientLifecycleEvent
 import net.fabricmc.api.EnvType
