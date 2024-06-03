@@ -6,7 +6,7 @@ import net.minecraft.server.MinecraftServer
 
 object Planets {
     fun register(server: MinecraftServer) {
-        val registry = server as DynamicDimensionRegistry
+        val registry = DynamicDimensionRegistry.from(server)
 
         Moon().create(registry)
     }

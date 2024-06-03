@@ -386,7 +386,7 @@ public abstract class MinecraftServerMixin implements DynamicDimensionRegistry {
 
     @Unique
     private void reloadTags() {
-        for (TagManagerLoader.RegistryTags<?> result : ((ReloadableServerResourcesAccessor) this.resourceManagerHolder.resourceManager()).getTagManager().getRegistryTags()) {
+        for (TagManagerLoader.RegistryTags<?> result : ((ReloadableServerResourcesAccessor) this.resourceManagerHolder.dataPackContents()).getTagManager().getRegistryTags()) {
             if (result.key() == RegistryKeys.DIMENSION_TYPE) {
                 Registry<DimensionType> types = this.getCombinedDynamicRegistries().getCombinedRegistryManager().get(RegistryKeys.DIMENSION_TYPE);
                 types.clearTags();
