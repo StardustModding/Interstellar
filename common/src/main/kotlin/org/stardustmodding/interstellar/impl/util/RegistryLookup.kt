@@ -8,8 +8,9 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.world.biome.Biome
 import net.minecraft.world.gen.carver.ConfiguredCarver
 import net.minecraft.world.gen.densityfunction.DensityFunction
+import org.stardustmodding.interstellar.api.init.InitializedServer
 
-object RegistryLookup {
+object RegistryLookup: InitializedServer {
     private var ACCESS: DynamicRegistryManager? = null
 
     var BIOMES: SimpleRegistry<Biome>? = null
@@ -17,8 +18,8 @@ object RegistryLookup {
     var DENSITY_FUNCTIONS: SimpleRegistry<DensityFunction>? = null
     var BLOCKS: SimpleRegistry<Block>? = null
 
-    fun init(server: MinecraftServer) {
-        ACCESS = server.registryManager
+    override fun init(it: MinecraftServer) {
+        ACCESS = it.registryManager
         BIOMES = ACCESS?.get(RegistryKeys.BIOME) as SimpleRegistry<Biome>
         CARVERS = ACCESS?.get(RegistryKeys.CONFIGURED_CARVER) as SimpleRegistry<ConfiguredCarver<*>>
         DENSITY_FUNCTIONS = ACCESS?.get(RegistryKeys.DENSITY_FUNCTION) as SimpleRegistry<DensityFunction>

@@ -1,4 +1,4 @@
-package org.stardustmodding.interstellar.impl.planet
+package org.stardustmodding.interstellar.api.planet
 
 import net.minecraft.util.Identifier
 import net.minecraft.world.dimension.DimensionType

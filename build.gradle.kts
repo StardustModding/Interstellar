@@ -100,6 +100,7 @@ allprojects {
 
     dependencies {
         compileOnly("org.jetbrains.kotlin:kotlin-stdlib")
+        compileOnly("org.jetbrains.kotlin:kotlin-reflect:1.9.22")
     }
 
     tasks.withType<JavaCompile> {

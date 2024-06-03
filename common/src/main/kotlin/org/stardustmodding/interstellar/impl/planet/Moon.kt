@@ -20,6 +20,7 @@ import net.minecraft.world.gen.surfacebuilder.MaterialRules
 import net.minecraft.world.gen.surfacebuilder.MaterialRules.MaterialRule
 import org.stardustmodding.interstellar.api.builder.DimensionTypeBuilder
 import org.stardustmodding.interstellar.api.builder.MonsterSettingsBuilder
+import org.stardustmodding.interstellar.api.planet.Planet
 import org.stardustmodding.interstellar.impl.Interstellar
 import org.stardustmodding.interstellar.impl.init.Biomes
 import org.stardustmodding.interstellar.impl.util.RegistryLookup

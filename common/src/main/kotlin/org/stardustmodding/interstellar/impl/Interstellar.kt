@@ -15,12 +15,14 @@ import net.minecraft.item.ItemStack
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
+import org.slf4j.LoggerFactory
 import org.stardustmodding.interstellar.impl.command.DimensionTpCommand
 import org.stardustmodding.interstellar.impl.config.InterstellarConfig
 import org.stardustmodding.interstellar.impl.init.Initializer
 
 object Interstellar {
     const val MOD_ID = "interstellar"
+    val LOGGER = LoggerFactory.getLogger(MOD_ID)
 
     private val items = DeferredRegister.create(MOD_ID, RegistryKeys.ITEM)
 
