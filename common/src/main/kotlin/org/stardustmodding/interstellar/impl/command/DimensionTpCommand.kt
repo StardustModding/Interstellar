@@ -16,7 +16,7 @@ class DimensionTpCommand : ICommand<ServerCommandSource> {
                     argument("dimension", DimensionArgumentType.dimension())
                         .executes(this::execute)
                 )
-        );
+        )
     }
 
     override fun execute(ctx: CommandContext<ServerCommandSource>): Int {

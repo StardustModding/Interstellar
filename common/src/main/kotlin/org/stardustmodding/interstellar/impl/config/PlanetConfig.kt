@@ -24,7 +24,7 @@ class PlanetConfig : ConfigData {
     constructor() : this(Interstellar.MOD_ID + ":null")
 
     constructor(name: String) {
-        this.name = name;
+        this.name = name
         this.gases = mutableListOf()
     }
 }

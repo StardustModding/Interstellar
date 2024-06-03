@@ -91,6 +91,11 @@ allprojects {
             name = "ParchmentMC Maven"
             url = uri("https://maven.parchmentmc.org")
         }
+
+        maven {
+            name = "tterrag Maven"
+            url = uri("https://maven.tterrag.com/")
+        }
     }
 
     dependencies {

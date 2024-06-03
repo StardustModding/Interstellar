@@ -7,15 +7,15 @@ class StarSystemConfigBuilder {
     val config: StarSystemConfig
 
     constructor(name: String) {
-        this.config = StarSystemConfig(name);
+        this.config = StarSystemConfig(name)
     }
 
     constructor(name: Identifier) {
-        this.config = StarSystemConfig(name.toString());
+        this.config = StarSystemConfig(name.toString())
     }
 
     constructor(namespace: String, id: String) {
-        this.config = StarSystemConfig(namespace + ":" + id);
+        this.config = StarSystemConfig(namespace + ":" + id)
     }
 
     fun id(value: Int) = apply { this.config.id = value }

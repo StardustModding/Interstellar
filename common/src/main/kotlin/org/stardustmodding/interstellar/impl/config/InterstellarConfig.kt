@@ -5,7 +5,7 @@ import me.shedaniel.autoconfig.annotation.ConfigEntry
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer
 
 @Config(name = "interstellar")
-class InterstellarConfig() : PartitioningSerializer.GlobalData() {
+class InterstellarConfig : PartitioningSerializer.GlobalData() {
     @ConfigEntry.Category("planets")
     @ConfigEntry.Gui.TransitiveObject
     val planets = PlanetsConfig()

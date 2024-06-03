@@ -1,6 +1,5 @@
 package org.stardustmodding.interstellar.impl
 
-import com.mojang.brigadier.CommandDispatcher
 import dev.architectury.event.events.common.CommandRegistrationEvent
 import dev.architectury.event.events.common.LifecycleEvent
 import dev.architectury.registry.CreativeTabRegistry
@@ -10,13 +9,10 @@ import me.shedaniel.autoconfig.ConfigData
 import me.shedaniel.autoconfig.annotation.Config
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer
-import net.minecraft.command.CommandRegistryAccess
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroup
 import net.minecraft.item.ItemStack
 import net.minecraft.registry.RegistryKeys
-import net.minecraft.server.command.CommandManager
-import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 import org.stardustmodding.interstellar.impl.command.DimensionTpCommand
@@ -81,12 +77,10 @@ object Interstellar {
 
         LifecycleEvent.SERVER_STARTED.register(Initializer::init)
 
-        CommandRegistrationEvent.EVENT.register(CommandRegistrationEvent { dispatcher: CommandDispatcher<ServerCommandSource>,
-                                                                           _: CommandRegistryAccess,
-                                                                           _: CommandManager.RegistrationEnvironment ->
+        CommandRegistrationEvent.EVENT.register { dispatcher, _, _ ->
             for (cmd in commands) {
                 cmd.register(dispatcher)
             }
-        })
+        }
     }
 }
