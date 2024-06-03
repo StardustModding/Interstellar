@@ -1,4 +1,4 @@
-package org.stardustmodding.interstellar.fabric.platform
+package org.stardustmodding.dynamicdimensions.fabric.platform
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents
 import net.minecraft.registry.RegistryKey
@@ -10,8 +10,8 @@ import org.stardustmodding.dynamicdimensions.api.event.DimensionAddedCallback
 import org.stardustmodding.dynamicdimensions.api.event.DimensionRemovedCallback
 import org.stardustmodding.dynamicdimensions.api.event.DynamicDimensionLoadCallback
 import org.stardustmodding.dynamicdimensions.impl.config.DynamicDimensionsConfig
-import org.stardustmodding.interstellar.fabric.DynamicDimensionsFabric
-import org.stardustmodding.interstellar.fabric.config.DynamicDimensionsConfigImpl.Companion.create
+import org.stardustmodding.dynamicdimensions.fabric.DynamicDimensionsFabric
+import org.stardustmodding.dynamicdimensions.fabric.config.DynamicDimensionsConfigImpl.Companion.create
 import org.stardustmodding.dynamicdimensions.impl.platform.services.PlatformHelper
 
 @ApiStatus.Internal
@@ -19,12 +19,12 @@ class FabricPlatformHelper : PlatformHelper {
     override val config: DynamicDimensionsConfig
         get() = create()
 
-    override fun registerAddedEvent(callback: DimensionAddedCallback?) {
-        DynamicDimensionsFabric.DIMENSION_ADDED_EVENT.register(callback)
+    override fun registerAddedEvent(listener: DimensionAddedCallback?) {
+        DynamicDimensionsFabric.DIMENSION_ADDED_EVENT.register(listener)
     }
 
-    override fun registerRemovedEvent(callback: DimensionRemovedCallback?) {
-        DynamicDimensionsFabric.DIMENSION_REMOVED_EVENT.register(callback)
+    override fun registerRemovedEvent(listener: DimensionRemovedCallback?) {
+        DynamicDimensionsFabric.DIMENSION_REMOVED_EVENT.register(listener)
     }
 
     override fun registerLoadEvent(callback: DynamicDimensionLoadCallback?) {
@@ -42,6 +42,6 @@ class FabricPlatformHelper : PlatformHelper {
     }
 
     override fun invokeLoadEvent(server: MinecraftServer, loader: DynamicDimensionLoadCallback.DynamicDimensionLoader) {
-        DynamicDimensionsFabric.DIMENSION_LOAD_EVENT.invoker()!!.loadDimensions(server!!, loader)
+        DynamicDimensionsFabric.DIMENSION_LOAD_EVENT.invoker()!!.loadDimensions(server, loader)
     }
 }

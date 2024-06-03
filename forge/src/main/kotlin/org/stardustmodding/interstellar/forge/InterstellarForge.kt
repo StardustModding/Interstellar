@@ -5,6 +5,7 @@ import org.stardustmodding.interstellar.impl.Interstellar
 import net.minecraftforge.fml.common.Mod
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 
+@Suppress("unused")
 @Mod(Interstellar.MOD_ID)
 object InterstellarForge {
     init {

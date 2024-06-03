@@ -1,4 +1,4 @@
-package org.stardustmodding.interstellar.forge.platform
+package org.stardustmodding.dynamicdimensions.forge.platform
 
 import net.minecraft.registry.RegistryKey
 import net.minecraft.server.MinecraftServer
@@ -10,12 +10,12 @@ import org.stardustmodding.dynamicdimensions.api.event.DimensionRemovedCallback
 import org.stardustmodding.dynamicdimensions.api.event.DynamicDimensionLoadCallback
 import org.stardustmodding.dynamicdimensions.impl.config.DynamicDimensionsConfig
 import org.stardustmodding.dynamicdimensions.impl.platform.services.PlatformHelper
-import org.stardustmodding.interstellar.forge.config.DynamicDimensionsConfigImpl
+import org.stardustmodding.dynamicdimensions.forge.config.DynamicDimensionsConfigImpl
 
 @ApiStatus.Internal
 class ForgePlatformHelper : PlatformHelper {
-    private val addedCallbacks: MutableList<DimensionAddedCallback> = ArrayList<DimensionAddedCallback>()
-    private val removedCallbacks: MutableList<DimensionRemovedCallback> = ArrayList<DimensionRemovedCallback>()
+    private val addedCallbacks: MutableList<DimensionAddedCallback> = ArrayList()
+    private val removedCallbacks: MutableList<DimensionRemovedCallback> = ArrayList()
     private val loadCallbacks: MutableList<DynamicDimensionLoadCallback> =
         ArrayList() //todo: use forge event system?
 

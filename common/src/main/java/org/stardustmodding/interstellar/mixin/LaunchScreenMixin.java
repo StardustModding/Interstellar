@@ -17,7 +17,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Environment(EnvType.CLIENT)
 @Mixin(SplashOverlay.class)
 public class LaunchScreenMixin {
-    @SuppressWarnings("OverwriteAuthorRequired")
+    /**
+     * @author RedstoneWizard08
+     * @reason Register the dark logo texture
+     */
     @Overwrite
     public static void init(MinecraftClient minecraft) {
         minecraft.getTextureManager().registerTexture(Interstellar.id("textures/gui/loading_logo.png"), new SplashOverlay.LogoTexture());

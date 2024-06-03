@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
+@SuppressWarnings("AddedMixinMembersNamePattern")
 @Mixin(LevelProperties.class)
 public abstract class PrimaryLevelDataMixin implements PrimaryLevelDataAccessor {
     private @Unique List<RegistryKey<World>> dynamicDimensions = null;

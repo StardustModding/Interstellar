@@ -1,4 +1,4 @@
-package org.stardustmodding.interstellar.fabric
+package org.stardustmodding.dynamicdimensions.fabric
 
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback

@@ -1,4 +1,4 @@
-package org.stardustmodding.interstellar.forge.config
+package org.stardustmodding.dynamicdimensions.forge.config
 
 import net.minecraftforge.common.ForgeConfigSpec
 import org.stardustmodding.dynamicdimensions.impl.config.DynamicDimensionsConfig
