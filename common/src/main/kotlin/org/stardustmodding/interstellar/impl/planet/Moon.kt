@@ -1,6 +1,5 @@
 package org.stardustmodding.interstellar.impl.planet
 
-import com.google.common.collect.ImmutableList
 import net.minecraft.block.Blocks
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.entry.RegistryEntry
@@ -21,6 +20,7 @@ import net.minecraft.world.gen.surfacebuilder.MaterialRules.MaterialRule
 import org.stardustmodding.interstellar.api.builder.DimensionTypeBuilder
 import org.stardustmodding.interstellar.api.builder.MonsterSettingsBuilder
 import org.stardustmodding.interstellar.api.planet.Planet
+import org.stardustmodding.interstellar.api.planet.PlanetSettings
 import org.stardustmodding.interstellar.impl.Interstellar
 import org.stardustmodding.interstellar.impl.init.Biomes
 import org.stardustmodding.interstellar.impl.util.RegistryLookup
@@ -101,7 +101,7 @@ class Moon : Planet {
     }
 
     private fun getMaterialRules(): MaterialRule {
-        val builder = ImmutableList.builder<MaterialRule>()
+        val builder = arrayListOf<MaterialRule>()
 
         builder.add(
             MaterialRules.condition(
@@ -135,10 +135,10 @@ class Moon : Planet {
             )
         )
 
-        return MaterialRules.sequence(*builder.build().toArray { i: Int ->
-            arrayOfNulls<MaterialRule>(
-                i
-            )
-        } as Array<MaterialRule?>)
+        return MaterialRules.sequence(*builder.toTypedArray())
+    }
+
+    override fun settings(): PlanetSettings {
+        return PlanetSettings.fromConfig(Interstellar.config!!.planets.moon)
     }
 }

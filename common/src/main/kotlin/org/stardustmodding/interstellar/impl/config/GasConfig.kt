@@ -8,22 +8,22 @@ import org.stardustmodding.interstellar.impl.Interstellar
 @Config(name = "gases")
 class GasConfig : ConfigData {
     var id: String
-    var quantity: Float
+    var amount: Float
 
     constructor() : this(Interstellar.MOD_ID, "null", -1.0f)
 
-    constructor(id: String, quantity: Float) {
+    constructor(id: String, amount: Float) {
         this.id = id
-        this.quantity = quantity
+        this.amount = amount
     }
 
-    constructor(id: Identifier, quantity: Float) {
+    constructor(id: Identifier, amount: Float) {
         this.id = id.toString()
-        this.quantity = quantity
+        this.amount = amount
     }
 
-    constructor(namespace: String, id: String, quantity: Float) {
+    constructor(namespace: String, id: String, amount: Float) {
         this.id = "$namespace:$id"
-        this.quantity = quantity
+        this.amount = amount
     }
 }

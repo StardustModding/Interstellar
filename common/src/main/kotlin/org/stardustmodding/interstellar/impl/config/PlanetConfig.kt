@@ -8,10 +8,9 @@ import org.stardustmodding.interstellar.impl.Interstellar
 class PlanetConfig : ConfigData {
     var enable: Boolean = false
     var dimensionId: Int = -1
-    var name: String
 
-    // This is in kPa
-    var pressure: Float = 0.0f
+    // Translation key
+    var name: String
 
     // In μSv/tick
     var radiation: Float = 0.0f

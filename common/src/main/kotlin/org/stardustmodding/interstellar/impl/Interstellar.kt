@@ -40,7 +40,7 @@ object Interstellar {
             )
         }
 
-    private var config: InterstellarConfig? = null
+    var config: InterstellarConfig? = null
 
     private var commands = listOf(
         DimensionTpCommand()
@@ -49,10 +49,6 @@ object Interstellar {
     @JvmStatic
     fun id(id: String): Identifier {
         return Identifier(MOD_ID, id)
-    }
-
-    fun getConfig(): InterstellarConfig? {
-        return config
     }
 
     fun getItems(): DeferredRegister<Item> {

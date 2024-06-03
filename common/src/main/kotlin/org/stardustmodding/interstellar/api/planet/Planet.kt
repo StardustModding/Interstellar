@@ -11,6 +11,7 @@ interface Planet {
     fun getChunkGenerator(): ChunkGenerator
     fun getGeneratorSettings(): ChunkGeneratorSettings
     fun getLocation(): Identifier
+    fun settings(): PlanetSettings
 
     fun create(registry: DynamicDimensionRegistry) {
         registry.loadDynamicDimension(getLocation(), getChunkGenerator(), getDimensionType())
