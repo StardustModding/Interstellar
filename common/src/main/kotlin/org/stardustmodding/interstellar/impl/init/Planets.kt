@@ -3,9 +3,13 @@ package org.stardustmodding.interstellar.impl.init
 import net.minecraft.server.MinecraftServer
 import org.stardustmodding.dynamicdimensions.api.DynamicDimensionRegistry
 import org.stardustmodding.interstellar.api.init.InitializedServer
+import org.stardustmodding.interstellar.api.registries.InterstellarRegistries
+import org.stardustmodding.interstellar.impl.Interstellar
 import org.stardustmodding.interstellar.impl.planet.Moon
 
 object Planets : InitializedServer {
+    val MOON = InterstellarRegistries.PLANETS.register(Interstellar.id("moon")) { Moon() }.key!!
+
     override fun init(it: MinecraftServer) {
         val registry = DynamicDimensionRegistry.from(it)
 

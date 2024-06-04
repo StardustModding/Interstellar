@@ -6,7 +6,6 @@ import org.stardustmodding.interstellar.impl.Interstellar
 
 @Config(name = "system")
 class StarSystemConfig : ConfigData {
-    var id: Int = -1
     var name: String
     var planets: MutableList<Int>
 

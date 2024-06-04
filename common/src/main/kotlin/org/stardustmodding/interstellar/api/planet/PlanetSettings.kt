@@ -1,7 +1,7 @@
 package org.stardustmodding.interstellar.api.planet
 
 import net.minecraft.util.Identifier
-import org.stardustmodding.interstellar.api.gas.Gas
+import org.stardustmodding.interstellar.api.gas.GasData
 import org.stardustmodding.interstellar.impl.config.PlanetConfig
 
 class PlanetSettings {
@@ -11,7 +11,7 @@ class PlanetSettings {
     var checkOxygen = true
     var checkPressure = true
     var checkRadiation = true
-    var gases: MutableList<Gas> = mutableListOf()
+    var gases: MutableList<GasData> = mutableListOf()
 
     val pressure get() = gases.sumOf { it.amount.toDouble() }.toFloat()
 
@@ -23,7 +23,7 @@ class PlanetSettings {
                 checkOxygen = it.enableOxygen
                 checkPressure = it.enablePressure
                 checkRadiation = it.enableRadiation
-                gases = it.gases.map { Gas(Identifier.tryParse(it.id)!!, it.amount) }.toMutableList()
+                gases = it.gases.map { GasData(Identifier.tryParse(it.id)!!, it.amount) }.toMutableList()
             }
         }
     }
