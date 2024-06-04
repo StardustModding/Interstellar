@@ -6,7 +6,6 @@ import net.minecraft.registry.*
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.util.Identifier
 import org.stardustmodding.dynamicdimensions.impl.Constants
-import org.stardustmodding.interstellar.mixin.MappedRegistryAccessor
 import org.stardustmodding.interstellar.mixin.RegistryEntryListNamedAccessor
 
 object RegistryUtil {
@@ -18,14 +17,14 @@ object RegistryUtil {
                     require(registry.defaultId != id) { "Cannot remove default value in registry!" }
                 }
 
-                val accessor = (registry as MappedRegistryAccessor<*>)
+                val type = registry.idToEntry[id]!!.value()
+                val byId = registry.rawIdToEntry
 
-                val type = accessor.byLocation[id]!!.value()
-                val byId = accessor.byId
-                if (byId.size <= accessor.toId.getInt(type)) {
+                if (byId.size <= registry.entryToRawId.getInt(type)) {
                     Constants.LOGGER.warn("ID mismatch in registry '{}'", registry.getKey())
                 }
-                accessor.toId.removeInt(type)
+
+                registry.entryToRawId.removeInt(type)
 
                 var success = false
                 for (i in byId.indices) {
@@ -39,23 +38,23 @@ object RegistryUtil {
                                 max = if (byId[i1] != null) i1 else max
                             }
                             byId.size(max + 1)
-                            accessor.setNextId(max)
+                            registry.nextId = max
                             break
                         }
                     }
                 }
 
                 assert(success)
-                accessor.byLocation.remove(id)
-                accessor.byKey.remove(RegistryKey.of(registry.getKey(), id))
-                accessor.byValue.remove(type)
-                accessor.lifecycles.remove(type)
+                registry.idToEntry.remove(id)
+                registry.keyToEntry.remove(RegistryKey.of(registry.getKey(), id))
+                registry.valueToEntry.remove(type)
+                registry.entryToLifecycle.remove(type)
                 val base = Lifecycle.stable()
-                for (value in accessor.lifecycles.values) {
+                for (value in registry.entryToLifecycle.values) {
                     base.add(value)
                 }
-                accessor.setRegistryLifecycle(base)
-                for (holderSet in accessor.tags().values) {
+                registry.lifecycle = base
+                for (holderSet in registry.tagToEntryList.values) {
                     val set = holderSet as RegistryEntryListNamedAccessor<T>
                     val list = ImmutableList.builder<RegistryEntry<T>>()
                     for (content in set.contents) {
@@ -63,10 +62,10 @@ object RegistryUtil {
                     }
                     set.setContents(list.build())
                 }
-                if (accessor.unregisteredIntrusiveHolders != null) {
-                    accessor.unregisteredIntrusiveHolders!!.remove(type)
+                if (registry.valueToEntry != null) {
+                    registry.valueToEntry!!.remove(type)
                 }
-                accessor.setHoldersInOrder(null)
+                registry.cachedEntries = null
             }
         } else {
             Constants.LOGGER.warn("Tried to remove non-existent key {}", id)
@@ -78,12 +77,11 @@ object RegistryUtil {
         if (!registry.containsId(id)) {
             if (registry.javaClass == SimpleRegistry::class.java || registry.javaClass == SimpleDefaultedRegistry::class.java) {
                 val mapped = registry as SimpleRegistry<T>
-                val accessor = registry as MappedRegistryAccessor<*>
-                val frozen = accessor.isFrozen
-                if (frozen) accessor.isFrozen = false
+                val frozen = registry.frozen
+                if (frozen) registry.frozen = false
                 val ref = mapped.add(RegistryKey.of(registry.getKey(), id), value, Lifecycle.stable())
                 if (frozen) registry.freeze()
-                checkNotNull(accessor.byId[accessor.toId.getInt(value)])
+                checkNotNull(registry.rawIdToEntry[registry.entryToRawId.getInt(value)])
                 return ref
             } else {
                 throw IllegalStateException("Dynamic Dimensions: Non-vanilla '" + registry.key.value + "' registry! " + registry.javaClass.name)
@@ -103,9 +101,8 @@ object RegistryUtil {
         if (!registry.containsId(id)) {
             if (registry.javaClass == SimpleRegistry::class.java || registry.javaClass == SimpleDefaultedRegistry::class.java) {
                 val mapped = registry as SimpleRegistry<T?>
-                val accessor = registry as MappedRegistryAccessor<*>
-                val frozen = accessor.isFrozen
-                if (frozen) accessor.isFrozen = false
+                val frozen = registry.frozen
+                if (frozen) registry.frozen = false
                 val ref = mapped.set(rawId, RegistryKey.of(registry.getKey(), id), value, Lifecycle.stable())
                 if (frozen) registry.freeze()
                 return ref

@@ -19,58 +19,61 @@ object ReloadListener: SynchronousResourceReloader {
     }
 
     private fun reloadPlanetSettings(manager: ResourceManager) {
-        for (id in manager.findResources("planet_settings") { it.path.endsWith(".json") }) {
-            val stream = id.value.reader
+        for (it in manager.findResources("planet_settings") { it.path.endsWith(".json") }) {
+            val id = it.key.withPath(it.key.path.replace(".json", ""))
+            val stream = it.value.reader
             val raw = stream.readText()
             val data = Json.decodeFromString<PlanetSettings>(raw)
 
-            if (InterstellarRegistries.PLANET_SETTINGS.containsId(id.key)) {
-                LOGGER.info("Re-registering planet settings ${id.key}...")
+            if (InterstellarRegistries.PLANET_SETTINGS.containsId(id)) {
+                LOGGER.info("Re-registering planet settings ${id}...")
 
-                RegistryUtil.unregister(InterstellarRegistries.PLANET_SETTINGS, id.key)
+                RegistryUtil.unregister(InterstellarRegistries.PLANET_SETTINGS, id)
             } else {
-                LOGGER.info("Registering planet settings ${id.key}...")
+                LOGGER.info("Registering planet settings ${id}...")
             }
 
-            Registry.register(InterstellarRegistries.PLANET_SETTINGS, id.key, data)
+            Registry.register(InterstellarRegistries.PLANET_SETTINGS, id, data)
             stream.close()
         }
     }
 
     private fun reloadPlanets(manager: ResourceManager) {
-        for (id in manager.findResources("planets") { it.path.endsWith(".json") }) {
-            val stream = id.value.reader
+        for (it in manager.findResources("planets") { it.path.endsWith(".json") }) {
+            val id = it.key.withPath(it.key.path.replace(".json", ""))
+            val stream = it.value.reader
             val raw = stream.readText()
             val data = Json.decodeFromString<Planet>(raw)
 
-            if (InterstellarRegistries.PLANETS.containsId(id.key)) {
-                LOGGER.info("Re-registering planet ${id.key}...")
+            if (InterstellarRegistries.PLANETS.containsId(id)) {
+                LOGGER.info("Re-registering planet ${id}...")
 
-                RegistryUtil.unregister(InterstellarRegistries.PLANETS, id.key)
+                RegistryUtil.unregister(InterstellarRegistries.PLANETS, id)
             } else {
-                LOGGER.info("Registering planet ${id.key}...")
+                LOGGER.info("Registering planet ${id}...")
             }
 
-            Registry.register(InterstellarRegistries.PLANETS, id.key, data)
+            Registry.register(InterstellarRegistries.PLANETS, id, data)
             stream.close()
         }
     }
 
     private fun reloadStarSystems(manager: ResourceManager) {
-        for (id in manager.findResources("star_systems") { it.path.endsWith(".json") }) {
-            val stream = id.value.reader
+        for (it in manager.findResources("star_systems") { it.path.endsWith(".json") }) {
+            val id = it.key.withPath(it.key.path.replace(".json", ""))
+            val stream = it.value.reader
             val raw = stream.readText()
             val data = Json.decodeFromString<StarSystem>(raw)
 
-            if (InterstellarRegistries.STAR_SYSTEMS.containsId(id.key)) {
-                LOGGER.info("Re-registering star system ${id.key}...")
+            if (InterstellarRegistries.STAR_SYSTEMS.containsId(id)) {
+                LOGGER.info("Re-registering star system ${id}...")
 
-                RegistryUtil.unregister(InterstellarRegistries.STAR_SYSTEMS, id.key)
+                RegistryUtil.unregister(InterstellarRegistries.STAR_SYSTEMS, id)
             } else {
-                LOGGER.info("Registering star system ${id.key}...")
+                LOGGER.info("Registering star system ${id}...")
             }
 
-            Registry.register(InterstellarRegistries.STAR_SYSTEMS, id.key, data)
+            Registry.register(InterstellarRegistries.STAR_SYSTEMS, id, data)
             stream.close()
         }
     }

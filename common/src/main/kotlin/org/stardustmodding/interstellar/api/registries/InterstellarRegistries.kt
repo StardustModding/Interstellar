@@ -19,8 +19,15 @@ object InterstellarRegistries {
 
     // Registries
 
+    @JvmField
     val PLANET_SETTINGS = SimpleDefaultedRegistry(id("planet_settings").toString(), PLANET_SETTINGS_KEY, Lifecycle.experimental(), false)
+
+    @JvmField
     val PLANETS = SimpleDefaultedRegistry(id("planet").toString(), PLANETS_KEY, Lifecycle.experimental(), false)
+
+    @JvmField
     val STAR_SYSTEMS = SimpleDefaultedRegistry(id("star_system").toString(), STAR_SYSTEMS_KEY, Lifecycle.experimental(), false)
+
+    @JvmField
     val GASES = SimpleDefaultedRegistry(id("gas").toString(), GASES_KEY, Lifecycle.experimental(), false)
 }

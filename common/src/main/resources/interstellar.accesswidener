@@ -7,8 +7,25 @@ extendable class net/minecraft/world/gen/chunk/NoiseChunkGenerator
 extendable class net/minecraft/world/dimension/DimensionType
 
 accessible field net/minecraft/client/gui/screen/SplashOverlay MOJANG_RED I
-accessible field net/minecraft/registry/SimpleRegistry frozen Z
 
 mutable field net/minecraft/client/gui/screen/SplashOverlay MOJANG_RED I
 mutable field net/minecraft/client/texture/ResourceTexture location Lnet/minecraft/util/Identifier;
+
+accessible field net/minecraft/registry/SimpleRegistry nextId I
+accessible field net/minecraft/registry/SimpleRegistry tagToEntryList Ljava/util/Map;
+accessible field net/minecraft/registry/SimpleRegistry valueToEntry Ljava/util/Map;
+accessible field net/minecraft/registry/SimpleRegistry rawIdToEntry Lit/unimi/dsi/fastutil/objects/ObjectList;
+accessible field net/minecraft/registry/SimpleRegistry entryToRawId Lit/unimi/dsi/fastutil/objects/Object2IntMap;
+accessible field net/minecraft/registry/SimpleRegistry idToEntry Ljava/util/Map;
+accessible field net/minecraft/registry/SimpleRegistry keyToEntry Ljava/util/Map;
+accessible field net/minecraft/registry/SimpleRegistry entryToLifecycle Ljava/util/Map;
+accessible field net/minecraft/registry/SimpleRegistry frozen Z
+accessible field net/minecraft/registry/SimpleRegistry cachedEntries Ljava/util/List;
+accessible field net/minecraft/registry/SimpleRegistry lifecycle Lcom/mojang/serialization/Lifecycle;
+
+mutable field net/minecraft/registry/SimpleRegistry nextId I
+mutable field net/minecraft/registry/SimpleRegistry valueToEntry Ljava/util/Map;
 mutable field net/minecraft/registry/SimpleRegistry frozen Z
+mutable field net/minecraft/registry/SimpleRegistry cachedEntries Ljava/util/List;
+mutable field net/minecraft/registry/SimpleRegistry tagToEntryList Ljava/util/Map;
+mutable field net/minecraft/registry/SimpleRegistry lifecycle Lcom/mojang/serialization/Lifecycle;

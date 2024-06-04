@@ -9,7 +9,6 @@
         "ChunkMapAccessor",
         "DistanceManagerAccessor",
         "LaunchScreenMixin",
-        "MappedRegistryAccessor",
         "MinecraftServerMixin",
         "PrimaryLevelDataMixin",
         "RegistryEntryListNamedAccessor",

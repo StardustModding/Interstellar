@@ -16,6 +16,7 @@ import org.stardustmodding.interstellar.impl.resource.ReloadListener
 object Interstellar {
     const val MOD_ID = "interstellar"
 
+    @JvmField
     val LOGGER = LoggerFactory.getLogger(MOD_ID)!!
     var config: InterstellarConfig? = null
 

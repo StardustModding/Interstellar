@@ -1,7 +1,9 @@
 package org.stardustmodding.dynamicdimensions.api
 
+import net.minecraft.registry.RegistryKey
 import net.minecraft.server.MinecraftServer
 import net.minecraft.util.Identifier
+import net.minecraft.world.World
 import net.minecraft.world.dimension.DimensionType
 import net.minecraft.world.gen.chunk.ChunkGenerator
 import org.jetbrains.annotations.Contract
@@ -14,6 +16,8 @@ import org.jetbrains.annotations.Contract
  * @see .from
  */
 interface DynamicDimensionRegistry {
+    fun getDynamicDimensions(): List<RegistryKey<World>>
+
     /**
      * Returns whether a dynamic dimension exists with the given id
      *
@@ -96,6 +100,7 @@ interface DynamicDimensionRegistry {
          * @return the server's dynamic dimension registry.
          * @since 0.5.0
          */
+        @JvmStatic
         @Contract(value = "_ -> param1", pure = true)
         fun from(server: MinecraftServer): DynamicDimensionRegistry {
             return (server as DynamicDimensionRegistry)
