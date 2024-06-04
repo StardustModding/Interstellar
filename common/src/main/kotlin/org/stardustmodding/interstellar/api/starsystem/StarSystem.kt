@@ -1,9 +1,10 @@
 package org.stardustmodding.interstellar.api.starsystem
 
-import net.minecraft.registry.RegistryKey
-import net.minecraft.text.Text
-import org.stardustmodding.interstellar.api.planet.Planet
+import kotlinx.serialization.Serializable
+import net.minecraft.util.Identifier
+import org.stardustmodding.interstellar.api.serde.IdentifierSerializer
 
-open class StarSystem(val name: Text, val planets: MutableList<RegistryKey<out Planet>> = mutableListOf()) {
-
+@Serializable
+class StarSystem {
+    var planets: MutableList<@Serializable(with = IdentifierSerializer::class) Identifier> = mutableListOf()
 }

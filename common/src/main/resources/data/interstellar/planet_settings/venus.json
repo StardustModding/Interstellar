@@ -1,0 +1,19 @@
+{
+    "enabled": true,
+    "radiation": 0.0004166666,
+    "tier": 3,
+    "checkOxygen": true,
+    "checkPressure": true,
+    "checkRadiation": true,
+
+    "gases": [
+        {
+            "id": "interstellar:carbon_dioxide",
+            "amount": 8827.0
+        },
+        {
+            "id": "interstellar:nitrogen",
+            "amount": 273.0
+        }
+    ]
+}

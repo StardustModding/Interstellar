@@ -1,0 +1,13 @@
+{
+    "planets": [
+        "interstellar:earth",
+        "interstellar:mars",
+        "interstellar:mercury",
+        "interstellar:moon",
+        "interstellar:neptune",
+        "interstellar:pluto",
+        "interstellar:saturn",
+        "interstellar:uranus",
+        "interstellar:venus"
+    ]
+}

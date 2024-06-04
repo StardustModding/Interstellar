@@ -1,0 +1,23 @@
+{
+    "enabled": true,
+    "radiation": 0.0,
+    "tier": 6,
+    "checkOxygen": true,
+    "checkPressure": true,
+    "checkRadiation": true,
+
+    "gases": [
+        {
+            "id": "interstellar:hydrogen",
+            "amount": 60000.0
+        },
+        {
+            "id": "interstellar:helium",
+            "amount": 38000.0
+        },
+        {
+            "id": "interstellar:ammonia",
+            "amount": 2000.0
+        }
+    ]
+}

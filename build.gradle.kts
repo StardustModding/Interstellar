@@ -1,9 +1,13 @@
 import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.net.URL
 
 plugins {
     id("java")
-    kotlin("jvm") version "1.9.22"
+    kotlin("jvm") version "2.0.0"
+    kotlin("plugin.serialization") version "2.0.0"
     id("org.jetbrains.dokka") version "1.9.20"
     id("architectury-plugin") version "3.4-SNAPSHOT"
     id("dev.architectury.loom") version "1.6-SNAPSHOT" apply false
@@ -44,6 +48,7 @@ tasks.processResources {
 allprojects {
     apply(plugin = "java")
     apply(plugin = "kotlin")
+    apply(plugin = "kotlinx-serialization")
     apply(plugin = "java-library")
     apply(plugin = "maven-publish")
     apply(plugin = "org.jetbrains.dokka")
@@ -101,7 +106,9 @@ allprojects {
 
     dependencies {
         compileOnly("org.jetbrains.kotlin:kotlin-stdlib")
-        compileOnly("org.jetbrains.kotlin:kotlin-reflect:1.9.22")
+        compileOnly("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
+
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     }
 
     tasks.withType<JavaCompile> {
@@ -109,8 +116,12 @@ allprojects {
         options.release.set(17)
     }
 
-    kotlin.target.compilations.all {
-        kotlinOptions.jvmTarget = "17"
+    kotlin {
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_17
+            languageVersion = KotlinVersion.KOTLIN_1_9
+            apiVersion = KotlinVersion.KOTLIN_1_9
+        }
     }
 
     java {

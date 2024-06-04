@@ -1,0 +1,9 @@
+{
+    "enabled": true,
+    "radiation": 0.0008333333,
+    "tier": 1,
+    "checkOxygen": true,
+    "checkPressure": true,
+    "checkRadiation": true,
+    "gases": []
+}
