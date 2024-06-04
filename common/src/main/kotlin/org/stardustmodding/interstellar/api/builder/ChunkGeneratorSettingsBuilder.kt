@@ -14,7 +14,7 @@ class ChunkGeneratorSettingsBuilder {
     private var defaultBlock = Blocks.STONE.defaultState
     private var defaultFluid = Blocks.AIR.defaultState
     private var noiseRouter = NoiseRouterBuilder().build()
-    private var surfaceRule = MaterialRules.sequence()
+    private var surfaceRule = MaterialRules.sequence(MaterialRules.block(Blocks.AIR.defaultState))
     private var spawnTarget: MutableList<NoiseHypercube> = mutableListOf()
     private var seaLevel = 0
     private var disableMobGeneration = false
