@@ -6,7 +6,6 @@ import org.stardustmodding.interstellar.impl.Interstellar
 object DefaultStarSystemConfigs {
     val SOL =
         StarSystemConfigBuilder(Interstellar.MOD_ID, "sol")
-            .id(1000)
             .planet(1001) // mercury
             .planet(1002) // venus
             .planet(0) // earth

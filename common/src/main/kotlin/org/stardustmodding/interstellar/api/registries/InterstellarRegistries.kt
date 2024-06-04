@@ -1,15 +1,15 @@
 package org.stardustmodding.interstellar.api.registries
 
-import dev.architectury.registry.registries.DeferredRegister
+import com.mojang.serialization.Lifecycle
 import net.minecraft.registry.RegistryKey
+import net.minecraft.registry.SimpleDefaultedRegistry
 import org.stardustmodding.interstellar.api.gas.Gas
-import org.stardustmodding.interstellar.api.init.Initialized
 import org.stardustmodding.interstellar.api.planet.Planet
 import org.stardustmodding.interstellar.api.starsystem.StarSystem
 import org.stardustmodding.interstellar.impl.Interstellar
-import org.stardustmodding.interstellar.impl.Interstellar.MOD_ID
+import org.stardustmodding.interstellar.impl.Interstellar.id
 
-object InterstellarRegistries: Initialized<Any?> {
+object InterstellarRegistries {
     // Keys
 
     private val PLANETS_KEY = RegistryKey.ofRegistry<Planet>(Interstellar.id("planets"))!!
@@ -18,13 +18,7 @@ object InterstellarRegistries: Initialized<Any?> {
 
     // Registries
 
-    val PLANETS = DeferredRegister.create(MOD_ID, PLANETS_KEY)!!
-    val STAR_SYSTEMS = DeferredRegister.create(MOD_ID, STAR_SYSTEMS_KEY)!!
-    val GASES = DeferredRegister.create(MOD_ID, GASES_KEY)!!
-
-    override fun init(it: Any?) {
-        PLANETS.register()
-        STAR_SYSTEMS.register()
-        GASES.register()
-    }
+    val PLANETS = SimpleDefaultedRegistry(id("planet").toString(), PLANETS_KEY, Lifecycle.experimental(), false)
+    val STAR_SYSTEMS = SimpleDefaultedRegistry(id("star_system").toString(), STAR_SYSTEMS_KEY, Lifecycle.experimental(), false)
+    val GASES = SimpleDefaultedRegistry(id("gas").toString(), GASES_KEY, Lifecycle.experimental(), false)
 }

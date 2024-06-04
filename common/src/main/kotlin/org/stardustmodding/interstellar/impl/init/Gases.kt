@@ -1,5 +1,6 @@
 package org.stardustmodding.interstellar.impl.init
 
+import net.minecraft.registry.Registry
 import net.minecraft.text.Text.translatable
 import org.stardustmodding.interstellar.api.gas.Gas
 import org.stardustmodding.interstellar.api.registries.InterstellarRegistries
@@ -7,42 +8,58 @@ import org.stardustmodding.interstellar.impl.Interstellar.id
 
 object Gases {
     val OXYGEN =
-        InterstellarRegistries.GASES.register(id("oxygen")) {
+        Registry.registerReference(
+            InterstellarRegistries.GASES,
+            id("oxygen"),
             Gas(translatable("interstellar.gas.oxygen"), true)
-        }.key!!
+        ).key.get()
 
     val CARBON_DIOXIDE =
-        InterstellarRegistries.GASES.register(id("carbon_dioxide")) {
+        Registry.registerReference(
+            InterstellarRegistries.GASES,
+            id("carbon_dioxide"),
             Gas(translatable("interstellar.gas.carbon_dioxide"))
-        }.key!!
+        ).key.get()
 
     val NITROGEN =
-        InterstellarRegistries.GASES.register(id("nitrogen")) {
+        Registry.registerReference(
+            InterstellarRegistries.GASES,
+            id("nitrogen"),
             Gas(translatable("interstellar.gas.nitrogen"))
-        }.key!!
+        ).key.get()
 
     val ARGON =
-        InterstellarRegistries.GASES.register(id("argon")) {
+        Registry.registerReference(
+            InterstellarRegistries.GASES,
+            id("argon"),
             Gas(translatable("interstellar.gas.argon"))
-        }.key!!
+        ).key.get()
 
     val HELIUM =
-        InterstellarRegistries.GASES.register(id("helium")) {
+        Registry.registerReference(
+            InterstellarRegistries.GASES,
+            id("helium"),
             Gas(translatable("interstellar.gas.helium"))
-        }.key!!
+        ).key.get()
 
     val METHANE =
-        InterstellarRegistries.GASES.register(id("methane")) {
+        Registry.registerReference(
+            InterstellarRegistries.GASES,
+            id("methane"),
             Gas(translatable("interstellar.gas.methane"))
-        }.key!!
+        ).key.get()
 
     val HYDROGEN =
-        InterstellarRegistries.GASES.register(id("hydrogen")) {
+        Registry.registerReference(
+            InterstellarRegistries.GASES,
+            id("hydrogen"),
             Gas(translatable("interstellar.gas.hydrogen"))
-        }.key!!
+        ).key.get()
 
     val AMMONIA =
-        InterstellarRegistries.GASES.register(id("ammonia")) {
+        Registry.registerReference(
+            InterstellarRegistries.GASES,
+            id("ammonia"),
             Gas(translatable("interstellar.gas.ammonia"))
-        }.key!!
+        ).key.get()
 }

@@ -3,10 +3,9 @@ package org.stardustmodding.interstellar.impl
 import dev.architectury.event.events.common.CommandRegistrationEvent
 import dev.architectury.event.events.common.LifecycleEvent
 import me.shedaniel.autoconfig.AutoConfig
-import me.shedaniel.autoconfig.ConfigData
-import me.shedaniel.autoconfig.annotation.Config
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer
+import net.minecraft.util.ActionResult
 import net.minecraft.util.Identifier
 import org.slf4j.LoggerFactory
 import org.stardustmodding.interstellar.api.registries.InterstellarRegistries
@@ -30,11 +29,9 @@ object Interstellar {
     }
 
     fun init() {
-        InterstellarRegistries.init(null)
-
         AutoConfig.register(
             InterstellarConfig::class.java,
-            PartitioningSerializer.wrap<InterstellarConfig, ConfigData?> { definition: Config?, configClass: Class<ConfigData?>? ->
+            PartitioningSerializer.wrap { definition, configClass ->
                 Toml4jConfigSerializer(
                     definition,
                     configClass
@@ -42,7 +39,21 @@ object Interstellar {
             }
         )
 
-        config = AutoConfig.getConfigHolder(InterstellarConfig::class.java).config
+        val holder = AutoConfig.getConfigHolder(InterstellarConfig::class.java)
+
+        holder.registerSaveListener { _, config ->
+            for (planet in config.planets.planets) {
+                for (gas in planet.gases) {
+                    if (!InterstellarRegistries.GASES.containsId(Identifier.tryParse(gas.id))) {
+                        LOGGER.error("Cannot find unknown gas ${gas.id} for planet ${planet.name}!")
+                    }
+                }
+            }
+
+            ActionResult.SUCCESS
+        }
+
+        config = holder.config
 
         LifecycleEvent.SERVER_STARTING.register(Initializer::init)
 

@@ -8,13 +8,13 @@ import me.shedaniel.autoconfig.serializer.PartitioningSerializer
 class InterstellarConfig : PartitioningSerializer.GlobalData() {
     @ConfigEntry.Category("planets")
     @ConfigEntry.Gui.TransitiveObject
-    val planets = PlanetsConfig()
+    var planets = PlanetsConfig()
 
     @ConfigEntry.Category("systems")
     @ConfigEntry.Gui.TransitiveObject
-    val starSystems = StarSystemsConfig()
+    var starSystems = StarSystemsConfig()
 
     @ConfigEntry.Category("core")
     @ConfigEntry.Gui.TransitiveObject
-    val dynamicDimensions = CoreConfig()
+    var dynamicDimensions = CoreConfig()
 }

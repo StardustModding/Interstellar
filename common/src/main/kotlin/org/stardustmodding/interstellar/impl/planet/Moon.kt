@@ -46,7 +46,7 @@ class Moon : Planet() {
             )
             .build()
 
-    override val generatorSettings = ChunkGeneratorSettingsBuilder().build()
+    override val generatorSettings = ChunkGeneratorSettingsBuilder().surfaceRule(getMaterialRules()).build()
 
     override val chunkGenerator = NoiseChunkGenerator(
         FixedBiomeSource(Biomes.MOON_PLAINS!!),
@@ -93,5 +93,7 @@ class Moon : Planet() {
         return MaterialRules.sequence(*builder.toTypedArray())
     }
 
-    override val settings = PlanetSettings.fromConfig(Interstellar.config!!.planets.moon)
+    override val settings = PlanetSettings.fromConfig(Interstellar.config!!.planets.planets.find {
+        it.name == Interstellar.id("moon").toString()
+    }!!)
 }
