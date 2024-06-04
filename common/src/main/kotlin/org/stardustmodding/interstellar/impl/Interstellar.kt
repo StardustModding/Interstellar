@@ -73,7 +73,7 @@ object Interstellar {
         config = AutoConfig.getConfigHolder(InterstellarConfig::class.java).config
         items.register()
 
-        LifecycleEvent.SERVER_STARTED.register(Initializer::init)
+        LifecycleEvent.SERVER_STARTING.register(Initializer::init)
 
         CommandRegistrationEvent.EVENT.register { dispatcher, _, _ ->
             for (cmd in commands) {

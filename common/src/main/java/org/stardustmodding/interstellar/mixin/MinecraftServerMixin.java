@@ -70,23 +70,31 @@ import java.util.stream.Collectors;
 public abstract class MinecraftServerMixin implements DynamicDimensionRegistry {
     @Unique
     private final @NotNull Map<RegistryKey<World>, ServerWorld> levelsAwaitingCreation = new HashMap<>();
+
     @Unique
     private final @NotNull Map<RegistryKey<World>, PlayerRemover> levelsAwaitingDeletion = new HashMap<>();
+
     @Unique
     private final @NotNull List<RegistryKey<World>> dynamicDimensions = new ArrayList<>();
+
     @Shadow
     @Final
     protected LevelStorage.Session session;
+
     @Unique
     private boolean tickingLevels = false;
+
     @Shadow
     private MinecraftServer.ResourceManagerHolder resourceManagerHolder;
+
     @Shadow
     @Final
     private Executor workerExecutor;
+
     @Shadow
     @Final
     private WorldGenerationProgressListenerFactory worldGenerationProgressListenerFactory;
+
     @Shadow
     @Final
     private Map<RegistryKey<World>, ServerWorld> worlds;

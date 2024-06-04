@@ -43,8 +43,10 @@ dependencies {
     modApi("dev.architectury:architectury-forge:${rootProject.property("architectury_version")}")
     modApi("me.shedaniel.cloth:cloth-config:${rootProject.property("cloth_config_version")}")
     modApi("me.shedaniel.cloth:cloth-config-forge:${rootProject.property("cloth_config_version")}")
+
     modRuntimeOnly("lol.bai:badpackets:forge-${rootProject.property("badpackets_version")}")
     modRuntimeOnly("dev.engine_room.flywheel:flywheel-forge-${rootProject.property("minecraft_version")}:${rootProject.property("flywheel_version")}")
+    modRuntimeOnly("me.shedaniel.cloth:cloth-config-forge:${rootProject.property("cloth_config_version")}")
 
     implementation("thedarkcolour:kotlinforforge:${rootProject.property("kotlin_for_forge_version")}")
 }
