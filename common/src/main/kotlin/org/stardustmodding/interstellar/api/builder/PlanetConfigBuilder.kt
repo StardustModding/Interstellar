@@ -25,7 +25,6 @@ class PlanetConfigBuilder {
     fun enableRadiation(value: Boolean) = apply { this.config.enableRadiation = value }
     fun tier(value: Int) = apply { this.config.tier = value }
     fun enableOxygen(value: Boolean) = apply { this.config.enableOxygen = value }
-    fun pressure(value: Float) = apply { this.config.pressure = value }
     fun radiation(value: Float) = apply { this.config.radiation = value }
     fun gas(value: GasConfig) = apply { this.config.gases.add(value) }
 

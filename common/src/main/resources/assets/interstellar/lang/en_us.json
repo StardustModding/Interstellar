@@ -1,16 +1,23 @@
 {
     "__comment_0": "Misc things",
+
     "itemGroup.interstellar.creative_tab": "Create: Interstellar",
+
     "__comment_1": "Config groups",
+
     "text.autoconfig.interstellar.category.core": "Core",
     "text.autoconfig.interstellar.category.planets": "Planets",
     "text.autoconfig.interstellar.category.systems": "Systems",
+
     "__comment_2": "Star system config",
+
     "text.autoconfig.interstellar.option.starSystems.sol": "Sol",
     "text.autoconfig.interstellar.option.starSystems.sol.id": "Star System ID",
     "text.autoconfig.interstellar.option.starSystems.sol.name": "Display Name",
     "text.autoconfig.interstellar.option.starSystems.sol.planets": "Star System Planet IDs",
+
     "__comment_3": "Mercury config",
+
     "text.autoconfig.interstellar.option.planets.mercury": "Mercury",
     "text.autoconfig.interstellar.option.planets.mercury.enable": "Enable",
     "text.autoconfig.interstellar.option.planets.mercury.dimensionId": "Dimension ID",
@@ -22,7 +29,9 @@
     "text.autoconfig.interstellar.option.planets.mercury.enablePressure": "Enable Pressure",
     "text.autoconfig.interstellar.option.planets.mercury.enableRadiation": "Enable Radiation",
     "text.autoconfig.interstellar.option.planets.mercury.gases": "Gases",
+
     "__comment_4": "Venus config",
+
     "text.autoconfig.interstellar.option.planets.venus": "Venus",
     "text.autoconfig.interstellar.option.planets.venus.enable": "Enable",
     "text.autoconfig.interstellar.option.planets.venus.dimensionId": "Dimension ID",
@@ -34,7 +43,9 @@
     "text.autoconfig.interstellar.option.planets.venus.enablePressure": "Enable Pressure",
     "text.autoconfig.interstellar.option.planets.venus.enableRadiation": "Enable Radiation",
     "text.autoconfig.interstellar.option.planets.venus.gases": "Gases",
+
     "__comment_5": "Earth config",
+
     "text.autoconfig.interstellar.option.planets.earth": "Earth",
     "text.autoconfig.interstellar.option.planets.earth.enable": "Enable",
     "text.autoconfig.interstellar.option.planets.earth.dimensionId": "Dimension ID",
@@ -46,7 +57,9 @@
     "text.autoconfig.interstellar.option.planets.earth.enablePressure": "Enable Pressure",
     "text.autoconfig.interstellar.option.planets.earth.enableRadiation": "Enable Radiation",
     "text.autoconfig.interstellar.option.planets.earth.gases": "Gases",
+
     "__comment_6": "Moon config",
+
     "text.autoconfig.interstellar.option.planets.moon": "Moon",
     "text.autoconfig.interstellar.option.planets.moon.enable": "Enable",
     "text.autoconfig.interstellar.option.planets.moon.dimensionId": "Dimension ID",
@@ -58,7 +71,9 @@
     "text.autoconfig.interstellar.option.planets.moon.enablePressure": "Enable Pressure",
     "text.autoconfig.interstellar.option.planets.moon.enableRadiation": "Enable Radiation",
     "text.autoconfig.interstellar.option.planets.moon.gases": "Gases",
+
     "__comment_7": "Mars config",
+
     "text.autoconfig.interstellar.option.planets.mars": "Mars",
     "text.autoconfig.interstellar.option.planets.mars.enable": "Enable",
     "text.autoconfig.interstellar.option.planets.mars.dimensionId": "Dimension ID",
@@ -70,7 +85,9 @@
     "text.autoconfig.interstellar.option.planets.mars.enablePressure": "Enable Pressure",
     "text.autoconfig.interstellar.option.planets.mars.enableRadiation": "Enable Radiation",
     "text.autoconfig.interstellar.option.planets.mars.gases": "Gases",
+
     "__comment_8": "Saturn config",
+
     "text.autoconfig.interstellar.option.planets.saturn": "Saturn",
     "text.autoconfig.interstellar.option.planets.saturn.enable": "Enable",
     "text.autoconfig.interstellar.option.planets.saturn.dimensionId": "Dimension ID",
@@ -82,7 +99,9 @@
     "text.autoconfig.interstellar.option.planets.saturn.enablePressure": "Enable Pressure",
     "text.autoconfig.interstellar.option.planets.saturn.enableRadiation": "Enable Radiation",
     "text.autoconfig.interstellar.option.planets.saturn.gases": "Gases",
+
     "__comment_9": "Uranus config",
+
     "text.autoconfig.interstellar.option.planets.uranus": "Uranus",
     "text.autoconfig.interstellar.option.planets.uranus.enable": "Enable",
     "text.autoconfig.interstellar.option.planets.uranus.dimensionId": "Dimension ID",
@@ -94,7 +113,9 @@
     "text.autoconfig.interstellar.option.planets.uranus.enablePressure": "Enable Pressure",
     "text.autoconfig.interstellar.option.planets.uranus.enableRadiation": "Enable Radiation",
     "text.autoconfig.interstellar.option.planets.uranus.gases": "Gases",
+
     "__comment_10": "Neptune config",
+
     "text.autoconfig.interstellar.option.planets.neptune": "Neptune",
     "text.autoconfig.interstellar.option.planets.neptune.enable": "Enable",
     "text.autoconfig.interstellar.option.planets.neptune.dimensionId": "Dimension ID",
@@ -106,7 +127,9 @@
     "text.autoconfig.interstellar.option.planets.neptune.enablePressure": "Enable Pressure",
     "text.autoconfig.interstellar.option.planets.neptune.enableRadiation": "Enable Radiation",
     "text.autoconfig.interstellar.option.planets.neptune.gases": "Gases",
+
     "__comment_11": "Pluto config",
+
     "text.autoconfig.interstellar.option.planets.pluto": "Pluto",
     "text.autoconfig.interstellar.option.planets.pluto.enable": "Enable",
     "text.autoconfig.interstellar.option.planets.pluto.dimensionId": "Dimension ID",
@@ -118,8 +141,14 @@
     "text.autoconfig.interstellar.option.planets.pluto.enablePressure": "Enable Pressure",
     "text.autoconfig.interstellar.option.planets.pluto.enableRadiation": "Enable Radiation",
     "text.autoconfig.interstellar.option.planets.pluto.gases": "Gases",
+
     "__comment_12": "Gas config",
+
     "text.autoconfig.interstellar.option.GasConfig": "Gas",
     "text.autoconfig.interstellar.option.GasConfig.id": "Gas ID",
-    "text.autoconfig.interstellar.option.GasConfig.quantity": "Quantity (kPa)"
+    "text.autoconfig.interstellar.option.GasConfig.quantity": "Quantity (kPa)",
+
+    "__comment_13": "GUIs",
+
+    "interstellar.screens.suit.customization": "Suit Customization"
 }

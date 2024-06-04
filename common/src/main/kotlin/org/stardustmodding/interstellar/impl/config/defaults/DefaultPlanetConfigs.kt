@@ -15,10 +15,6 @@ object DefaultPlanetConfigs {
         PlanetConfigBuilder(Interstellar.MOD_ID, "mercury")
             .enable(true)
             .dimension(1001)
-            // Number is actually about 0.0000000001 according to my research,
-            // but it's basically 0, so I'm not going to bother.
-            .pressure(0.0f)
-            // TODO: Put something here, I can't find anything.
             .radiation(0.0f)
             .enableOxygen(true)
             .enablePressure(true)
@@ -30,7 +26,6 @@ object DefaultPlanetConfigs {
         PlanetConfigBuilder(Interstellar.MOD_ID, "venus")
             .enable(true)
             .dimension(1002)
-            .pressure(9100.0f)
             .radiation(0.0004166666f)
             // 97% carbon dioxide, 3% nitrogen
             .gas(GasConfig(Interstellar.MOD_ID, "carbon_dioxide", 8827.0f))
@@ -45,7 +40,6 @@ object DefaultPlanetConfigs {
         PlanetConfigBuilder(Interstellar.MOD_ID, "earth")
             .enable(true)
             .dimension(0)
-            .pressure(100.0f)
             .radiation(0.0f)
             // 78% nitrogen, 20.95% oxygen, 1% argon, 0.05% carbon dioxide
             .gas(GasConfig(Interstellar.MOD_ID, "nitrogen", 78.0f))
@@ -64,7 +58,6 @@ object DefaultPlanetConfigs {
         PlanetConfigBuilder(Interstellar.MOD_ID, "moon")
             .enable(true)
             .dimension(1003)
-            .pressure(0.0f)
             .radiation(0.0008333333f)
             .enableOxygen(true)
             .enablePressure(true)
@@ -76,7 +69,6 @@ object DefaultPlanetConfigs {
         PlanetConfigBuilder(Interstellar.MOD_ID, "mars")
             .enable(true)
             .dimension(1004)
-            .pressure(0.6f)
             .radiation(0.00106481f)
             // 95% carbon dioxide, 3% nitrogen, 1.6% argon, 0.4% methane
             .gas(GasConfig(Interstellar.MOD_ID, "carbon_dioxide", 0.57f))
@@ -93,7 +85,6 @@ object DefaultPlanetConfigs {
         PlanetConfigBuilder(Interstellar.MOD_ID, "saturn")
             .enable(true)
             .dimension(1005)
-            .pressure(140.0f)
             // I couldn't find anything. :(
             .radiation(0.0f)
             // 75% hydrogen, 25% helium
@@ -109,7 +100,6 @@ object DefaultPlanetConfigs {
         PlanetConfigBuilder(Interstellar.MOD_ID, "uranus")
             .enable(true)
             .dimension(1006)
-            .pressure(100000.0f)
             // I couldn't find anything. :(
             .radiation(0.0f)
             // 60% hydrogen, 38% helium, 2% ammonia (based on estimates)
@@ -126,7 +116,6 @@ object DefaultPlanetConfigs {
         PlanetConfigBuilder(Interstellar.MOD_ID, "neptune")
             .enable(true)
             .dimension(1007)
-            .pressure(10000000.0f)
             // I couldn't find anything. :(
             .radiation(0.0f)
             // 60% hydrogen, 38% helium, 2% methane (based on estimates)
@@ -143,8 +132,6 @@ object DefaultPlanetConfigs {
         PlanetConfigBuilder(Interstellar.MOD_ID, "pluto")
             .enable(true)
             .dimension(1008)
-            // It's almost 0, so whatever.
-            .pressure(0.0f)
             // I couldn't find anything. :(
             .radiation(0.0f)
             .enableOxygen(true)

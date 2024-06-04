@@ -8,7 +8,7 @@ import org.stardustmodding.interstellar.api.init.InitializedServer
 import org.stardustmodding.interstellar.impl.util.RegistryLookup
 import org.stardustmodding.interstellar.impl.world.biome.MoonPlains
 
-object Biomes: InitializedServer {
+object Biomes : InitializedServer {
     var MOON_PLAINS: RegistryEntry.Reference<Biome>? = null
 
     override fun init(it: MinecraftServer) {

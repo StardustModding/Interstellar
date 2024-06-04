@@ -12,7 +12,7 @@ import org.stardustmodding.interstellar.impl.client.entity.renderer.ShipEntityRe
 import org.stardustmodding.interstellar.impl.init.Entities
 
 @Environment(EnvType.CLIENT)
-object ClientEntities: InitializedClient {
+object ClientEntities : InitializedClient {
     var MODEL_SHIP_LAYER = EntityModelLayer(ShipEntityRenderer.textureId(), "main")
 
     override fun init(it: MinecraftClient) {

@@ -10,7 +10,7 @@ import net.minecraft.world.gen.carver.ConfiguredCarver
 import net.minecraft.world.gen.densityfunction.DensityFunction
 import org.stardustmodding.interstellar.api.init.InitializedServer
 
-object RegistryLookup: InitializedServer {
+object RegistryLookup : InitializedServer {
     private var ACCESS: DynamicRegistryManager? = null
 
     var BIOMES: SimpleRegistry<Biome>? = null

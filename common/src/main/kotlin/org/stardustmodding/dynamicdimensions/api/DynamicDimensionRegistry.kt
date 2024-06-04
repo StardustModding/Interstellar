@@ -1,6 +1,7 @@
 package org.stardustmodding.dynamicdimensions.api
 
 import net.minecraft.server.MinecraftServer
+import net.minecraft.server.dedicated.MinecraftDedicatedServer
 import net.minecraft.util.Identifier
 import net.minecraft.world.dimension.DimensionType
 import net.minecraft.world.gen.chunk.ChunkGenerator

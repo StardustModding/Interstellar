@@ -6,8 +6,8 @@ import net.minecraft.client.MinecraftClient
 import org.stardustmodding.interstellar.api.init.InitializedClient
 
 @Environment(EnvType.CLIENT)
-object ClientInitializer: InitializedClient {
+object ClientInitializer : InitializedClient {
     override fun init(it: MinecraftClient) {
-        initChild(it, ClientEntities::class)
+        initChild(it, ClientEntities)
     }
 }

@@ -3,7 +3,7 @@ package org.stardustmodding.interstellar.api.data
 import net.minecraft.server.world.ServerWorld
 
 object StateUtil {
-    inline fun <reified T>load(world: ServerWorld): T where T: SavedState {
+    inline fun <reified T> load(world: ServerWorld): T where T : SavedState {
         return world.persistentStateManager.getOrCreate(
             { SavedState.readStatic<T>(it) },
             { SavedState.defaultStatic<T>() },
@@ -11,7 +11,7 @@ object StateUtil {
         )
     }
 
-    fun <T>write(world: ServerWorld, obj: T) where T: SavedState {
+    fun <T> write(world: ServerWorld, obj: T) where T : SavedState {
         world.persistentStateManager.set(obj.id.toString(), obj)
         world.persistentStateManager.save()
     }
