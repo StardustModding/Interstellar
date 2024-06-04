@@ -240,7 +240,7 @@ allprojects {
                     }
 
                     externalDocumentationLink {
-                        url.set(URL("https://maven.stardustmodding.org/dokka/releases/net/fabricmc/yarn/1.20.1+build.local/raw/"))
+                        url.set(URL("https://maven.stardustmodding.org/dokka/releases/net/fabricmc/yarn/1.20.1+build.local/raw/yarn/"))
                     }
                 }
             }
