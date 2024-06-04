@@ -251,7 +251,13 @@ allprojects {
                     }
 
                     externalDocumentationLink {
-                        url.set(URL("https://maven.stardustmodding.org/dokka/releases/net/fabricmc/yarn/1.20.1+build.local/raw/yarn/"))
+                        url.set(URL("https://maven.stardustmodding.org/dokka/releases/net/fabricmc/yarn/1.20.1+build.local/raw/"))
+                        packageListUrl.set(URL("${url.get()}yarn/package-list"))
+                    }
+
+                    externalDocumentationLink {
+                        url.set(URL("https://repo.kadaroja.com/dokka/releases/net/fabricmc/fabric-api/fabric-api/0.92.2+local-1.20.1/raw/"))
+                        packageListUrl.set(URL("${url.get()}fabric-api/package-list"))
                     }
                 }
             }
