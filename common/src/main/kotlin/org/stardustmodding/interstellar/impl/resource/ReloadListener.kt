@@ -24,8 +24,8 @@ object ReloadListener: SynchronousResourceReloader {
     }
 
     private fun reloadChunkGenerators(manager: ResourceManager) {
-        for (it in manager.findResources("world") { it.path.startsWith("world/generator") && it.path.endsWith(".json") }) {
-            val id = it.key.withPath(it.key.path.replace(".json", "").removePrefix("world/generator/"))
+        for (it in manager.findResources("worldgen/generator") { it.path.endsWith(".json") }) {
+            val id = it.key.withPath(it.key.path.replace(".json", "").removePrefix("worldgen/generator/"))
             val stream = it.value.reader
             val raw = stream.readText()
             val el = JsonParser.parseString(raw).asJsonObject as JsonElement
