@@ -1,7 +1,7 @@
 package org.stardustmodding.interstellar.api.gas
 
-import net.minecraft.util.Identifier
+import net.minecraft.text.Text
 
-class Gas(val id: Identifier, val breathable: Boolean, val toxic: Boolean) {
+class Gas(val id: Text, val breathable: Boolean = false, val toxic: Boolean = false) {
 
 }
