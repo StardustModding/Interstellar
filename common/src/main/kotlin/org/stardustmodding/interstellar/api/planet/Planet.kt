@@ -7,6 +7,7 @@ import net.minecraft.registry.RegistryKeys
 import net.minecraft.util.Identifier
 import net.minecraft.world.dimension.DimensionOptions
 import net.minecraft.world.dimension.DimensionType
+import net.minecraft.world.gen.chunk.ChunkGenerator
 import net.minecraft.world.gen.chunk.ChunkGeneratorSettings
 import org.stardustmodding.dynamicdimensions.api.DynamicDimensionRegistry
 import org.stardustmodding.interstellar.api.registries.InterstellarRegistries
@@ -19,8 +20,8 @@ class Planet {
     lateinit var dimensionTypeId: Identifier
 
     @Serializable(with = IdentifierSerializer::class)
-    @SerialName("dimension")
-    lateinit var dimensionId: Identifier
+    @SerialName("generator")
+    lateinit var generatorId: Identifier
 
     @Serializable(with = IdentifierSerializer::class)
     @SerialName("noise_settings")
@@ -30,8 +31,8 @@ class Planet {
     @SerialName("settings")
     lateinit var settingsId: Identifier
 
-    val dimension
-        get() = Registries.REGISTRIES.get(RegistryKeys.DIMENSION.registry)?.get(dimensionId) as DimensionOptions?
+    val generator
+        get() = InterstellarRegistries.CHUNK_GENERATORS.get(generatorId) as ChunkGenerator?
 
     val dimensionType
         get() = Registries.REGISTRIES.get(RegistryKeys.DIMENSION_TYPE.registry)?.get(dimensionTypeId) as DimensionType?
@@ -43,6 +44,6 @@ class Planet {
     val settings get() = InterstellarRegistries.PLANET_SETTINGS.get(settingsId) as PlanetSettings?
 
     fun create(id: Identifier, registry: DynamicDimensionRegistry) {
-        registry.loadDynamicDimension(id, dimension!!.chunkGenerator, dimensionType!!)
+        registry.loadDynamicDimension(id, generator!!, dimensionType!!)
     }
 }

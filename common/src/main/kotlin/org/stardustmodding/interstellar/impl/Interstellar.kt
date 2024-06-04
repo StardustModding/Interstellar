@@ -9,8 +9,10 @@ import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer
 import net.minecraft.resource.ResourceType
 import net.minecraft.util.Identifier
 import org.slf4j.LoggerFactory
+import org.stardustmodding.dynamicdimensions.api.DynamicDimensionRegistry
 import org.stardustmodding.interstellar.impl.command.DimensionTpCommand
 import org.stardustmodding.interstellar.impl.config.InterstellarConfig
+import org.stardustmodding.interstellar.impl.registry.AutoDimensionRegistrar
 import org.stardustmodding.interstellar.impl.resource.ReloadListener
 
 object Interstellar {
@@ -43,6 +45,10 @@ object Interstellar {
         config = AutoConfig.getConfigHolder(InterstellarConfig::class.java).config
 
         ReloadListenerRegistry.register(ResourceType.SERVER_DATA, ReloadListener)
+
+        LifecycleEvent.SERVER_STARTED.register {
+            AutoDimensionRegistrar.autoRegister(DynamicDimensionRegistry.from(it))
+        }
 
         CommandRegistrationEvent.EVENT.register { dispatcher, _, _ ->
             for (cmd in commands) {
