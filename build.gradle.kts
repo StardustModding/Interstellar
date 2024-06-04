@@ -1,4 +1,5 @@
 import org.jetbrains.dokka.gradle.DokkaTask
+import java.net.URL
 
 plugins {
     id("java")
@@ -229,6 +230,14 @@ allprojects {
                 create(it.name) {
                     sourceRoots.from(it.sourceSets.main.get().kotlin)
                     includeNonPublic.set(true)
+
+                    externalDocumentationLink {
+                        url.set(URL("https://kotlinlang.org/api/kotlinx.serialization/"))
+                    }
+
+                    externalDocumentationLink {
+                        url.set(URL("https://kotlinlang.org/api/kotlinx.coroutines/"))
+                    }
                 }
             }
         }
