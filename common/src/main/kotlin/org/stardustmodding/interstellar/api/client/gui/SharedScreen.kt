@@ -43,8 +43,7 @@ open class SharedScreen<H : ScreenHandler>(handler: H, title: Text, private val 
     }
 
     override fun drawBackground(ctx: DrawContext, delta: Float, mouseX: Int, mouseY: Int) {
-//        ctx.fill(0, 0, ctx.scaledWindowWidth, ctx.scaledWindowHeight, BG_SHADOW_COLOR)
-        ctx.fillGradient(0, 0, ctx.scaledWindowWidth, ctx.scaledWindowHeight, -1072689136, -804253680)
+        ctx.fill(0, 0, ctx.scaledWindowWidth, ctx.scaledWindowHeight, BG_SHADOW_COLOR)
     }
 
     companion object {
