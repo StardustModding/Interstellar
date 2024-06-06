@@ -18,8 +18,8 @@ class ShipEntityModel : EntityModel<ShipEntity>() {
     private var entity: ShipEntity? = null
 
     private fun renderBlockMatrix(
-        state: BlockState,
         relPos: BlockPos,
+        state: BlockState,
         stack: MatrixStack,
         buffer: VertexConsumer,
         packedLight: Int,
@@ -38,7 +38,7 @@ class ShipEntityModel : EntityModel<ShipEntity>() {
     }
 
     private fun renderBlockMatrices(
-        blocks: List<Pair<BlockState, BlockPos>>,
+        blocks: Map<BlockPos, BlockState>,
         stack: MatrixStack,
         buffer: VertexConsumer,
         packedLight: Int,
@@ -48,7 +48,7 @@ class ShipEntityModel : EntityModel<ShipEntity>() {
         blue: Float
     ) {
         for (block in blocks) {
-            renderBlockMatrix(block.first, block.second, stack, buffer, packedLight, packedOverlay, red, green, blue)
+            renderBlockMatrix(block.key, block.value, stack, buffer, packedLight, packedOverlay, red, green, blue)
         }
     }
 

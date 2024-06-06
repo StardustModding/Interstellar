@@ -11,10 +11,11 @@ import net.minecraft.nbt.NbtList
 import net.minecraft.registry.Registries
 import net.minecraft.registry.SimpleDefaultedRegistry
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Box
 import net.minecraft.world.World
 
 class ShipEntity(type: EntityType<*>, world: World) : Entity(type, world) {
-    val blocks: MutableList<Pair<BlockState, BlockPos>> = mutableListOf()
+    val blocks: MutableMap<BlockPos, BlockState> = mutableMapOf()
 
     override fun initDataTracker() {
 
@@ -28,10 +29,10 @@ class ShipEntity(type: EntityType<*>, world: World) : Entity(type, world) {
 
         for (rawItem in list) {
             val item = rawItem as NbtCompound
-            val state = NbtHelper.toBlockState(lookup, item.getCompound("state"))
             val pos = NbtHelper.toBlockPos(item.getCompound("pos"))
+            val state = NbtHelper.toBlockState(lookup, item.getCompound("state"))
 
-            blocks.add(Pair(state, pos))
+            blocks[pos] = state
         }
     }
 
@@ -41,8 +42,8 @@ class ShipEntity(type: EntityType<*>, world: World) : Entity(type, world) {
         for (item in blocks) {
             val compound = NbtCompound()
 
-            compound.put("state", NbtHelper.fromBlockState(item.first))
-            compound.put("pos", NbtHelper.fromBlockPos(item.second))
+            compound.put("pos", NbtHelper.fromBlockPos(item.key))
+            compound.put("state", NbtHelper.fromBlockState(item.value))
 
             list.add(compound)
         }

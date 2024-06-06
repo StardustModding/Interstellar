@@ -10,10 +10,7 @@ import net.minecraft.command.CommandSource
 import net.minecraft.command.argument.ArgumentTypes
 import net.minecraft.command.argument.serialize.ConstantArgumentSerializer
 import net.minecraft.registry.Registries
-import net.minecraft.registry.Registry
-import net.minecraft.registry.RegistryKeys
 import net.minecraft.text.Text
-import org.stardustmodding.interstellar.impl.Interstellar
 import org.stardustmodding.interstellar.impl.Interstellar.id
 import java.util.concurrent.CompletableFuture
 
