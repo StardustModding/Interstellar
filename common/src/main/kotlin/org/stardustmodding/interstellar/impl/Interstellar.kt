@@ -1,7 +1,7 @@
 package org.stardustmodding.interstellar.impl
 
 import dev.architectury.event.events.common.CommandRegistrationEvent
-import dev.architectury.event.events.common.LifecycleEvent
+import dev.architectury.event.events.common.TickEvent
 import dev.architectury.registry.ReloadListenerRegistry
 import me.shedaniel.autoconfig.AutoConfig
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer
@@ -9,10 +9,10 @@ import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer
 import net.minecraft.resource.ResourceType
 import net.minecraft.util.Identifier
 import org.slf4j.LoggerFactory
-import org.stardustmodding.dynamicdimensions.api.DynamicDimensionRegistry
+import org.stardustmodding.interstellar.api.registry.InterstellarRegistries
 import org.stardustmodding.interstellar.impl.command.DimensionTpCommand
+import org.stardustmodding.interstellar.impl.command.OpenScreenCommand
 import org.stardustmodding.interstellar.impl.config.InterstellarConfig
-import org.stardustmodding.interstellar.impl.registry.AutoDimensionRegistrar
 import org.stardustmodding.interstellar.impl.resource.ReloadListener
 
 object Interstellar {
@@ -23,7 +23,8 @@ object Interstellar {
     var config: InterstellarConfig? = null
 
     private var commands = listOf(
-        DimensionTpCommand()
+        DimensionTpCommand(),
+        OpenScreenCommand()
     )
 
     @JvmStatic
@@ -46,8 +47,10 @@ object Interstellar {
 
         ReloadListenerRegistry.register(ResourceType.SERVER_DATA, ReloadListener)
 
-        LifecycleEvent.SERVER_STARTED.register {
-            AutoDimensionRegistrar.autoRegister(DynamicDimensionRegistry.from(it))
+        TickEvent.SERVER_LEVEL_POST.register {
+            for (planet in InterstellarRegistries.PLANETS) {
+                planet.tick(it)
+            }
         }
 
         CommandRegistrationEvent.EVENT.register { dispatcher, _, _ ->

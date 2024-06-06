@@ -4,13 +4,6 @@
     "compatibilityLevel": "JAVA_17",
     "minVersion": "0.8",
     "mixins": [
-        "ChunkMapAccessor",
-        "DistanceManagerAccessor",
-        "MinecraftServerMixin",
-        "PrimaryLevelDataMixin",
-        "RegistryEntryListNamedAccessor",
-        "ReloadableServerResourcesAccessor",
-        "ServerChunkCacheAccessor"
     ],
     "client": [
         "LaunchScreenMixin"

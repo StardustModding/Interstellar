@@ -1,6 +1,4 @@
 {
-    "dimension_type": "interstellar:moon",
-    "generator": "interstellar:moon",
-    "noise_settings": "interstellar:moon",
+    "dimension": "interstellar:moon",
     "settings": "interstellar:moon"
 }

@@ -1,12 +1,11 @@
-package org.stardustmodding.dynamicdimensions.impl.registry
+package org.stardustmodding.interstellar.api.registry
 
 import com.google.common.collect.ImmutableList
 import com.mojang.serialization.Lifecycle
 import net.minecraft.registry.*
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.util.Identifier
-import org.stardustmodding.dynamicdimensions.impl.Constants
-import org.stardustmodding.interstellar.mixin.RegistryEntryListNamedAccessor
+import org.stardustmodding.interstellar.impl.Interstellar.LOGGER
 
 object RegistryUtil {
     @JvmStatic
@@ -21,7 +20,7 @@ object RegistryUtil {
                 val byId = registry.rawIdToEntry
 
                 if (byId.size <= registry.entryToRawId.getInt(type)) {
-                    Constants.LOGGER.warn("ID mismatch in registry '{}'", registry.getKey())
+                    LOGGER.warn("ID mismatch in registry '{}'", registry.getKey())
                 }
 
                 registry.entryToRawId.removeInt(type)
@@ -49,26 +48,32 @@ object RegistryUtil {
                 registry.keyToEntry.remove(RegistryKey.of(registry.getKey(), id))
                 registry.valueToEntry.remove(type)
                 registry.entryToLifecycle.remove(type)
+
                 val base = Lifecycle.stable()
+
                 for (value in registry.entryToLifecycle.values) {
                     base.add(value)
                 }
+
                 registry.lifecycle = base
+
                 for (holderSet in registry.tagToEntryList.values) {
-                    val set = holderSet as RegistryEntryListNamedAccessor<T>
                     val list = ImmutableList.builder<RegistryEntry<T>>()
-                    for (content in set.contents) {
+
+                    for (content in holderSet.entries) {
                         if (!content.matchesId(id)) list.add(content)
                     }
-                    set.setContents(list.build())
+
+                    holderSet.entries = list.build()
                 }
+
                 if (registry.valueToEntry != null) {
                     registry.valueToEntry!!.remove(type)
                 }
                 registry.cachedEntries = null
             }
         } else {
-            Constants.LOGGER.warn("Tried to remove non-existent key {}", id)
+            LOGGER.warn("Tried to remove non-existent key {}", id)
         }
     }
 
@@ -84,10 +89,10 @@ object RegistryUtil {
                 checkNotNull(registry.rawIdToEntry[registry.entryToRawId.getInt(value)])
                 return ref
             } else {
-                throw IllegalStateException("Dynamic Dimensions: Non-vanilla '" + registry.key.value + "' registry! " + registry.javaClass.name)
+                throw IllegalStateException("Non-vanilla '" + registry.key.value + "' registry! " + registry.javaClass.name)
             }
         } else {
-            Constants.LOGGER.warn("Tried to add pre-existing key$id")
+            LOGGER.warn("Tried to add pre-existing key$id")
             return registry.entryOf(RegistryKey.of(registry.key, id))
         }
     }
@@ -107,10 +112,10 @@ object RegistryUtil {
                 if (frozen) registry.freeze()
                 return ref
             } else {
-                throw IllegalStateException("Dynamic Dimensions: Non-vanilla '" + registry.key.value + "' registry! " + registry.javaClass.name)
+                throw IllegalStateException("Non-vanilla '" + registry.key.value + "' registry! " + registry.javaClass.name)
             }
         } else {
-            Constants.LOGGER.warn(
+            LOGGER.warn(
                 "Tried to add pre-existing key $id with raw id $rawId (contains: " + registry.getId(
                     registry[id]
                 ) + ")"

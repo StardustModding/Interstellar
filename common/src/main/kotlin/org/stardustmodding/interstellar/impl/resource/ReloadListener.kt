@@ -1,47 +1,21 @@
 package org.stardustmodding.interstellar.impl.resource
 
-import com.google.gson.JsonElement
-import com.google.gson.JsonParser
-import com.mojang.serialization.JsonOps
 import kotlinx.serialization.json.Json
 import net.minecraft.registry.Registry
 import net.minecraft.resource.ResourceManager
 import net.minecraft.resource.SynchronousResourceReloader
-import net.minecraft.world.gen.chunk.ChunkGenerator
-import org.stardustmodding.dynamicdimensions.impl.registry.RegistryUtil
+import org.stardustmodding.interstellar.api.registry.RegistryUtil
 import org.stardustmodding.interstellar.api.planet.Planet
 import org.stardustmodding.interstellar.api.planet.PlanetSettings
-import org.stardustmodding.interstellar.api.registries.InterstellarRegistries
+import org.stardustmodding.interstellar.api.registry.InterstellarRegistries
 import org.stardustmodding.interstellar.api.starsystem.StarSystem
 import org.stardustmodding.interstellar.impl.Interstellar.LOGGER
 
 object ReloadListener: SynchronousResourceReloader {
     override fun reload(manager: ResourceManager) {
-        reloadChunkGenerators(manager)
         reloadPlanetSettings(manager)
         reloadPlanets(manager)
         reloadStarSystems(manager)
-    }
-
-    private fun reloadChunkGenerators(manager: ResourceManager) {
-        for (it in manager.findResources("worldgen/generator") { it.path.endsWith(".json") }) {
-            val id = it.key.withPath(it.key.path.replace(".json", "").removePrefix("worldgen/generator/"))
-            val stream = it.value.reader
-            val raw = stream.readText()
-            val el = JsonParser.parseString(raw).asJsonObject as JsonElement
-            val data = ChunkGenerator.CODEC.parse(JsonOps.INSTANCE, el).result().get()
-
-            if (InterstellarRegistries.CHUNK_GENERATORS.containsId(id)) {
-                LOGGER.info("Re-registering chunk generator ${id}...")
-
-                RegistryUtil.unregister(InterstellarRegistries.CHUNK_GENERATORS, id)
-            } else {
-                LOGGER.info("Registering chunk generator ${id}...")
-            }
-
-            Registry.register(InterstellarRegistries.CHUNK_GENERATORS, id, data)
-            stream.close()
-        }
     }
 
     private fun reloadPlanetSettings(manager: ResourceManager) {

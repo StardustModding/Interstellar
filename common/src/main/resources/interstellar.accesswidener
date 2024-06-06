@@ -29,3 +29,6 @@ mutable field net/minecraft/registry/SimpleRegistry frozen Z
 mutable field net/minecraft/registry/SimpleRegistry cachedEntries Ljava/util/List;
 mutable field net/minecraft/registry/SimpleRegistry tagToEntryList Ljava/util/Map;
 mutable field net/minecraft/registry/SimpleRegistry lifecycle Lcom/mojang/serialization/Lifecycle;
+
+accessible field net/minecraft/registry/entry/RegistryEntryList$Named entries Ljava/util/List;
+accessible method net/minecraft/command/argument/ArgumentTypes register (Lnet/minecraft/registry/Registry;Ljava/lang/String;Ljava/lang/Class;Lnet/minecraft/command/argument/serialize/ArgumentSerializer;)Lnet/minecraft/command/argument/serialize/ArgumentSerializer;

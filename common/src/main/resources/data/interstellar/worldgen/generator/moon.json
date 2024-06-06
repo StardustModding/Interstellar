@@ -1,8 +1,0 @@
-{
-    "type": "minecraft:noise",
-    "settings": "interstellar:moon",
-    "biome_source": {
-        "type": "minecraft:fixed",
-        "biome": "interstellar:moon_plains"
-    }
-}

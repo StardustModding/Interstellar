@@ -9,5 +9,6 @@ import org.stardustmodding.interstellar.api.init.InitializedClient
 object ClientInitializer : InitializedClient {
     override fun init(it: MinecraftClient) {
         initChild(it, ClientEntities)
+        initChild(it, ClientScreens)
     }
 }

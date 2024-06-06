@@ -3,7 +3,7 @@ package org.stardustmodding.interstellar.impl.init
 import net.minecraft.registry.Registry
 import net.minecraft.text.Text.translatable
 import org.stardustmodding.interstellar.api.gas.Gas
-import org.stardustmodding.interstellar.api.registries.InterstellarRegistries
+import org.stardustmodding.interstellar.api.registry.InterstellarRegistries
 import org.stardustmodding.interstellar.impl.Interstellar.id
 
 object Gases {
