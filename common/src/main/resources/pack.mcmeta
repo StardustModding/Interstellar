@@ -1,6 +1,6 @@
 {
-    "pack": {
-        "description": "Interstellar ${version}",
-        "pack_format": 9
-    }
+  "pack": {
+    "description": "Interstellar ${version}",
+    "pack_format": 9
+  }
 }

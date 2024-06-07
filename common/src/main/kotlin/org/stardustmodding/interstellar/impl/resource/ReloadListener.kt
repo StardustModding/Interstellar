@@ -7,14 +7,14 @@ import net.minecraft.resource.ResourceManager
 import net.minecraft.resource.SynchronousResourceReloader
 import net.minecraft.util.Identifier
 import org.stardustmodding.interstellar.api.gas.Gas
-import org.stardustmodding.interstellar.api.registry.RegistryUtil
 import org.stardustmodding.interstellar.api.planet.Planet
 import org.stardustmodding.interstellar.api.planet.PlanetSettings
 import org.stardustmodding.interstellar.api.registry.InterstellarRegistries
+import org.stardustmodding.interstellar.api.registry.RegistryUtil
 import org.stardustmodding.interstellar.api.starsystem.StarSystem
 import org.stardustmodding.interstellar.impl.Interstellar.LOGGER
 
-object ReloadListener: SynchronousResourceReloader {
+object ReloadListener : SynchronousResourceReloader {
     override fun reload(manager: ResourceManager) {
         reloadGases(manager)
         reloadPlanetSettings(manager)
@@ -23,9 +23,15 @@ object ReloadListener: SynchronousResourceReloader {
     }
 
     private fun findResources(manager: ResourceManager, prefix: String): List<Pair<Identifier, Resource>> {
-        return manager.findResources(prefix) { it.path.endsWith(".json") }.map { Pair(it.key.withPath(it.key.path.replace(".json", "").removePrefix(
-            "$prefix/"
-        )), it.value) }
+        return manager.findResources(prefix) { it.path.endsWith(".json") }.map {
+            Pair(
+                it.key.withPath(
+                    it.key.path.replace(".json", "").removePrefix(
+                        "$prefix/"
+                    )
+                ), it.value
+            )
+        }
     }
 
     private fun reloadGases(manager: ResourceManager) {

@@ -1,23 +1,22 @@
 {
-    "enabled": true,
-    "radiation": 0.0,
-    "tier": 7,
-    "checkOxygen": true,
-    "checkPressure": true,
-    "checkRadiation": true,
-
-    "gases": [
-        {
-            "id": "interstellar:hydrogen",
-            "amount": 6000000.0
-        },
-        {
-            "id": "interstellar:helium",
-            "amount": 3800000.0
-        },
-        {
-            "id": "interstellar:methane",
-            "amount": 200000.0
-        }
-    ]
+  "enabled": true,
+  "radiation": 0.0,
+  "tier": 7,
+  "checkOxygen": true,
+  "checkPressure": true,
+  "checkRadiation": true,
+  "gases": [
+    {
+      "id": "interstellar:hydrogen",
+      "amount": 6000000.0
+    },
+    {
+      "id": "interstellar:helium",
+      "amount": 3800000.0
+    },
+    {
+      "id": "interstellar:methane",
+      "amount": 200000.0
+    }
+  ]
 }

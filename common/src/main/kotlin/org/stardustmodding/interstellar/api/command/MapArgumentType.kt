@@ -14,7 +14,7 @@ import net.minecraft.text.Text
 import org.stardustmodding.interstellar.impl.Interstellar.id
 import java.util.concurrent.CompletableFuture
 
-class MapArgumentType<T>(private val options: Map<String, T>): ArgumentType<T> {
+class MapArgumentType<T>(private val options: Map<String, T>) : ArgumentType<T> {
     private val err = DynamicCommandExceptionType { Text.literal("Invalid option: '$it'") }
 
     override fun <S : Any?> listSuggestions(
@@ -34,14 +34,18 @@ class MapArgumentType<T>(private val options: Map<String, T>): ArgumentType<T> {
         return options[it]
     }
 
-    inline fun <reified T>get(context: CommandContext<*>, name: String?): T {
+    inline fun <reified T> get(context: CommandContext<*>, name: String?): T {
         return context.getArgument(name, T::class.java)
     }
 
     companion object {
-        fun <T>create(options: Map<String, T>): MapArgumentType<T> {
+        fun <T> create(options: Map<String, T>): MapArgumentType<T> {
             val ty = MapArgumentType(options)
-            ArgumentTypes.register(Registries.COMMAND_ARGUMENT_TYPE, id("map_argument_${options.hashCode()}").toString(), MapArgumentType::class.java, ConstantArgumentSerializer.of { _ -> ty })
+            ArgumentTypes.register(
+                Registries.COMMAND_ARGUMENT_TYPE,
+                id("map_argument_${options.hashCode()}").toString(),
+                MapArgumentType::class.java,
+                ConstantArgumentSerializer.of { _ -> ty })
             return ty
         }
     }

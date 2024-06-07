@@ -1,27 +1,26 @@
 {
-    "enabled": true,
-    "radiation": 0.00106481,
-    "tier": 2,
-    "checkOxygen": true,
-    "checkPressure": true,
-    "checkRadiation": true,
-
-    "gases": [
-        {
-            "id": "interstellar:carbon_dioxide",
-            "amount": 0.57
-        },
-        {
-            "id": "interstellar:nitrogen",
-            "amount": 0.018
-        },
-        {
-            "id": "interstellar:argon",
-            "amount": 0.0096
-        },
-        {
-            "id": "interstellar:methane",
-            "amount": 0.0024
-        }
-    ]
+  "enabled": true,
+  "radiation": 0.00106481,
+  "tier": 2,
+  "checkOxygen": true,
+  "checkPressure": true,
+  "checkRadiation": true,
+  "gases": [
+    {
+      "id": "interstellar:carbon_dioxide",
+      "amount": 0.57
+    },
+    {
+      "id": "interstellar:nitrogen",
+      "amount": 0.018
+    },
+    {
+      "id": "interstellar:argon",
+      "amount": 0.0096
+    },
+    {
+      "id": "interstellar:methane",
+      "amount": 0.0024
+    }
+  ]
 }

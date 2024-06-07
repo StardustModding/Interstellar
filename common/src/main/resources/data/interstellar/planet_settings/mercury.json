@@ -1,9 +1,9 @@
 {
-    "enabled": true,
-    "radiation": 0.0,
-    "tier": 4,
-    "checkOxygen": true,
-    "checkPressure": true,
-    "checkRadiation": true,
-    "gases": []
+  "enabled": true,
+  "radiation": 0.0,
+  "tier": 4,
+  "checkOxygen": true,
+  "checkPressure": true,
+  "checkRadiation": true,
+  "gases": []
 }

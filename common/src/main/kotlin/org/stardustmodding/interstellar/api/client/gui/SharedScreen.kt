@@ -13,7 +13,12 @@ import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 
-open class SharedScreen<H : ScreenHandler>(handler: H, title: Text, private val screenWidth: Int, private val screenHeight: Int) : HandledScreen<H>(handler, PlayerInventory(null), title) {
+open class SharedScreen<H : ScreenHandler>(
+    handler: H,
+    title: Text,
+    private val screenWidth: Int,
+    private val screenHeight: Int
+) : HandledScreen<H>(handler, PlayerInventory(null), title) {
     private fun renderBg(ctx: DrawContext) {
         val windowWidth = ctx.scaledWindowWidth
         val windowHeight = ctx.scaledWindowHeight

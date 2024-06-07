@@ -14,11 +14,11 @@ object WorldExt {
         val list = mutableMapOf<BlockPos, BlockState>()
         val half = range / 2
 
-        for (x in pos.x - half .. pos.x + half) {
-            for (y in pos.y - half .. pos.y + half) {
+        for (x in pos.x - half..pos.x + half) {
+            for (y in pos.y - half..pos.y + half) {
                 if (y > topY || y < bottomY) continue
 
-                for (z in pos.z - half .. pos.z + half) {
+                for (z in pos.z - half..pos.z + half) {
                     val loc = BlockPos(x, y, z)
                     val block = getBlockState(loc)
 

@@ -1,42 +1,31 @@
 {
-    "__comment_0": "Misc things",
-
-    "itemGroup.interstellar.creative_tab": "Create: Interstellar",
-
-    "__comment_1": "Config groups",
-
-    "text.autoconfig.interstellar.category.core": "Core",
-    "text.autoconfig.interstellar.category.planets": "Planets",
-    "text.autoconfig.interstellar.category.systems": "Systems",
-
-    "__comment_2": "Star system config",
-
-    "text.autoconfig.interstellar.option.starSystems.sol": "Sol",
-    "text.autoconfig.interstellar.option.starSystems.sol.id": "Star System ID",
-    "text.autoconfig.interstellar.option.starSystems.sol.name": "Display Name",
-    "text.autoconfig.interstellar.option.starSystems.sol.planets": "Star System Planet IDs",
-
-    "__comment_3": "Mercury config",
-
-    "text.autoconfig.interstellar.option.planets.mercury": "Mercury",
-    "text.autoconfig.interstellar.option.planets.mercury.enable": "Enable",
-    "text.autoconfig.interstellar.option.planets.mercury.dimensionId": "Dimension ID",
-    "text.autoconfig.interstellar.option.planets.mercury.name": "Display Name",
-    "text.autoconfig.interstellar.option.planets.mercury.pressure": "Pressure (kPa)",
-    "text.autoconfig.interstellar.option.planets.mercury.radiation": "Radiation (μSv/tick)",
-    "text.autoconfig.interstellar.option.planets.mercury.tier": "Required Rocket Tier",
-    "text.autoconfig.interstellar.option.planets.mercury.enableOxygen": "Enable Oxygen",
-    "text.autoconfig.interstellar.option.planets.mercury.enablePressure": "Enable Pressure",
-    "text.autoconfig.interstellar.option.planets.mercury.enableRadiation": "Enable Radiation",
-    "text.autoconfig.interstellar.option.planets.mercury.gases": "Gases",
-
-    "__comment_4": "Gas config",
-
-    "text.autoconfig.interstellar.option.GasConfig": "Gas",
-    "text.autoconfig.interstellar.option.GasConfig.id": "Gas ID",
-    "text.autoconfig.interstellar.option.GasConfig.quantity": "Quantity (kPa)",
-
-    "__comment_5": "GUIs",
-
-    "interstellar.screens.suit.customization": "Suit Customization"
+  "__comment_0": "Misc things",
+  "itemGroup.interstellar.creative_tab": "Create: Interstellar",
+  "__comment_1": "Config groups",
+  "text.autoconfig.interstellar.category.core": "Core",
+  "text.autoconfig.interstellar.category.planets": "Planets",
+  "text.autoconfig.interstellar.category.systems": "Systems",
+  "__comment_2": "Star system config",
+  "text.autoconfig.interstellar.option.starSystems.sol": "Sol",
+  "text.autoconfig.interstellar.option.starSystems.sol.id": "Star System ID",
+  "text.autoconfig.interstellar.option.starSystems.sol.name": "Display Name",
+  "text.autoconfig.interstellar.option.starSystems.sol.planets": "Star System Planet IDs",
+  "__comment_3": "Mercury config",
+  "text.autoconfig.interstellar.option.planets.mercury": "Mercury",
+  "text.autoconfig.interstellar.option.planets.mercury.enable": "Enable",
+  "text.autoconfig.interstellar.option.planets.mercury.dimensionId": "Dimension ID",
+  "text.autoconfig.interstellar.option.planets.mercury.name": "Display Name",
+  "text.autoconfig.interstellar.option.planets.mercury.pressure": "Pressure (kPa)",
+  "text.autoconfig.interstellar.option.planets.mercury.radiation": "Radiation (μSv/tick)",
+  "text.autoconfig.interstellar.option.planets.mercury.tier": "Required Rocket Tier",
+  "text.autoconfig.interstellar.option.planets.mercury.enableOxygen": "Enable Oxygen",
+  "text.autoconfig.interstellar.option.planets.mercury.enablePressure": "Enable Pressure",
+  "text.autoconfig.interstellar.option.planets.mercury.enableRadiation": "Enable Radiation",
+  "text.autoconfig.interstellar.option.planets.mercury.gases": "Gases",
+  "__comment_4": "Gas config",
+  "text.autoconfig.interstellar.option.GasConfig": "Gas",
+  "text.autoconfig.interstellar.option.GasConfig.id": "Gas ID",
+  "text.autoconfig.interstellar.option.GasConfig.quantity": "Quantity (kPa)",
+  "__comment_5": "GUIs",
+  "interstellar.screens.suit.customization": "Suit Customization"
 }

@@ -1,19 +1,18 @@
 {
-    "enabled": true,
-    "radiation": 0.0,
-    "tier": 5,
-    "checkOxygen": true,
-    "checkPressure": true,
-    "checkRadiation": true,
-
-    "gases": [
-        {
-            "id": "interstellar:hydrogen",
-            "amount": 105.0
-        },
-        {
-            "id": "interstellar:helium",
-            "amount": 35.0
-        }
-    ]
+  "enabled": true,
+  "radiation": 0.0,
+  "tier": 5,
+  "checkOxygen": true,
+  "checkPressure": true,
+  "checkRadiation": true,
+  "gases": [
+    {
+      "id": "interstellar:hydrogen",
+      "amount": 105.0
+    },
+    {
+      "id": "interstellar:helium",
+      "amount": 35.0
+    }
+  ]
 }

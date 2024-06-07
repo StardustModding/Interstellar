@@ -9,7 +9,7 @@ import org.stardustmodding.interstellar.api.command.ICommand
 import org.stardustmodding.interstellar.api.command.MapArgumentType
 import org.stardustmodding.interstellar.impl.init.Screens
 
-class OpenScreenCommand: ICommand<ServerCommandSource> {
+class OpenScreenCommand : ICommand<ServerCommandSource> {
     private val arg = MapArgumentType.create(mapOf("suit_customization" to Screens.SUIT_CUSTOMIZATION_HANDLER))
 
     override fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {

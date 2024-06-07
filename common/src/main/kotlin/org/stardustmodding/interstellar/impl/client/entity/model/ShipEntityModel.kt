@@ -74,7 +74,16 @@ class ShipEntityModel : EntityModel<ShipEntity>() {
         alpha: Float
     ) {
         if (entity != null) {
-            renderBlockMatrices(entity!!.blocks?.get() ?: mapOf(), matrices, buffer, packedLight, packedOverlay, red, green, blue)
+            renderBlockMatrices(
+                entity!!.blocks?.get() ?: mapOf(),
+                matrices,
+                buffer,
+                packedLight,
+                packedOverlay,
+                red,
+                green,
+                blue
+            )
         }
     }
 

@@ -8,7 +8,7 @@ import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import net.minecraft.util.Identifier
 
-class IdentifierSerializer: KSerializer<Identifier> {
+class IdentifierSerializer : KSerializer<Identifier> {
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("Identifier", PrimitiveKind.STRING)
 
     override fun serialize(encoder: Encoder, value: Identifier) {

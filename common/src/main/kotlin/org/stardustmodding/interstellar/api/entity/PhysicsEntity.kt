@@ -11,11 +11,11 @@ import org.stardustmodding.interstellar.api.block.PhysicsBlock
 import org.stardustmodding.interstellar.api.math.McExtensions.set
 import org.stardustmodding.interstellar.api.math.McExtensions.toPx
 import org.stardustmodding.interstellar.api.math.QuatUtil
+import org.stardustmodding.interstellar.api.physics.Physics
 import org.stardustmodding.interstellar.api.physics.PxQuatExt.toEulerAngles
 import org.stardustmodding.interstellar.api.physics.PxVec3Ext.toVec3d
 import org.stardustmodding.interstellar.api.physics.TransformExt.pos
 import org.stardustmodding.interstellar.api.physics.TransformExt.quat
-import org.stardustmodding.interstellar.api.physics.Physics
 import org.stardustmodding.interstellar.api.world.WorldExt.getBlocksInRange
 import physx.common.PxIDENTITYEnum
 import physx.common.PxTransform

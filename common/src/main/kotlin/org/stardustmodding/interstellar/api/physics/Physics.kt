@@ -10,13 +10,14 @@ import physx.common.*
 import physx.physics.*
 import kotlin.math.min
 
-object Physics: InitializedServer, Deinitialized, Ticked {
+object Physics : InitializedServer, Deinitialized, Ticked {
     private val rawVersion = PxTopLevelFunctions.getPHYSICS_VERSION()
     private val numThreads = min(4, Runtime.getRuntime().availableProcessors())
 
-    private val version: String get() {
-        return "${rawVersion shr 24}.${(rawVersion shr 16) and 0xff}.${(rawVersion shr 8) and 0xff}"
-    }
+    private val version: String
+        get() {
+            return "${rawVersion shr 24}.${(rawVersion shr 16) and 0xff}.${(rawVersion shr 8) and 0xff}"
+        }
 
     private val gravity = PxVec3(0f, -9.82f, 0f)
     private var alloc: PxDefaultAllocator? = null
@@ -53,7 +54,8 @@ object Physics: InitializedServer, Deinitialized, Ticked {
         sceneDesc!!.filterShader = PxTopLevelFunctions.DefaultFilterShader()
         scene = physics!!.createScene(sceneDesc)
         material = physics!!.createMaterial(0.5f, 0.5f, 0.5f)
-        shapeFlags = PxShapeFlags((PxShapeFlagEnum.eSCENE_QUERY_SHAPE.value or PxShapeFlagEnum.eSIMULATION_SHAPE.value).toByte())
+        shapeFlags =
+            PxShapeFlags((PxShapeFlagEnum.eSCENE_QUERY_SHAPE.value or PxShapeFlagEnum.eSIMULATION_SHAPE.value).toByte())
     }
 
     override fun deinit() {

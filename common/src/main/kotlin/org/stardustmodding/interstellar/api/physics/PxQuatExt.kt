@@ -28,10 +28,12 @@ object PxQuatExt {
             vec.z = -MathHelper.HALF_PI
             vec.x = 0f
         } else {
-            vec.y = MathHelper.atan2((2 * y * w - 2 * x * z).toDouble(), (sqx - sqy - sqz + sqw).toDouble()).toFloat() // roll or heading
+            vec.y = MathHelper.atan2((2 * y * w - 2 * x * z).toDouble(), (sqx - sqy - sqz + sqw).toDouble())
+                .toFloat() // roll or heading
             vec.z = Math.asin((2 * test / unit).toDouble()).toFloat() // pitch or attitude
             vec.x =
-                MathHelper.atan2((2 * x * w - 2 * y * z).toDouble(), (-sqx + sqy - sqz + sqw).toDouble()).toFloat() // yaw or bank
+                MathHelper.atan2((2 * x * w - 2 * y * z).toDouble(), (-sqx + sqy - sqz + sqw).toDouble())
+                    .toFloat() // yaw or bank
         }
 
         return vec

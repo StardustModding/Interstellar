@@ -14,7 +14,7 @@ import net.minecraft.text.Text
 import org.stardustmodding.interstellar.impl.Interstellar.id
 import java.util.concurrent.CompletableFuture
 
-class OptionArgumentType(private val options: List<String>): ArgumentType<String> {
+class OptionArgumentType(private val options: List<String>) : ArgumentType<String> {
     private val err = DynamicCommandExceptionType { Text.literal("Invalid option: '$it'") }
 
     override fun <S : Any?> listSuggestions(
@@ -41,7 +41,11 @@ class OptionArgumentType(private val options: List<String>): ArgumentType<String
     companion object {
         fun create(vararg options: String): OptionArgumentType {
             val ty = OptionArgumentType(options.toList())
-            ArgumentTypes.register(Registries.COMMAND_ARGUMENT_TYPE, id("option_argument_${options.hashCode()}").toString(), OptionArgumentType::class.java, ConstantArgumentSerializer.of { _ -> ty })
+            ArgumentTypes.register(
+                Registries.COMMAND_ARGUMENT_TYPE,
+                id("option_argument_${options.hashCode()}").toString(),
+                OptionArgumentType::class.java,
+                ConstantArgumentSerializer.of { _ -> ty })
             return ty
         }
     }

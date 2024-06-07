@@ -8,5 +8,9 @@ import org.stardustmodding.interstellar.impl.client.gui.suit.CustomizationScreen
 
 @Suppress("DEPRECATION", "removal")
 object Screens {
-    val SUIT_CUSTOMIZATION_HANDLER = Registry.register(Registries.SCREEN_HANDLER, id("suit_customization"), MenuRegistry.of(::CustomizationScreenHandler))!!
+    val SUIT_CUSTOMIZATION_HANDLER = Registry.register(
+        Registries.SCREEN_HANDLER,
+        id("suit_customization"),
+        MenuRegistry.of(::CustomizationScreenHandler)
+    )!!
 }

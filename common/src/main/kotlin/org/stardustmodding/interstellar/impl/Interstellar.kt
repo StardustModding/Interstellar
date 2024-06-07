@@ -10,13 +10,13 @@ import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer
 import net.minecraft.resource.ResourceType
 import net.minecraft.util.Identifier
 import org.slf4j.LoggerFactory
+import org.stardustmodding.interstellar.api.physics.Physics
 import org.stardustmodding.interstellar.api.registry.InterstellarRegistries
 import org.stardustmodding.interstellar.impl.command.DimensionTpCommand
 import org.stardustmodding.interstellar.impl.command.OpenScreenCommand
 import org.stardustmodding.interstellar.impl.config.InterstellarConfig
 import org.stardustmodding.interstellar.impl.init.Entities
 import org.stardustmodding.interstellar.impl.init.Screens
-import org.stardustmodding.interstellar.api.physics.Physics
 import org.stardustmodding.interstellar.impl.resource.ReloadListener
 
 object Interstellar {

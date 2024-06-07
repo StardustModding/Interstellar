@@ -15,9 +15,8 @@ import org.stardustmodding.interstellar.api.block.BlockUtil
 import org.stardustmodding.interstellar.api.data.Tracked
 import org.stardustmodding.interstellar.api.entity.PhysicsEntity
 import org.stardustmodding.interstellar.api.math.McExtensions.toPx
-import org.stardustmodding.interstellar.api.physics.TransformExt.pos
 import org.stardustmodding.interstellar.api.physics.Physics
-import physx.geometry.PxBoxGeometry
+import org.stardustmodding.interstellar.api.physics.TransformExt.pos
 
 @Suppress("RedundantNullableReturnType")
 class ShipEntity(type: EntityType<*>, world: World) : PhysicsEntity(type, world) {

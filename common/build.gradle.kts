@@ -19,7 +19,13 @@ dependencies {
     compileOnly("net.fabricmc:fabric-loader:${rootProject.property("fabric_loader_version")}")
     compileOnly("com.google.code.gson:gson:2.10.1")
 
-    modApi("dev.engine_room.flywheel:flywheel-common-intermediary-api-${rootProject.property("minecraft_version")}:${rootProject.property("flywheel_version")}")
+    modApi(
+        "dev.engine_room.flywheel:flywheel-common-intermediary-api-${rootProject.property("minecraft_version")}:${
+            rootProject.property(
+                "flywheel_version"
+            )
+        }"
+    )
     modApi("dev.architectury:architectury:${rootProject.property("architectury_version")}")
     modApi("me.shedaniel.cloth:cloth-config:${rootProject.property("cloth_config_version")}")
     modCompileOnly("lol.bai:badpackets:fabric-${rootProject.property("badpackets_version")}")
