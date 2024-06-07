@@ -25,6 +25,17 @@ dependencies {
     modCompileOnly("lol.bai:badpackets:fabric-${rootProject.property("badpackets_version")}")
 
     include("io.wispforest:owo-sentinel:${project.property("owo_version")}")
+
+    // PhysX
+    // For some reason, IntelliJ doesn't want to resolve some of these jars.
+    // It's incredibly dumb.
+
+    implementation("de.fabmax:physx-jni:2.5.0")
+//    implementation("de.fabmax:physx-jni:2.5.0:natives-windows")
+    implementation("de.fabmax:physx-jni:2.5.0:natives-linux-x86_64")
+    implementation("de.fabmax:physx-jni:2.5.0:natives-linux-arm64")
+    implementation("de.fabmax:physx-jni:2.5.0:natives-macos-x86_64")
+//    implementation("de.fabmax:physx-jni:2.5.0:natives-macos-arm64")
 }
 
 tasks.processResources {

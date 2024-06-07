@@ -101,6 +101,11 @@ allprojects {
             name = "tterrag Maven"
             url = uri("https://maven.tterrag.com/")
         }
+
+        maven {
+            name = "StardustModding Maven Releases"
+            url = uri("https://maven.stardustmodding.org/releases")
+        }
     }
 
     dependencies {
