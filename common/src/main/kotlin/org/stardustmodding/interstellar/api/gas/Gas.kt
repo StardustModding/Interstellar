@@ -1,7 +1,7 @@
 package org.stardustmodding.interstellar.api.gas
 
+import kotlinx.serialization.Serializable
 import net.minecraft.text.Text
 
-class Gas(val id: Text, val breathable: Boolean = false, val toxic: Boolean = false) {
-
-}
+@Serializable
+class Gas(val id: Text, val breathable: Boolean = false, val toxic: Boolean = false)

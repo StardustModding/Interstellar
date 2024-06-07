@@ -2,8 +2,11 @@ package org.stardustmodding.interstellar.impl.resource
 
 import kotlinx.serialization.json.Json
 import net.minecraft.registry.Registry
+import net.minecraft.resource.Resource
 import net.minecraft.resource.ResourceManager
 import net.minecraft.resource.SynchronousResourceReloader
+import net.minecraft.util.Identifier
+import org.stardustmodding.interstellar.api.gas.Gas
 import org.stardustmodding.interstellar.api.registry.RegistryUtil
 import org.stardustmodding.interstellar.api.planet.Planet
 import org.stardustmodding.interstellar.api.planet.PlanetSettings
@@ -13,15 +16,40 @@ import org.stardustmodding.interstellar.impl.Interstellar.LOGGER
 
 object ReloadListener: SynchronousResourceReloader {
     override fun reload(manager: ResourceManager) {
+        reloadGases(manager)
         reloadPlanetSettings(manager)
         reloadPlanets(manager)
         reloadStarSystems(manager)
     }
 
+    private fun findResources(manager: ResourceManager, prefix: String): List<Pair<Identifier, Resource>> {
+        return manager.findResources(prefix) { it.path.endsWith(".json") }.map { Pair(it.key.withPath(it.key.path.replace(".json", "").removePrefix(
+            "$prefix/"
+        )), it.value) }
+    }
+
+    private fun reloadGases(manager: ResourceManager) {
+        for ((id, res) in findResources(manager, "gases")) {
+            val stream = res.reader
+            val raw = stream.readText()
+            val data = Json.decodeFromString<Gas>(raw)
+
+            if (InterstellarRegistries.GASES.containsId(id)) {
+                LOGGER.info("Re-registering gas ${id}...")
+
+                RegistryUtil.unregister(InterstellarRegistries.GASES, id)
+            } else {
+                LOGGER.info("Registering gas ${id}...")
+            }
+
+            Registry.register(InterstellarRegistries.GASES, id, data)
+            stream.close()
+        }
+    }
+
     private fun reloadPlanetSettings(manager: ResourceManager) {
-        for (it in manager.findResources("planet_settings") { it.path.endsWith(".json") }) {
-            val id = it.key.withPath(it.key.path.replace(".json", "").removePrefix("planet_settings/"))
-            val stream = it.value.reader
+        for ((id, res) in findResources(manager, "planet_settings")) {
+            val stream = res.reader
             val raw = stream.readText()
             val data = Json.decodeFromString<PlanetSettings>(raw)
 
@@ -39,9 +67,8 @@ object ReloadListener: SynchronousResourceReloader {
     }
 
     private fun reloadPlanets(manager: ResourceManager) {
-        for (it in manager.findResources("planets") { it.path.endsWith(".json") }) {
-            val id = it.key.withPath(it.key.path.replace(".json", "").removePrefix("planets/"))
-            val stream = it.value.reader
+        for ((id, res) in findResources(manager, "planets")) {
+            val stream = res.reader
             val raw = stream.readText()
             val data = Json.decodeFromString<Planet>(raw)
 
@@ -59,9 +86,8 @@ object ReloadListener: SynchronousResourceReloader {
     }
 
     private fun reloadStarSystems(manager: ResourceManager) {
-        for (it in manager.findResources("star_systems") { it.path.endsWith(".json") }) {
-            val id = it.key.withPath(it.key.path.replace(".json", "").removePrefix("star_systems/"))
-            val stream = it.value.reader
+        for ((id, res) in findResources(manager, "star_systems")) {
+            val stream = res.reader
             val raw = stream.readText()
             val data = Json.decodeFromString<StarSystem>(raw)
 

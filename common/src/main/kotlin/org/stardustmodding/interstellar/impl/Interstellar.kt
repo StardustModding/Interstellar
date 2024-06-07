@@ -15,7 +15,6 @@ import org.stardustmodding.interstellar.impl.command.DimensionTpCommand
 import org.stardustmodding.interstellar.impl.command.OpenScreenCommand
 import org.stardustmodding.interstellar.impl.config.InterstellarConfig
 import org.stardustmodding.interstellar.impl.init.Entities
-import org.stardustmodding.interstellar.impl.init.Gases
 import org.stardustmodding.interstellar.impl.init.Screens
 import org.stardustmodding.interstellar.api.physics.Physics
 import org.stardustmodding.interstellar.impl.resource.ReloadListener
@@ -79,7 +78,6 @@ object Interstellar {
 
     fun eagerInit() {
         Entities
-        Gases
         Screens
     }
 }
