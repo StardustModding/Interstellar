@@ -16,20 +16,7 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be1457b9-5da0-4d57-aa8b-fe488928ffd6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/gases/ammonia.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/gases/argon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/gases/carbon_dioxide.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/gases/helium.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/gases/hydrogen.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/gases/methane.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/gases/nitrogen.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/gases/oxygen.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/impl/Interstellar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/impl/Interstellar.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/impl/init/Gases.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/impl/resource/ReloadListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/impl/resource/ReloadListener.kt" afterDir="false" />
-    </list>
+    <list default="true" id="be1457b9-5da0-4d57-aa8b-fe488928ffd6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -190,6 +177,7 @@
       <workItem from="1717722393402" duration="8251000" />
       <workItem from="1717775492488" duration="3511000" />
       <workItem from="1717779055004" duration="634000" />
+      <workItem from="1717779921186" duration="291000" />
     </task>
     <servers />
   </component>
