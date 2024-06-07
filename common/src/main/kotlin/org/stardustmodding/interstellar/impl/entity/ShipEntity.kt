@@ -47,7 +47,9 @@ class ShipEntity(type: EntityType<*>, world: World) : PhysicsEntity(type, world)
     }
 
     override fun initDataTracker() {
-
+        if (!dataTracker.containsKey(NO_GRAVITY)) {
+            dataTracker.set(NO_GRAVITY, false)
+        }
     }
 
     override fun readCustomDataFromNbt(nbt: NbtCompound) {

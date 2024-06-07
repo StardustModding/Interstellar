@@ -1,14 +1,17 @@
 package org.stardustmodding.interstellar.api.entity
 
+import com.google.common.collect.Maps
 import net.minecraft.block.BlockState
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
 import net.minecraft.network.packet.s2c.play.PositionFlag
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
 import org.stardustmodding.interstellar.api.block.PhysicsBlock
-import org.stardustmodding.interstellar.api.math.McExtensions.set
+import org.stardustmodding.interstellar.api.math.McExtensions.clone
+import org.stardustmodding.interstellar.api.math.McExtensions.eq
 import org.stardustmodding.interstellar.api.math.McExtensions.toPx
 import org.stardustmodding.interstellar.api.math.QuatUtil
 import org.stardustmodding.interstellar.api.physics.Physics
@@ -17,22 +20,30 @@ import org.stardustmodding.interstellar.api.physics.PxVec3Ext.toVec3d
 import org.stardustmodding.interstellar.api.physics.TransformExt.pos
 import org.stardustmodding.interstellar.api.physics.TransformExt.quat
 import org.stardustmodding.interstellar.api.world.WorldExt.getBlocksInRange
+import org.stardustmodding.interstellar.impl.Interstellar.LOGGER
 import physx.common.PxIDENTITYEnum
 import physx.common.PxTransform
 import physx.common.PxVec3
-import physx.physics.PxRigidBody
+import physx.physics.PxActorFlagEnum
+import physx.physics.PxRigidDynamic
 import physx.physics.PxShape
 
-@Suppress("LeakingThis")
 abstract class PhysicsEntity(type: EntityType<*>?, world: World?) : Entity(type, world) {
-    val transform = PxTransform(PxIDENTITYEnum.PxIdentity)
-    val body: PxRigidBody? = Physics.physics?.createRigidDynamic(transform)
-    val shapes: MutableList<PxShape> = mutableListOf()
+    private val transform = PxTransform(PxIDENTITYEnum.PxIdentity)
+    private val body: PxRigidDynamic? = Physics.physics?.createRigidDynamic(transform)
+    private val shapes: MutableList<PxShape> = mutableListOf()
+    private var last = Vec3d.ZERO
 
     init {
+        initPhysics()
+    }
+
+    private fun initPhysics() {
         buildShape()
         preInit()
         init()
+
+        body?.wakeUp()
     }
 
     private fun preInit() {
@@ -72,34 +83,46 @@ abstract class PhysicsEntity(type: EntityType<*>?, world: World?) : Entity(type,
         body?.release()
     }
 
-    override fun tick() {
-        pos.set(transform.pos.toVec3d())
-        rotationVector.set(transform.quat.toEulerAngles().toVec3d())
-
+    private fun updateWorldColliders() {
         val blocks = world.getBlocksInRange(pos, PHYSICS_UPDATE_RANGE)
 
         for (item in updated) {
-            val pos = item.key
+            val ipos = item.key
             val state = item.value
 
-            if (pos !in blocks) {
-                PhysicsBlock.removeCollider(pos, state)
-                updated.remove(pos)
+            if (ipos !in blocks) {
+                PhysicsBlock.removeCollider(ipos, state)
+                updated.remove(ipos)
             }
         }
 
         for (item in blocks) {
-            val pos = item.key
+            val ipos = item.key
             val state = item.value
 
-            if (pos !in updated || updated[pos] != item.value || !PhysicsBlock.hasCollider(pos, state)) {
-                updated[pos]?.let { PhysicsBlock.removeCollider(pos, it) }
+            if (ipos !in updated || updated[ipos] != item.value || !PhysicsBlock.hasCollider(ipos, state)) {
+                updated[ipos]?.let { PhysicsBlock.removeCollider(ipos, it) }
 
-                PhysicsBlock.updateCollider(pos, item.value, world)
+                PhysicsBlock.updateCollider(ipos, item.value, world)
             }
 
-            updated[pos] = item.value
+            updated[ipos] = item.value
         }
+    }
+
+    private fun updateFlags() {
+        body?.setActorFlag(PxActorFlagEnum.eDISABLE_GRAVITY, hasNoGravity())
+    }
+
+    override fun tick() {
+        updateWorldColliders()
+        updateFlags()
+
+        if (!pos.equals(last)) {
+            LOGGER.info("Entity $uuid position: $pos")
+        }
+
+        last = pos.clone()
     }
 
     override fun teleport(
@@ -118,9 +141,9 @@ abstract class PhysicsEntity(type: EntityType<*>?, world: World?) : Entity(type,
     }
 
     companion object {
-        const val PHYSICS_UPDATE_RANGE = 32
+        const val PHYSICS_UPDATE_RANGE = 4
 
         // This has to be static so it can be shared for maximum performance
-        private val updated = mutableMapOf<BlockPos, BlockState>()
+        private val updated = Maps.newConcurrentMap<BlockPos, BlockState>()
     }
 }

@@ -53,6 +53,7 @@ object Physics : InitializedServer, Deinitialized, Ticked {
         sceneDesc!!.cpuDispatcher = dispatcher
         sceneDesc!!.filterShader = PxTopLevelFunctions.DefaultFilterShader()
         scene = physics!!.createScene(sceneDesc)
+        scene!!.gravity = gravity
         material = physics!!.createMaterial(0.5f, 0.5f, 0.5f)
         shapeFlags =
             PxShapeFlags((PxShapeFlagEnum.eSCENE_QUERY_SHAPE.value or PxShapeFlagEnum.eSIMULATION_SHAPE.value).toByte())

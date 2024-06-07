@@ -10,6 +10,7 @@ import org.stardustmodding.interstellar.api.physics.TransformExt.pos
 import org.stardustmodding.interstellar.api.util.DoubleKeyedMap
 import physx.common.PxIDENTITYEnum
 import physx.common.PxTransform
+import physx.physics.PxActorFlagEnum
 import physx.physics.PxRigidDynamic
 
 object PhysicsBlock {
@@ -24,6 +25,7 @@ object PhysicsBlock {
 
         if (key in bodies) {
             Physics.scene?.removeActor(bodies[key])
+            bodies[key]?.release()
             bodies.remove(key)
         }
     }
@@ -43,7 +45,9 @@ object PhysicsBlock {
         transform.pos = pos.toPx()
         bodies[key] = Physics.physics!!.createRigidDynamic(transform)
 
+        bodies[key]?.setActorFlag(PxActorFlagEnum.eDISABLE_GRAVITY, true)
         bodies[key]?.attachShape(shape)
+
         Physics.scene?.addActor(bodies[key])
     }
 }

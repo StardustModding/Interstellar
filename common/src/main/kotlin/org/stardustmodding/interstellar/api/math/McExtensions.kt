@@ -5,14 +5,15 @@ import net.minecraft.util.math.Vec3d
 import physx.common.PxVec3
 
 object McExtensions {
-    fun Vec3d.set(other: Vec3d) {
-        multiply(0.0)
-        add(other)
-    }
-
     fun Vec3d.toPx(): PxVec3 {
         return PxVec3(x.toFloat(), y.toFloat(), z.toFloat())
     }
+
+    fun Vec3d.clone(): Vec3d {
+        return Vec3d(x, y, z)
+    }
+
+    fun Vec3d.eq(other: Vec3d) = x == other.x && y == other.y && z == other.z
 
     fun BlockPos.toPx(): PxVec3 {
         return PxVec3(x.toFloat(), y.toFloat(), z.toFloat())

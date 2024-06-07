@@ -1,6 +1,7 @@
 package org.stardustmodding.interstellar.api.world
 
 import net.minecraft.block.BlockState
+import net.minecraft.block.Blocks
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
@@ -22,7 +23,7 @@ object WorldExt {
                     val loc = BlockPos(x, y, z)
                     val block = getBlockState(loc)
 
-                    if (!block.isAir) list[loc] = block
+                    if (!block.isAir && block.block != Blocks.AIR) list[loc] = block
                 }
             }
         }

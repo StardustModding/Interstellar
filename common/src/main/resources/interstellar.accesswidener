@@ -32,3 +32,5 @@ mutable field net/minecraft/registry/SimpleRegistry lifecycle Lcom/mojang/serial
 
 accessible field net/minecraft/registry/entry/RegistryEntryList$Named entries Ljava/util/List;
 accessible method net/minecraft/command/argument/ArgumentTypes register (Lnet/minecraft/registry/Registry;Ljava/lang/String;Ljava/lang/Class;Lnet/minecraft/command/argument/serialize/ArgumentSerializer;)Lnet/minecraft/command/argument/serialize/ArgumentSerializer;
+
+accessible field net/minecraft/entity/Entity NO_GRAVITY Lnet/minecraft/entity/data/TrackedData;
