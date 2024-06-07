@@ -26,6 +26,7 @@ dependencies {
             )
         }"
     )
+
     modApi("dev.architectury:architectury:${rootProject.property("architectury_version")}")
     modApi("me.shedaniel.cloth:cloth-config:${rootProject.property("cloth_config_version")}")
     modCompileOnly("lol.bai:badpackets:fabric-${rootProject.property("badpackets_version")}")
