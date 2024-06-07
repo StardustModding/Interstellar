@@ -118,18 +118,6 @@ allprojects {
         compileOnly("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
 
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
-
-        // PhysX
-        // For some reason, Gradle doesn't want to resolve some of these jars.
-        // It's incredibly dumb. They *do* actually exist in the repo, so it
-        // makes absolutely zero sense.
-
-        implementation("de.fabmax:physx-jni:2.5.0") { isTransitive = false }
-//        implementation("de.fabmax:physx-jni:2.5.0:natives-windows") { isTransitive = false }
-        implementation("de.fabmax:physx-jni:2.5.0:natives-linux-x86_64") { isTransitive = false }
-        implementation("de.fabmax:physx-jni:2.5.0:natives-linux-arm64") { isTransitive = false }
-        implementation("de.fabmax:physx-jni:2.5.0:natives-macos-x86_64") { isTransitive = false }
-//        implementation("de.fabmax:physx-jni:2.5.0:natives-macos-arm64") { isTransitive = false }
     }
 
     tasks.withType<JavaCompile> {

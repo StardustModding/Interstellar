@@ -2,6 +2,7 @@ package org.stardustmodding.interstellar.impl.entity
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
+import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtElement
@@ -11,45 +12,16 @@ import net.minecraft.registry.Registries
 import net.minecraft.registry.SimpleDefaultedRegistry
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import org.stardustmodding.interstellar.api.block.BlockUtil
 import org.stardustmodding.interstellar.api.data.Tracked
-import org.stardustmodding.interstellar.api.entity.PhysicsEntity
-import org.stardustmodding.interstellar.api.math.McExtensions.toPx
-import org.stardustmodding.interstellar.api.physics.Physics
-import org.stardustmodding.interstellar.api.physics.TransformExt.pos
 
 @Suppress("RedundantNullableReturnType")
-class ShipEntity(type: EntityType<*>, world: World) : PhysicsEntity(type, world) {
+class ShipEntity(type: EntityType<*>, world: World) : Entity(type, world) {
     // The blocks map *has* to be nullable (so we can do the checks without IDEA yelling at us),
     // or Minecraft will complain when spawning this
     val blocks: Tracked<MutableMap<BlockPos, BlockState>>? = Tracked(mutableMapOf())
 
-    override fun init() {
-        blocks?.subscribe(this::buildShape)
-    }
-
-    override fun buildShape() {
-        detachAll()
-
-        val phys = Physics.physics!!
-
-        if (blocks == null) return
-
-        for (item in blocks.get()) {
-            val pos = item.key
-            val state = item.value
-            val geom = BlockUtil.getBlockBounds(state, world, pos).asGeometry()
-            val shape = phys.createShape(geom, Physics.material, true, Physics.shapeFlags)
-
-            shape.localPose.pos = pos.toPx()
-            attach(shape)
-        }
-    }
-
     override fun initDataTracker() {
-        if (!dataTracker.containsKey(NO_GRAVITY)) {
-            dataTracker.set(NO_GRAVITY, false)
-        }
+
     }
 
     override fun readCustomDataFromNbt(nbt: NbtCompound) {

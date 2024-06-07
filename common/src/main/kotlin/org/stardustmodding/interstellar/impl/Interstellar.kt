@@ -1,7 +1,6 @@
 package org.stardustmodding.interstellar.impl
 
 import dev.architectury.event.events.common.CommandRegistrationEvent
-import dev.architectury.event.events.common.LifecycleEvent
 import dev.architectury.event.events.common.TickEvent
 import dev.architectury.registry.ReloadListenerRegistry
 import me.shedaniel.autoconfig.AutoConfig
@@ -10,7 +9,6 @@ import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer
 import net.minecraft.resource.ResourceType
 import net.minecraft.util.Identifier
 import org.slf4j.LoggerFactory
-import org.stardustmodding.interstellar.api.physics.Physics
 import org.stardustmodding.interstellar.api.registry.InterstellarRegistries
 import org.stardustmodding.interstellar.impl.command.DimensionTpCommand
 import org.stardustmodding.interstellar.impl.command.OpenScreenCommand
@@ -24,7 +22,9 @@ object Interstellar {
 
     @JvmField
     val LOGGER = LoggerFactory.getLogger(MOD_ID)!!
-    var config: InterstellarConfig? = null
+
+    @JvmField
+    var CONFIG: InterstellarConfig? = null
 
     private var commands = listOf(
         DimensionTpCommand(),
@@ -47,23 +47,13 @@ object Interstellar {
             }
         )
 
-        config = AutoConfig.getConfigHolder(InterstellarConfig::class.java).config
+        CONFIG = AutoConfig.getConfigHolder(InterstellarConfig::class.java).config
 
         eagerInit()
 
         ReloadListenerRegistry.register(ResourceType.SERVER_DATA, ReloadListener)
 
-        LifecycleEvent.SERVER_BEFORE_START.register {
-            Physics.init(it)
-        }
-
-        LifecycleEvent.SERVER_STOPPING.register {
-            Physics.deinit()
-        }
-
         TickEvent.SERVER_LEVEL_POST.register {
-            Physics.tick(it.server, it.server.tickTime)
-
             for (planet in InterstellarRegistries.PLANETS) {
                 planet.tick(it)
             }
@@ -76,7 +66,7 @@ object Interstellar {
         }
     }
 
-    fun eagerInit() {
+    private fun eagerInit() {
         Entities
         Screens
     }
