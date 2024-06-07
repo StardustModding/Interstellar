@@ -6,6 +6,7 @@ import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.ingame.HandledScreen
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.registry.Registries
 import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.screen.ScreenHandlerType
@@ -43,8 +44,7 @@ open class SharedScreen<H : ScreenHandler>(handler: H, title: Text, private val 
     }
 
     override fun drawBackground(ctx: DrawContext, delta: Float, mouseX: Int, mouseY: Int) {
-//        ctx.fill(0, 0, ctx.scaledWindowWidth, ctx.scaledWindowHeight, BG_SHADOW_COLOR)
-        ctx.fillGradient(0, 0, ctx.scaledWindowWidth, ctx.scaledWindowHeight, -1072689136, -804253680)
+        ctx.fill(0, 0, ctx.scaledWindowWidth, ctx.scaledWindowHeight, BG_SHADOW_COLOR)
     }
 
     companion object {
@@ -66,7 +66,11 @@ open class SharedScreen<H : ScreenHandler>(handler: H, title: Text, private val 
                 }
 
                 override fun getDisplayName(): Text {
-                    return Text.literal(handler.javaClass.simpleName) // TODO: A real name
+                    val reg = Registries.SCREEN_HANDLER
+                    val key = reg.getKey(handler).get().value
+                    val id = "screen.${key.namespace}.${key.path}"
+
+                    return Text.translatable(id)
                 }
             })
         }
