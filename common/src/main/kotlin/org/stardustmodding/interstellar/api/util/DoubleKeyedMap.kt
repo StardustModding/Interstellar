@@ -20,7 +20,7 @@ class DoubleKeyedMap<K1, K2, V> {
         return k1.getOrDefault(key, mutableListOf())
     }
 
-    operator fun get(key: K2): MutableList<Pair<Pair<K1, K2>, V>> {
+    fun get2(key: K2): MutableList<Pair<Pair<K1, K2>, V>> {
         return k2.getOrDefault(key, mutableListOf())
     }
 

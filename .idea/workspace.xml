@@ -16,15 +16,7 @@
     </treeState>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be1457b9-5da0-4d57-aa8b-fe488928ffd6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/api/block/PhysicsBlock.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/api/util/DoubleKeyedMap.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/api/world/WorldExt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/stardustmodding/interstellar/mixin/BlockMixin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/api/entity/PhysicsEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/api/entity/PhysicsEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/resources/interstellar-common.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/interstellar-common.mixins.json" afterDir="false" />
-    </list>
+    <list default="true" id="be1457b9-5da0-4d57-aa8b-fe488928ffd6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,26 +85,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.interstellar [genSourcesWithVineflower].executor": "Run",
-    "Gradle.interstellar:fabric [runServer].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.interstellar [genSourcesWithVineflower].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.interstellar:fabric [runServer].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "/home/jacob/.gradle"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;/home/jacob/.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Gradle.interstellar [genSourcesWithVineflower]">
     <configuration name="interstellar [genSourcesWithVineflower]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -182,7 +174,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717722389982</updated>
       <workItem from="1717722393402" duration="8251000" />
-      <workItem from="1717775492488" duration="3177000" />
+      <workItem from="1717775492488" duration="3511000" />
     </task>
     <servers />
   </component>
