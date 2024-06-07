@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.screen.ScreenHandler
 import org.stardustmodding.interstellar.impl.init.Screens
 
+@Suppress("UNUSED_PARAMETER")
 class CustomizationScreenHandler(syncId: Int) : ScreenHandler(Screens.SUIT_CUSTOMIZATION_HANDLER, syncId) {
     constructor(syncId: Int, inv: PlayerInventory) : this(syncId)
 

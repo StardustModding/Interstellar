@@ -2,6 +2,8 @@ package org.stardustmodding.interstellar.api.planet
 
 import kotlinx.serialization.Serializable
 import org.stardustmodding.interstellar.api.gas.GasData
+import org.stardustmodding.interstellar.api.registry.InterstellarRegistries
+import org.stardustmodding.interstellar.impl.Interstellar.id
 
 @Serializable
 class PlanetSettings {
@@ -16,4 +18,8 @@ class PlanetSettings {
     var gases: MutableList<GasData> = mutableListOf()
 
     val pressure get() = gases.sumOf { it.amount.toDouble() }.toFloat()
+
+    companion object {
+        val DEFAULT_SETTINGS get() = InterstellarRegistries.PLANET_SETTINGS.get(id("earth"))
+    }
 }
