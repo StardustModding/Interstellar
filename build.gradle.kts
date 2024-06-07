@@ -103,6 +103,11 @@ allprojects {
         }
 
         maven {
+            name = "Modrinth Maven"
+            url = uri("https://api.modrinth.com/maven")
+        }
+
+        maven {
             name = "StardustModding Maven Releases"
             url = uri("https://maven.stardustmodding.org/releases")
         }
@@ -119,12 +124,12 @@ allprojects {
         // It's incredibly dumb. They *do* actually exist in the repo, so it
         // makes absolutely zero sense.
 
-        implementation("de.fabmax:physx-jni:2.5.0")
-//        implementation("de.fabmax:physx-jni:2.5.0:natives-windows")
-        implementation("de.fabmax:physx-jni:2.5.0:natives-linux-x86_64")
-        implementation("de.fabmax:physx-jni:2.5.0:natives-linux-arm64")
-        implementation("de.fabmax:physx-jni:2.5.0:natives-macos-x86_64")
-//        implementation("de.fabmax:physx-jni:2.5.0:natives-macos-arm64")
+        implementation("de.fabmax:physx-jni:2.5.0") { isTransitive = false }
+//        implementation("de.fabmax:physx-jni:2.5.0:natives-windows") { isTransitive = false }
+        implementation("de.fabmax:physx-jni:2.5.0:natives-linux-x86_64") { isTransitive = false }
+        implementation("de.fabmax:physx-jni:2.5.0:natives-linux-arm64") { isTransitive = false }
+        implementation("de.fabmax:physx-jni:2.5.0:natives-macos-x86_64") { isTransitive = false }
+//        implementation("de.fabmax:physx-jni:2.5.0:natives-macos-arm64") { isTransitive = false }
     }
 
     tasks.withType<JavaCompile> {
