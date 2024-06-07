@@ -1,10 +1,13 @@
 package org.stardustmodding.interstellar.api.entity
 
+import net.minecraft.block.BlockState
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
 import net.minecraft.network.packet.s2c.play.PositionFlag
 import net.minecraft.server.world.ServerWorld
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import org.stardustmodding.interstellar.api.block.PhysicsBlock
 import org.stardustmodding.interstellar.api.math.McExtensions.set
 import org.stardustmodding.interstellar.api.math.McExtensions.toPx
 import org.stardustmodding.interstellar.api.math.QuatUtil
@@ -13,6 +16,7 @@ import org.stardustmodding.interstellar.api.physics.PxVec3Ext.toVec3d
 import org.stardustmodding.interstellar.api.physics.TransformExt.pos
 import org.stardustmodding.interstellar.api.physics.TransformExt.quat
 import org.stardustmodding.interstellar.api.physics.Physics
+import org.stardustmodding.interstellar.api.world.WorldExt.getBlocksInRange
 import physx.common.PxIDENTITYEnum
 import physx.common.PxTransform
 import physx.common.PxVec3
@@ -71,6 +75,31 @@ abstract class PhysicsEntity(type: EntityType<*>?, world: World?) : Entity(type,
     override fun tick() {
         pos.set(transform.pos.toVec3d())
         rotationVector.set(transform.quat.toEulerAngles().toVec3d())
+
+        val blocks = world.getBlocksInRange(pos, PHYSICS_UPDATE_RANGE)
+
+        for (item in updated) {
+            val pos = item.key
+            val state = item.value
+
+            if (pos !in blocks) {
+                PhysicsBlock.removeCollider(pos, state)
+                updated.remove(pos)
+            }
+        }
+
+        for (item in blocks) {
+            val pos = item.key
+            val state = item.value
+
+            if (pos !in updated || updated[pos] != item.value || !PhysicsBlock.hasCollider(pos, state)) {
+                updated[pos]?.let { PhysicsBlock.removeCollider(pos, it) }
+
+                PhysicsBlock.updateCollider(pos, item.value, world)
+            }
+
+            updated[pos] = item.value
+        }
     }
 
     override fun teleport(
@@ -86,5 +115,12 @@ abstract class PhysicsEntity(type: EntityType<*>?, world: World?) : Entity(type,
         transform.quat = QuatUtil.fromAngles(yaw, 1f, pitch)
 
         return super.teleport(world, destX, destY, destZ, flags, yaw, pitch)
+    }
+
+    companion object {
+        const val PHYSICS_UPDATE_RANGE = 32
+
+        // This has to be static so it can be shared for maximum performance
+        private val updated = mutableMapOf<BlockPos, BlockState>()
     }
 }
