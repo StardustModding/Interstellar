@@ -5,6 +5,7 @@
   "checkOxygen": true,
   "checkPressure": true,
   "checkRadiation": false,
+  "gravity": 9.82,
   "gases": [
     {
       "id": "interstellar:nitrogen",

@@ -17,8 +17,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be1457b9-5da0-4d57-aa8b-fe488928ffd6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/math/MathExt.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/math/Wrappers.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/package-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/common/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/SkyEngineCore.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/SkyEngineCore.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/earth.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/earth.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/mars.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/mars.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/mercury.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/mercury.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/moon.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/moon.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/neptune.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/neptune.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/pluto.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/pluto.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/saturn.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/saturn.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/uranus.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/uranus.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/venus.json" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/data/interstellar/planet_settings/venus.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +83,7 @@
         <option value="Class" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Object" />
       </list>
     </option>
   </component>
@@ -94,6 +108,7 @@
     &quot;Gradle.interstellar [genSourcesWithVineflower].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.interstellar:fabric [runServer].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -181,7 +196,8 @@
       <workItem from="1717775492488" duration="3511000" />
       <workItem from="1717779055004" duration="634000" />
       <workItem from="1717779921186" duration="2027000" />
-      <workItem from="1717782159106" duration="4474000" />
+      <workItem from="1717782159106" duration="4787000" />
+      <workItem from="1717798987025" duration="2299000" />
     </task>
     <servers />
   </component>

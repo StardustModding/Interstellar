@@ -5,6 +5,7 @@
   "checkOxygen": true,
   "checkPressure": true,
   "checkRadiation": true,
+  "gravity": 11.15,
   "gases": [
     {
       "id": "interstellar:hydrogen",

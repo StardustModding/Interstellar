@@ -9,12 +9,12 @@ import org.stardustmodding.interstellar.impl.Interstellar.id
 class PlanetSettings {
     var enabled = true
 
-    // In μSv/tick
-    var radiation = 0f
+    var radiation = 0f // In μSv/tick
     var tier = 0
     var checkOxygen = true
     var checkPressure = true
     var checkRadiation = true
+    var gravity = 0f // In m/s^2
     var gases: MutableList<GasData> = mutableListOf()
 
     val pressure get() = gases.sumOf { it.amount.toDouble() }.toFloat()

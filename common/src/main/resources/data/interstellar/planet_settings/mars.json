@@ -5,6 +5,7 @@
   "checkOxygen": true,
   "checkPressure": true,
   "checkRadiation": true,
+  "gravity": 3.71,
   "gases": [
     {
       "id": "interstellar:carbon_dioxide",
