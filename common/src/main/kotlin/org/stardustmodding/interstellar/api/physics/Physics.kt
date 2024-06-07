@@ -26,9 +26,16 @@ object Physics: InitializedServer, Deinitialized, Ticked {
     private var dispatcher: PxDefaultCpuDispatcher? = null
     private var sceneDesc: PxSceneDesc? = null
 
+    @JvmField
     var physics: PxPhysics? = null
+
+    @JvmField
     var scene: PxScene? = null
+
+    @JvmField
     var material: PxMaterial? = null
+
+    @JvmField
     var shapeFlags: PxShapeFlags? = null
 
     override fun init(it: MinecraftServer) {

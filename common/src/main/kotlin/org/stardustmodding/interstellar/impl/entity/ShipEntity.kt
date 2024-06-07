@@ -11,6 +11,7 @@ import net.minecraft.registry.Registries
 import net.minecraft.registry.SimpleDefaultedRegistry
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import org.stardustmodding.interstellar.api.block.BlockUtil
 import org.stardustmodding.interstellar.api.data.Tracked
 import org.stardustmodding.interstellar.api.entity.PhysicsEntity
 import org.stardustmodding.interstellar.api.math.McExtensions.toPx
@@ -38,11 +39,7 @@ class ShipEntity(type: EntityType<*>, world: World) : PhysicsEntity(type, world)
         for (item in blocks.get()) {
             val pos = item.key
             val state = item.value
-            val box = state.getCollisionShape(world, pos).boundingBox
-            val width = box.maxX - box.minX
-            val height = box.maxY - box.minY
-            val depth = box.maxZ - box.minZ
-            val geom = PxBoxGeometry((width / 2).toFloat(), (height / 2).toFloat(), (depth / 2).toFloat())
+            val geom = BlockUtil.getBlockBounds(state, world, pos).asGeometry()
             val shape = phys.createShape(geom, Physics.material, true, Physics.shapeFlags)
 
             shape.localPose.pos = pos.toPx()
