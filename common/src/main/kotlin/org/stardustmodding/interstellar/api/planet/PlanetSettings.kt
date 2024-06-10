@@ -8,7 +8,6 @@ import org.stardustmodding.interstellar.impl.Interstellar.id
 @Serializable
 class PlanetSettings {
     var enabled = true
-
     var radiation = 0f // In μSv/tick
     var tier = 0
     var checkOxygen = true
@@ -20,6 +19,6 @@ class PlanetSettings {
     val pressure get() = gases.sumOf { it.amount.toDouble() }.toFloat()
 
     companion object {
-        val DEFAULT_SETTINGS get() = InterstellarRegistries.PLANET_SETTINGS.get(id("earth"))
+        val DEFAULT_SETTINGS = PlanetSettings()
     }
 }

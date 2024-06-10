@@ -1,7 +1,10 @@
 package org.stardustmodding.skyengine
 
 import net.minecraft.server.MinecraftServer
+import net.minecraft.util.Identifier
 
-class SkyEngineCore {
+object SkyEngine {
+    fun id(value: String) = Identifier("skyengine", value)
+
     fun tick(server: MinecraftServer) {}
 }

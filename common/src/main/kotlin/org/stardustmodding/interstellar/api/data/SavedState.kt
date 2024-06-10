@@ -7,9 +7,11 @@ import kotlin.reflect.full.primaryConstructor
 
 abstract class SavedState : PersistentState() {
     abstract fun read(tag: NbtCompound): SavedState
-    abstract fun write(tag: NbtCompound): NbtCompound
+    abstract fun write(nbt: NbtCompound): NbtCompound
     abstract fun default(): SavedState
     abstract val id: Identifier
+
+    open val shouldWrite get() = true
 
     override fun writeNbt(nbt: NbtCompound): NbtCompound = write(nbt)
 

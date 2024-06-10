@@ -12,6 +12,8 @@ object StateUtil {
     }
 
     fun <T> write(world: ServerWorld, obj: T) where T : SavedState {
+        if (!obj.shouldWrite) return
+
         world.persistentStateManager.set(obj.id.toString(), obj)
         world.persistentStateManager.save()
     }

@@ -1,8 +1,8 @@
 package org.stardustmodding.interstellar.api.data
 
-import net.minecraft.nbt.NbtCompound
+import net.minecraft.nbt.NbtElement
 
 interface NbtSerializable<T> {
-    fun read(tag: NbtCompound): T
-    fun write(tag: NbtCompound): NbtCompound
+    fun read(tag: NbtElement): T
+    fun write(): NbtElement
 }

@@ -117,6 +117,7 @@ allprojects {
         compileOnly("org.jetbrains.kotlin:kotlin-stdlib")
         compileOnly("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
 
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0-RC")
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     }
 
