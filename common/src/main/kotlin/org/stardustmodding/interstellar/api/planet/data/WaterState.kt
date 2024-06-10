@@ -1,6 +1,7 @@
 package org.stardustmodding.interstellar.api.planet.data
 
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.nbt.NbtElement
 import org.stardustmodding.interstellar.api.data.NbtSerializable
 
 
@@ -26,17 +27,20 @@ class WaterState : NbtSerializable<WaterState> {
      */
     var color = 0x617B64
 
-    override fun read(tag: NbtCompound): WaterState {
+    override fun read(tag: NbtElement): WaterState {
+        val comp = tag as NbtCompound
         val it = WaterState()
 
-        it.level = tag.getFloat("level")
-        it.depth = tag.getFloat("depth")
-        it.color = tag.getInt("color")
+        it.level = comp.getFloat("level")
+        it.depth = comp.getFloat("depth")
+        it.color = comp.getInt("color")
 
         return it
     }
 
-    override fun write(tag: NbtCompound): NbtCompound {
+    override fun write(): NbtCompound {
+        val tag = NbtCompound()
+
         tag.putFloat("level", level)
         tag.putFloat("depth", depth)
         tag.putInt("color", color)

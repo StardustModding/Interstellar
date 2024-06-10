@@ -8,9 +8,10 @@ import org.stardustmodding.interstellar.api.data.NbtSerializable
 class AtmosphereState : NbtSerializable<AtmosphereState> {
     var gases: MutableList<GasState> = mutableListOf()
 
-    override fun read(tag: NbtCompound): AtmosphereState {
+    override fun read(tag: NbtElement): AtmosphereState {
+        val comp = tag as NbtCompound
         val state = AtmosphereState()
-        val gases = tag.getList("gases", NbtElement.COMPOUND_TYPE.toInt())
+        val gases = comp.getList("gases", NbtElement.COMPOUND_TYPE.toInt())
 
         for (gas in gases) {
             state.gases.add(GasState().read(gas as NbtCompound))
@@ -19,11 +20,12 @@ class AtmosphereState : NbtSerializable<AtmosphereState> {
         return state
     }
 
-    override fun write(tag: NbtCompound): NbtCompound {
+    override fun write(): NbtCompound {
+        val tag = NbtCompound()
         val list = NbtList()
 
         for (gas in gases) {
-            list.add(gas.write(NbtCompound()))
+            list.add(gas.write())
         }
 
         tag.put("gases", list)
