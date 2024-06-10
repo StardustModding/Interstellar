@@ -92,7 +92,8 @@ object Wrappers {
      * @param[coef] The drag coefficient.
      * @param[area] The cross-sectional area. Unit: m^2
      */
-    fun drag(density: Float, velocity: Float, coef: Float, area: Float) = (1 / 2) * density * velocity.pow(2) * coef * area
+    fun drag(density: Float, velocity: Float, coef: Float, area: Float) =
+        (1 / 2) * density * velocity.pow(2) * coef * area
 
     /**
      * Calculate the drag coefficient.
@@ -102,5 +103,6 @@ object Wrappers {
      * @param[flowSpeed] The flow speed of the object (relative to the fluid).
      * @param[area] The reference area. Unit: m^2
      */
-    fun dragCoef(force: Float, density: Float, flowSpeed: Float, area: Float) = (2 * force) / (density * flowSpeed.pow(2) * area)
+    fun dragCoef(force: Float, density: Float, flowSpeed: Float, area: Float) =
+        (2 * force) / (density * flowSpeed.pow(2) * area)
 }

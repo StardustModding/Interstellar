@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos
 import org.stardustmodding.interstellar.api.data.SavedState
 import org.stardustmodding.skyengine.SkyEngine.id
 
-class PressureState: SavedState() {
+class PressureState : SavedState() {
     private val states = mutableMapOf<BlockPos, GasComposition>()
     private var dirty = false
 

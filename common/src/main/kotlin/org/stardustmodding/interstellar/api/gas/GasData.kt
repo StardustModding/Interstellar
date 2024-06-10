@@ -16,7 +16,7 @@ class GasData(
 
     // This is in kPa
     var amount: Float = 0f
-): NbtSerializable<GasData> {
+) : NbtSerializable<GasData> {
     override fun read(tag: NbtElement): GasData {
         val comp = tag as NbtCompound
         val id = Identifier.tryParse(comp.getString("id"))!!

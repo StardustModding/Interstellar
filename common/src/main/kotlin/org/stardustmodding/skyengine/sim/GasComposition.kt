@@ -7,7 +7,8 @@ import org.stardustmodding.interstellar.api.data.NbtSerializable
 import org.stardustmodding.interstellar.api.gas.GasData
 import org.stardustmodding.interstellar.api.planet.PlanetSettings
 
-class GasComposition(val gases: MutableList<GasData> = mutableListOf()): NbtSerializable<GasComposition>, Iterable<Identifier> {
+class GasComposition(val gases: MutableList<GasData> = mutableListOf()) : NbtSerializable<GasComposition>,
+    Iterable<Identifier> {
     companion object {
         val EMPTY = GasComposition(mutableListOf())
 

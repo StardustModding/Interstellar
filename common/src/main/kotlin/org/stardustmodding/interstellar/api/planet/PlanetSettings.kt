@@ -2,8 +2,6 @@ package org.stardustmodding.interstellar.api.planet
 
 import kotlinx.serialization.Serializable
 import org.stardustmodding.interstellar.api.gas.GasData
-import org.stardustmodding.interstellar.api.registry.InterstellarRegistries
-import org.stardustmodding.interstellar.impl.Interstellar.id
 
 @Serializable
 class PlanetSettings {

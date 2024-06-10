@@ -1,10 +1,10 @@
 package org.stardustmodding.skyengine.math
 
 import net.minecraft.util.math.MathHelper
-import kotlin.math.tan
-import kotlin.math.asin
 import kotlin.math.acos
+import kotlin.math.asin
 import kotlin.math.atan
+import kotlin.math.tan
 
 object MathExt {
     fun Float.sin() = MathHelper.sin(this)

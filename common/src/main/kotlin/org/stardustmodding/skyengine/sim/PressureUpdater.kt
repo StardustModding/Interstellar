@@ -8,6 +8,7 @@ import net.minecraft.util.math.Direction
 import org.stardustmodding.skyengine.data.WorldExt.getPressureState
 import org.stardustmodding.skyengine.data.WorldExt.savePressureState
 import org.stardustmodding.skyengine.data.WorldExt.setPressureState
+import org.stardustmodding.skyengine.math.PosExt.getRelative
 import org.stardustmodding.skyengine.math.PosExt.toVec
 
 /**
@@ -29,7 +30,12 @@ class PressureUpdater {
     private val checked = Sets.newConcurrentHashSet<BlockPos>()
     private var origin: BlockPos? = null
 
-    fun start(pos: BlockPos, world: ServerWorld, iterations: Int = DEFAULT_ITERATIONS, maxDist: Double = DEFAULT_MAX_DISTANCE) = runBlocking {
+    fun start(
+        pos: BlockPos,
+        world: ServerWorld,
+        iterations: Int = DEFAULT_ITERATIONS,
+        maxDist: Double = DEFAULT_MAX_DISTANCE
+    ) = runBlocking {
         origin = pos
         checked.clear()
         updateSingleBlock(pos, world, maxDist)
@@ -61,7 +67,11 @@ class PressureUpdater {
         val split = mutableListOf<Pair<BlockPos, GasComposition>>()
 
         for (item in listOf(up, down, north, east, south, west)) {
-            if (item in checked || !world.getBlockState(item).isAir || !item.isWithinDistance(origin?.toVec(), maxDist)) continue
+            if (item in checked || !world.getBlockState(item).isAir || !item.isWithinDistance(
+                    origin?.toVec(),
+                    maxDist
+                )
+            ) continue
             val it = world.getPressureState(item, true)
 
             split.add(Pair(item, it))
@@ -99,16 +109,5 @@ class PressureUpdater {
     companion object {
         const val DEFAULT_MAX_DISTANCE = 500.0
         const val DEFAULT_ITERATIONS = 3
-
-        fun BlockPos.getRelative(dir: Direction): BlockPos {
-            return when (dir) {
-                Direction.UP -> add(0, 1, 0)
-                Direction.DOWN -> add(0, -1, 0)
-                Direction.NORTH -> add(0, 0, -1)
-                Direction.EAST -> add(1, 0, 0)
-                Direction.SOUTH -> add(0, 0, 1)
-                Direction.WEST -> add(-1, 0, 0)
-            }
-        }
     }
 }
