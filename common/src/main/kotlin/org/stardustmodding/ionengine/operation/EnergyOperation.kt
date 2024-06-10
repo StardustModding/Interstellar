@@ -98,7 +98,7 @@ interface EnergyOperation: NbtSerializable<EnergyOperation?> {
         private val STARTED_MAP = mutableMapOf<Identifier, Boolean>()
 
         fun tryLoadOperation(id: Identifier?): EnergyOperation? {
-            return IonRegistries.OPERATIONS.get(RegistryKey.of(IonRegistries.OPERATIONS_KEY, id))
+            return IonRegistries.OPERATIONS.get(RegistryKey.of(IonRegistries.Keys.OPERATIONS_KEY, id))
         }
     }
 }

@@ -1,6 +1,5 @@
 package org.stardustmodding.ionengine.buffer
 
-import net.minecraft.nbt.NbtElement
 import net.minecraft.nbt.NbtList
 import net.minecraft.server.MinecraftServer
 import net.minecraft.util.Identifier

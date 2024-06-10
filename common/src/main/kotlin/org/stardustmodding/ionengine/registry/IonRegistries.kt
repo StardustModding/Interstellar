@@ -7,8 +7,10 @@ import org.stardustmodding.ionengine.IonEngine.id
 import org.stardustmodding.ionengine.operation.EnergyOperation
 
 object IonRegistries {
-    val OPERATIONS_KEY = RegistryKey.ofRegistry<EnergyOperation>(id("operations"))!!
+    object Keys {
+        val OPERATIONS_KEY = RegistryKey.ofRegistry<EnergyOperation>(id("operations"))!!
+    }
 
     @JvmField
-    val OPERATIONS = SimpleDefaultedRegistry(id("operations").toString(), OPERATIONS_KEY, Lifecycle.experimental(), false)
+    val OPERATIONS = SimpleDefaultedRegistry(id("operations").toString(), Keys.OPERATIONS_KEY, Lifecycle.experimental(), false)
 }
