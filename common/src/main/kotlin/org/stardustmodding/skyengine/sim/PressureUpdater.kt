@@ -44,6 +44,7 @@ class PressureUpdater {
 
         checked.clear()
         world.savePressureState()
+        origin = null
     }
 
     private suspend fun updateSingleBlock(pos: BlockPos, world: ServerWorld, maxDist: Double) {
