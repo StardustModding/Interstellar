@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos
 import org.stardustmodding.ionengine.buffer.EnergyBuffered
 import org.stardustmodding.ionengine.operation.EnergyOperation
 
-class PoweredBlockEntity(type: BlockEntityType<*>?, pos: BlockPos?, state: BlockState?) : BlockEntity(type, pos, state), EnergyBuffered {
+open class PoweredBlockEntity(type: BlockEntityType<*>?, pos: BlockPos?, state: BlockState?) : BlockEntity(type, pos, state), EnergyBuffered {
     override var buffer = 0f
     override val operationQueue = mutableListOf<EnergyOperation>()
 
