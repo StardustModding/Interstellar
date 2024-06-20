@@ -31,6 +31,7 @@ dependencies {
     modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.property("cloth_config_version")}")
     modRuntimeOnly("lol.bai:badpackets:fabric-${rootProject.property("badpackets_version")}")
     modRuntimeOnly("dev.engine_room.flywheel:flywheel-fabric-${rootProject.property("minecraft_version")}:${rootProject.property("flywheel_version")}")
+    modRuntimeOnly("maven.modrinth:yeetus-experimentus:2.3.1")
 
     modImplementation("io.wispforest:owo-lib:${project.property("owo_version")}")
     modImplementation("net.fabricmc:fabric-language-kotlin:${rootProject.property("fabric_kotlin_version")}")

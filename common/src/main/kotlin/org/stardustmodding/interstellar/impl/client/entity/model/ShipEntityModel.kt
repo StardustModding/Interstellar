@@ -7,11 +7,12 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.model.ModelData
 import net.minecraft.client.model.TexturedModelData
 import net.minecraft.client.render.VertexConsumer
-import net.minecraft.client.render.block.BlockModelRenderer
 import net.minecraft.client.render.entity.model.EntityModel
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.math.BlockPos
 import org.stardustmodding.interstellar.impl.entity.ShipEntity
+import org.stardustmodding.skyengine.math.PosExt.toBlockPos
+import org.stardustmodding.skyengine.math.PosExt.toVec3d
 
 @Environment(EnvType.CLIENT)
 class ShipEntityModel : EntityModel<ShipEntity>() {
@@ -29,12 +30,14 @@ class ShipEntityModel : EntityModel<ShipEntity>() {
         blue: Float
     ) {
         val client = MinecraftClient.getInstance()
-        val model = client.bakedModelManager.blockModels.getModel(state)
-        val renderer = BlockModelRenderer(client.blockColors)
+        val mgr = client.blockRenderManager
 
+        stack.push()
         stack.translate(relPos.x.toDouble(), relPos.y.toDouble(), relPos.z.toDouble())
-        renderer.render(stack.peek(), buffer, state, model, red, green, blue, packedLight, packedOverlay)
-        stack.translate(-relPos.x.toDouble(), -relPos.y.toDouble(), -relPos.z.toDouble())
+
+        mgr.renderBlock(state, entity!!.pos.add(relPos.toVec3d()).toBlockPos(), entity!!.world, stack, buffer, false, entity!!.world.random)
+
+        stack.pop()
     }
 
     private fun renderBlockMatrices(

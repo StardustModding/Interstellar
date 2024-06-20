@@ -34,3 +34,11 @@ accessible field net/minecraft/registry/entry/RegistryEntryList$Named entries Lj
 accessible method net/minecraft/command/argument/ArgumentTypes register (Lnet/minecraft/registry/Registry;Ljava/lang/String;Ljava/lang/Class;Lnet/minecraft/command/argument/serialize/ArgumentSerializer;)Lnet/minecraft/command/argument/serialize/ArgumentSerializer;
 
 accessible field net/minecraft/entity/Entity NO_GRAVITY Lnet/minecraft/entity/data/TrackedData;
+
+accessible field net/minecraft/client/render/block/BlockRenderManager blockModelRenderer Lnet/minecraft/client/render/block/BlockModelRenderer;
+accessible field net/minecraft/client/render/block/BlockModelRenderer DIRECTIONS [Lnet/minecraft/util/math/Direction;
+accessible field net/minecraft/client/render/block/BlockModelRenderer colors Lnet/minecraft/client/color/block/BlockColors;
+
+accessible class net/minecraft/client/render/block/BlockModelRenderer$AmbientOcclusionCalculator
+accessible field net/minecraft/client/render/block/BlockModelRenderer$AmbientOcclusionCalculator brightness [F
+accessible field net/minecraft/client/render/block/BlockModelRenderer$AmbientOcclusionCalculator light [I

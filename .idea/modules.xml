@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/doclet/Interstellar.doclet.main.iml" filepath="$PROJECT_DIR$/.idea/modules/doclet/Interstellar.doclet.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/doclet/Interstellar.doclet.test.iml" filepath="$PROJECT_DIR$/.idea/modules/doclet/Interstellar.doclet.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/Source.Interstellar.common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/Source.Interstellar.common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/Source.Interstellar.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/Source.Interstellar.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/Source.Interstellar.common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/Source.Interstellar.common.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/Source.Interstellar.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/Source.Interstellar.fabric.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/Source.Interstellar.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/Source.Interstellar.fabric.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/Source.Interstellar.forge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/Source.Interstellar.forge.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/Source.Interstellar.forge.test.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/Source.Interstellar.forge.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/interstellar.common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/interstellar.common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/interstellar.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/interstellar.common.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/interstellar.common.test.iml" filepath="$PROJECT_DIR$/.idea/modules/common/interstellar.common.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/doclet/interstellar.doclet.main.iml" filepath="$PROJECT_DIR$/.idea/modules/doclet/interstellar.doclet.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/doclet/interstellar.doclet.test.iml" filepath="$PROJECT_DIR$/.idea/modules/doclet/interstellar.doclet.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/interstellar.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/interstellar.fabric.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/interstellar.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/interstellar.fabric.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/forge/interstellar.forge.main.iml" filepath="$PROJECT_DIR$/.idea/modules/forge/interstellar.forge.main.iml" />

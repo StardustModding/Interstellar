@@ -2,6 +2,7 @@ package org.stardustmodding.interstellar.impl.entity
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
+import net.minecraft.block.Blocks
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityType
 import net.minecraft.nbt.NbtCompound
@@ -18,7 +19,17 @@ import org.stardustmodding.interstellar.api.data.Tracked
 class ShipEntity(type: EntityType<*>, world: World) : Entity(type, world) {
     // The blocks map *has* to be nullable (so we can do the checks without IDEA yelling at us),
     // or Minecraft will complain when spawning this
-    val blocks: Tracked<MutableMap<BlockPos, BlockState>>? = Tracked(mutableMapOf())
+    val blocks: Tracked<MutableMap<BlockPos, BlockState>>? = Tracked(mutableMapOf(
+        BlockPos(-1, 0, 0) to Blocks.OBSIDIAN.defaultState,
+        BlockPos(-1, 1, 0) to Blocks.OBSIDIAN.defaultState,
+        BlockPos(-1, 2, 0) to Blocks.OBSIDIAN.defaultState,
+        BlockPos(0, 0, 0) to Blocks.OBSIDIAN.defaultState,
+        BlockPos(0, 1, 0) to Blocks.OBSIDIAN.defaultState,
+        BlockPos(0, 2, 0) to Blocks.OBSIDIAN.defaultState,
+        BlockPos(1, 0, 0) to Blocks.OBSIDIAN.defaultState,
+        BlockPos(1, 1, 0) to Blocks.OBSIDIAN.defaultState,
+        BlockPos(1, 2, 0) to Blocks.OBSIDIAN.defaultState,
+    ))
 
     override fun initDataTracker() {
 

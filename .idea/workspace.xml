@@ -17,19 +17,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be1457b9-5da0-4d57-aa8b-fe488928ffd6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/quantumengine/QuantumEngine.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/quantumengine/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/multipart/BlockAggregateEntity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/multipart/BlockEntityPart.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/multipart/EntityPart.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/multipart/MultipartEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server___fabric__fabric.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server___fabric__fabric.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server___forge__forge.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server___forge__forge.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/api/registry/InterstellarRegistries.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/api/registry/InterstellarRegistries.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/ionengine/buffer/EnergyBuffered.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/ionengine/buffer/EnergyBuffered.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/ionengine/item/PoweredItem.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/ionengine/operation/EnergyOperation.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/ionengine/operation/EnergyOperation.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/ionengine/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/ionengine/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/ionengine/registry/IonRegistries.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/ionengine/registry/IonRegistries.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/impl/client/entity/model/ShipEntityModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/impl/client/entity/model/ShipEntityModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/impl/entity/ShipEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/interstellar/impl/entity/ShipEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/SkyEngine.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/SkyEngine.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/math/PosExt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/kotlin/org/stardustmodding/skyengine/math/PosExt.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/interstellar.accesswidener" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/resources/interstellar.accesswidener" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,16 +58,23 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="interstellar" type="f1a62948:ProjectNode" />
+                <item name="Interstellar" type="f1a62948:ProjectNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="interstellar" type="f1a62948:ProjectNode" />
+                <item name="Interstellar" type="f1a62948:ProjectNode" />
+                <item name="fabric" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Interstellar" type="f1a62948:ProjectNode" />
+                <item name="fabric" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="interstellar" type="f1a62948:ProjectNode" />
+                <item name="Interstellar" type="f1a62948:ProjectNode" />
+                <item name="fabric" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="loom" type="c8890929:TasksNode$1" />
               </path>
@@ -80,14 +90,17 @@
       <list>
         <option value="Class" />
         <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Object" />
         <option value="package-info" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="2k4xnc8f" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -104,6 +117,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Minecraft Client (:fabric).executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Interstellar:fabric [runClient].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.interstellar [genSourcesWithVineflower].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.interstellar:fabric [runServer].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -120,11 +135,33 @@
   },
   &quot;keyToStringList&quot;: {
     &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;/home/jacob/.gradle&quot;
+      &quot;F:\\.gradle&quot;
     ]
   }
 }</component>
-  <component name="RunManager" selected="Gradle.interstellar:fabric [runServer]">
+  <component name="RunManager" selected="Gradle.Interstellar:fabric [runClient]">
+    <configuration name="Interstellar:fabric [runClient]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runClient" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="interstellar [genSourcesWithVineflower]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -171,6 +208,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Interstellar:fabric [runClient]" />
         <item itemvalue="Gradle.interstellar:fabric [runServer]" />
         <item itemvalue="Gradle.interstellar [genSourcesWithVineflower]" />
       </list>
@@ -179,8 +217,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
       </set>
     </attachedChunks>
   </component>
@@ -202,6 +240,8 @@
       <workItem from="1718029403511" duration="648000" />
       <workItem from="1718030087377" duration="4260000" />
       <workItem from="1718034904528" duration="968000" />
+      <workItem from="1718656139349" duration="6000" />
+      <workItem from="1718901517882" duration="4380000" />
     </task>
     <servers />
   </component>
