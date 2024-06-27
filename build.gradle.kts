@@ -108,6 +108,11 @@ allprojects {
         }
 
         maven {
+            name = "BlameJared Maven"
+            url = uri("https://maven.blamejared.com")
+        }
+
+        maven {
             name = "StardustModding Maven Releases"
             url = uri("https://maven.stardustmodding.org/releases")
         }

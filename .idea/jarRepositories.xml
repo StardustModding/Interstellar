@@ -141,5 +141,10 @@
       <option name="name" value="LoomLocalMinecraft" />
       <option name="url" value="file:/$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="BlameJared Maven" />
+      <option name="name" value="BlameJared Maven" />
+      <option name="url" value="https://maven.blamejared.com" />
+    </remote-repository>
   </component>
 </project>

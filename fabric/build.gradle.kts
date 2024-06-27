@@ -24,13 +24,13 @@ dependencies {
     common(project(":common", "namedElements")) { isTransitive = false }
     shadowCommon(project(":common", "transformProductionFabric")) { isTransitive = false }
 
-    modApi("dev.engine_room.flywheel:flywheel-fabric-api-${rootProject.property("minecraft_version")}:${rootProject.property("flywheel_version")}")
     modApi("dev.architectury:architectury-fabric:${rootProject.property("architectury_version")}")
     modApi("com.terraformersmc:modmenu:${rootProject.property("modmenu_version")}")
     modApi("me.shedaniel.cloth:cloth-config:${rootProject.property("cloth_config_version")}")
     modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.property("cloth_config_version")}")
+    modImplementation("foundry.veil:Veil-fabric-${rootProject.property("minecraft_version")}:${rootProject.property("veil_version")}")
+
     modRuntimeOnly("lol.bai:badpackets:fabric-${rootProject.property("badpackets_version")}")
-    modRuntimeOnly("dev.engine_room.flywheel:flywheel-fabric-${rootProject.property("minecraft_version")}:${rootProject.property("flywheel_version")}")
     modRuntimeOnly("maven.modrinth:yeetus-experimentus:2.3.1")
 
     modImplementation("io.wispforest:owo-lib:${project.property("owo_version")}")
