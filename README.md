@@ -9,6 +9,9 @@ emptiness of space, and so much more.
 > ***Warning*** \
 > This mod is a work-in-progress! There will be many bugs and missing features!
 
+> ***Note*** \
+> This is NOT related to @doctor4t's *Reach for the Stars* mod, nor @CreateSimilated's *Create: Liftoff* mod! This is an ORIGINAL idea that we came up with before we had heard of any of those mods. I wish I didn't have to say this, but I don't want anyone getting mad. :p
+
 ## API
 
 We have an API for addon development! To use it, follow these instructions:
