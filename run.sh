@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 MOD_VERSION="$(cat gradle.properties | grep mod_version | cut -d '=' -f 2)"
 MC_VERSION="$(cat gradle.properties | grep minecraft_version | cut -d '=' -f 2)"
