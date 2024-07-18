@@ -1,20 +1,20 @@
 package org.stardustmodding.interstellar.api.data
 
-import net.minecraft.server.world.ServerWorld
+import net.minecraft.server.level.ServerLevel
 
 object StateUtil {
-    inline fun <reified T> load(world: ServerWorld): T where T : SavedState {
-        return world.persistentStateManager.getOrCreate(
+    inline fun <reified T> load(world: ServerLevel): T where T : SavedState {
+        return world.dataStorage.computeIfAbsent(
             { SavedState.readStatic<T>(it) },
             { SavedState.defaultStatic<T>() },
             SavedState.idStatic<T>().toString()
         )
     }
 
-    fun <T> write(world: ServerWorld, obj: T) where T : SavedState {
+    fun <T> write(world: ServerLevel, obj: T) where T : SavedState {
         if (!obj.shouldWrite) return
 
-        world.persistentStateManager.set(obj.id.toString(), obj)
-        world.persistentStateManager.save()
+        world.dataStorage.set(obj.id.toString(), obj)
+        world.dataStorage.save()
     }
 }

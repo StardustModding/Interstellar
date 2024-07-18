@@ -1,10 +1,10 @@
 package org.stardustmodding.skyengine
 
 import net.minecraft.server.MinecraftServer
-import net.minecraft.util.Identifier
+import net.minecraft.resources.ResourceLocation
 
 object SkyEngine {
-    fun id(value: String) = Identifier("skyengine", value)
+    fun id(value: String) = ResourceLocation("skyengine", value)
 
     fun init() {
 

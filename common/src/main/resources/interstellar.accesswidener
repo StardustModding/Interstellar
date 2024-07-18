@@ -1,44 +1,47 @@
 accessWidener v2 named
 
-accessible class net/minecraft/client/gui/screen/SplashOverlay$LogoTexture
-accessible class net/minecraft/server/MinecraftServer$ResourceManagerHolder
+accessible class net/minecraft/client/gui/screens/LoadingOverlay$LogoTexture
+accessible class net/minecraft/server/MinecraftServer$ReloadableResources
 
-extendable class net/minecraft/world/gen/chunk/NoiseChunkGenerator
-extendable class net/minecraft/world/dimension/DimensionType
+extendable class net/minecraft/world/level/levelgen/NoiseBasedChunkGenerator
+extendable class net/minecraft/world/level/dimension/DimensionType
 
-accessible field net/minecraft/client/gui/screen/SplashOverlay MOJANG_RED I
+accessible field net/minecraft/client/gui/screens/LoadingOverlay LOGO_BACKGROUND_COLOR I
 
-mutable field net/minecraft/client/gui/screen/SplashOverlay MOJANG_RED I
-mutable field net/minecraft/client/texture/ResourceTexture location Lnet/minecraft/util/Identifier;
+mutable field net/minecraft/client/gui/screens/LoadingOverlay LOGO_BACKGROUND_COLOR I
+mutable field net/minecraft/client/renderer/texture/SimpleTexture location Lnet/minecraft/resources/ResourceLocation;
 
-accessible field net/minecraft/registry/SimpleRegistry nextId I
-accessible field net/minecraft/registry/SimpleRegistry tagToEntryList Ljava/util/Map;
-accessible field net/minecraft/registry/SimpleRegistry valueToEntry Ljava/util/Map;
-accessible field net/minecraft/registry/SimpleRegistry rawIdToEntry Lit/unimi/dsi/fastutil/objects/ObjectList;
-accessible field net/minecraft/registry/SimpleRegistry entryToRawId Lit/unimi/dsi/fastutil/objects/Object2IntMap;
-accessible field net/minecraft/registry/SimpleRegistry idToEntry Ljava/util/Map;
-accessible field net/minecraft/registry/SimpleRegistry keyToEntry Ljava/util/Map;
-accessible field net/minecraft/registry/SimpleRegistry entryToLifecycle Ljava/util/Map;
-accessible field net/minecraft/registry/SimpleRegistry frozen Z
-accessible field net/minecraft/registry/SimpleRegistry cachedEntries Ljava/util/List;
-accessible field net/minecraft/registry/SimpleRegistry lifecycle Lcom/mojang/serialization/Lifecycle;
+accessible field net/minecraft/core/MappedRegistry nextId I
+accessible field net/minecraft/core/MappedRegistry tags Ljava/util/Map;
+accessible field net/minecraft/core/MappedRegistry byValue Ljava/util/Map;
+accessible field net/minecraft/core/MappedRegistry byId Lit/unimi/dsi/fastutil/objects/ObjectList;
+accessible field net/minecraft/core/MappedRegistry toId Lit/unimi/dsi/fastutil/objects/Object2IntMap;
+accessible field net/minecraft/core/MappedRegistry byLocation Ljava/util/Map;
+accessible field net/minecraft/core/MappedRegistry byKey Ljava/util/Map;
+accessible field net/minecraft/core/MappedRegistry lifecycles Ljava/util/Map;
+accessible field net/minecraft/core/MappedRegistry frozen Z
+accessible field net/minecraft/core/MappedRegistry holdersInOrder Ljava/util/List;
+accessible field net/minecraft/core/MappedRegistry registryLifecycle Lcom/mojang/serialization/Lifecycle;
 
-mutable field net/minecraft/registry/SimpleRegistry nextId I
-mutable field net/minecraft/registry/SimpleRegistry valueToEntry Ljava/util/Map;
-mutable field net/minecraft/registry/SimpleRegistry frozen Z
-mutable field net/minecraft/registry/SimpleRegistry cachedEntries Ljava/util/List;
-mutable field net/minecraft/registry/SimpleRegistry tagToEntryList Ljava/util/Map;
-mutable field net/minecraft/registry/SimpleRegistry lifecycle Lcom/mojang/serialization/Lifecycle;
+mutable field net/minecraft/core/MappedRegistry nextId I
+mutable field net/minecraft/core/MappedRegistry byValue Ljava/util/Map;
+mutable field net/minecraft/core/MappedRegistry frozen Z
+mutable field net/minecraft/core/MappedRegistry holdersInOrder Ljava/util/List;
+mutable field net/minecraft/core/MappedRegistry tags Ljava/util/Map;
+mutable field net/minecraft/core/MappedRegistry registryLifecycle Lcom/mojang/serialization/Lifecycle;
 
-accessible field net/minecraft/registry/entry/RegistryEntryList$Named entries Ljava/util/List;
-accessible method net/minecraft/command/argument/ArgumentTypes register (Lnet/minecraft/registry/Registry;Ljava/lang/String;Ljava/lang/Class;Lnet/minecraft/command/argument/serialize/ArgumentSerializer;)Lnet/minecraft/command/argument/serialize/ArgumentSerializer;
+accessible field net/minecraft/core/HolderSet$Named contents Ljava/util/List;
+accessible method net/minecraft/commands/synchronization/ArgumentTypeInfos register (Lnet/minecraft/core/Registry;Ljava/lang/String;Ljava/lang/Class;Lnet/minecraft/commands/synchronization/ArgumentTypeInfo;)Lnet/minecraft/commands/synchronization/ArgumentTypeInfo;
 
-accessible field net/minecraft/entity/Entity NO_GRAVITY Lnet/minecraft/entity/data/TrackedData;
+accessible field net/minecraft/world/entity/Entity DATA_NO_GRAVITY Lnet/minecraft/network/syncher/EntityDataAccessor;
+accessible field net/minecraft/world/entity/Entity position Lnet/minecraft/world/phys/Vec3;
+accessible field net/minecraft/world/entity/Entity level Lnet/minecraft/world/level/Level;
 
-accessible field net/minecraft/client/render/block/BlockRenderManager blockModelRenderer Lnet/minecraft/client/render/block/BlockModelRenderer;
-accessible field net/minecraft/client/render/block/BlockModelRenderer DIRECTIONS [Lnet/minecraft/util/math/Direction;
-accessible field net/minecraft/client/render/block/BlockModelRenderer colors Lnet/minecraft/client/color/block/BlockColors;
+accessible field net/minecraft/client/renderer/block/BlockRenderDispatcher modelRenderer Lnet/minecraft/client/renderer/block/ModelBlockRenderer;
 
-accessible class net/minecraft/client/render/block/BlockModelRenderer$AmbientOcclusionCalculator
-accessible field net/minecraft/client/render/block/BlockModelRenderer$AmbientOcclusionCalculator brightness [F
-accessible field net/minecraft/client/render/block/BlockModelRenderer$AmbientOcclusionCalculator light [I
+accessible field net/minecraft/client/renderer/block/ModelBlockRenderer DIRECTIONS [Lnet/minecraft/core/Direction;
+accessible field net/minecraft/client/renderer/block/ModelBlockRenderer blockColors Lnet/minecraft/client/color/block/BlockColors;
+
+accessible class net/minecraft/client/renderer/block/ModelBlockRenderer$AmbientOcclusionFace
+accessible field net/minecraft/client/renderer/block/ModelBlockRenderer$AmbientOcclusionFace brightness [F
+accessible field net/minecraft/client/renderer/block/ModelBlockRenderer$AmbientOcclusionFace lightmap [I

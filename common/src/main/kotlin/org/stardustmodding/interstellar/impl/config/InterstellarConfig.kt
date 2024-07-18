@@ -8,5 +8,5 @@ import me.shedaniel.autoconfig.serializer.PartitioningSerializer
 class InterstellarConfig : PartitioningSerializer.GlobalData() {
     @ConfigEntry.Category("core")
     @ConfigEntry.Gui.TransitiveObject
-    var dynamicDimensions = CoreConfig()
+    var core = CoreConfig()
 }

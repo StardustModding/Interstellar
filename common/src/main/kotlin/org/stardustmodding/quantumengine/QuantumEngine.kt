@@ -1,7 +1,7 @@
 package org.stardustmodding.quantumengine
 
-import net.minecraft.util.Identifier
+import net.minecraft.resources.ResourceLocation
 
 object QuantumEngine {
-    fun id(value: String) = Identifier("quantumengine", value)
+    fun id(value: String) = ResourceLocation("quantumengine", value)
 }

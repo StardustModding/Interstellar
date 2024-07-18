@@ -1,20 +1,20 @@
 package org.stardustmodding.interstellar.impl.client.gui.suit
 
-import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.item.ItemStack
-import net.minecraft.screen.ScreenHandler
+import net.minecraft.world.entity.player.Inventory
+import net.minecraft.world.entity.player.Player
+import net.minecraft.world.inventory.AbstractContainerMenu
+import net.minecraft.world.item.ItemStack
 import org.stardustmodding.interstellar.impl.init.Screens
 
 @Suppress("UNUSED_PARAMETER")
-class CustomizationScreenHandler(syncId: Int) : ScreenHandler(Screens.SUIT_CUSTOMIZATION_HANDLER, syncId) {
-    constructor(syncId: Int, inv: PlayerInventory) : this(syncId)
+class CustomizationScreenHandler(syncId: Int) : AbstractContainerMenu(Screens.SUIT_CUSTOMIZATION_HANDLER, syncId) {
+    constructor(syncId: Int, inv: Inventory) : this(syncId)
 
-    override fun quickMove(player: PlayerEntity?, slot: Int): ItemStack? {
+    override fun quickMoveStack(player: Player, slot: Int): ItemStack? {
         return null
     }
 
-    override fun canUse(player: PlayerEntity?): Boolean {
+    override fun stillValid(player: Player): Boolean {
         return true
     }
 }

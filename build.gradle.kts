@@ -1,3 +1,4 @@
+import net.fabricmc.loom.api.LoomGradleExtensionAPI
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
@@ -70,11 +71,6 @@ allprojects {
         maven {
             name = "Shedaniel Maven"
             url = uri("https://maven.shedaniel.me")
-        }
-
-        maven {
-            name = "WispForest Maven"
-            url = uri("https://maven.wispforest.io")
         }
 
         maven {
@@ -381,8 +377,21 @@ allprojects {
 subprojects {
     apply(plugin = "dev.architectury.loom")
 
+    val loom = project.extensions.getByName<LoomGradleExtensionAPI>("loom")
+
+    repositories {
+        mavenLocal()
+    }
+
     dependencies {
         "minecraft"("com.mojang:minecraft:${rootProject.property("minecraft_version")}")
-        "mappings"("net.fabricmc:yarn:${rootProject.property("yarn_mappings")}:v2")
+
+//        "mappings"("net.fabricmc:yarn:${rootProject.property("yarn_mappings")}:v2")
+
+        @Suppress("UnstableApiUsage")
+        "mappings"(loom.layered {
+            officialMojangMappings()
+            parchment("org.parchmentmc.data:parchment-${rootProject.property("minecraft_version")}:${rootProject.property("parchment_version")}@zip")
+        })
     }
 }

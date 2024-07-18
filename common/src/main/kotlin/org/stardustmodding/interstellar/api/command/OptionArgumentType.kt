@@ -6,22 +6,22 @@ import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType
 import com.mojang.brigadier.suggestion.Suggestions
 import com.mojang.brigadier.suggestion.SuggestionsBuilder
-import net.minecraft.command.CommandSource
-import net.minecraft.command.argument.ArgumentTypes
-import net.minecraft.command.argument.serialize.ConstantArgumentSerializer
-import net.minecraft.registry.Registries
-import net.minecraft.text.Text
+import net.minecraft.commands.SharedSuggestionProvider
+import net.minecraft.commands.synchronization.ArgumentTypeInfos
+import net.minecraft.commands.synchronization.SingletonArgumentInfo
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.network.chat.Component
 import org.stardustmodding.interstellar.impl.Interstellar.id
 import java.util.concurrent.CompletableFuture
 
 class OptionArgumentType(private val options: List<String>) : ArgumentType<String> {
-    private val err = DynamicCommandExceptionType { Text.literal("Invalid option: '$it'") }
+    private val err = DynamicCommandExceptionType { Component.literal("Invalid option: '$it'") }
 
     override fun <S : Any?> listSuggestions(
         context: CommandContext<S>,
         builder: SuggestionsBuilder
     ): CompletableFuture<Suggestions> {
-        return CommandSource.suggestMatching(options, builder)
+        return SharedSuggestionProvider.suggest(options, builder)
     }
 
     override fun parse(reader: StringReader): String {
@@ -41,11 +41,11 @@ class OptionArgumentType(private val options: List<String>) : ArgumentType<Strin
     companion object {
         fun create(vararg options: String): OptionArgumentType {
             val ty = OptionArgumentType(options.toList())
-            ArgumentTypes.register(
-                Registries.COMMAND_ARGUMENT_TYPE,
+            ArgumentTypeInfos.register(
+                BuiltInRegistries.COMMAND_ARGUMENT_TYPE,
                 id("option_argument_${options.hashCode()}").toString(),
                 OptionArgumentType::class.java,
-                ConstantArgumentSerializer.of { _ -> ty })
+                SingletonArgumentInfo.contextAware { _ -> ty })
             return ty
         }
     }

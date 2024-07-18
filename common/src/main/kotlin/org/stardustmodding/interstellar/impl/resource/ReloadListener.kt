@@ -1,11 +1,11 @@
 package org.stardustmodding.interstellar.impl.resource
 
 import kotlinx.serialization.json.Json
-import net.minecraft.registry.Registry
-import net.minecraft.resource.Resource
-import net.minecraft.resource.ResourceManager
-import net.minecraft.resource.SynchronousResourceReloader
-import net.minecraft.util.Identifier
+import net.minecraft.core.Registry
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.server.packs.resources.Resource
+import net.minecraft.server.packs.resources.ResourceManager
+import net.minecraft.server.packs.resources.ResourceManagerReloadListener
 import org.stardustmodding.interstellar.api.gas.Gas
 import org.stardustmodding.interstellar.api.planet.Planet
 import org.stardustmodding.interstellar.api.planet.PlanetSettings
@@ -14,16 +14,16 @@ import org.stardustmodding.interstellar.api.registry.RegistryUtil
 import org.stardustmodding.interstellar.api.starsystem.StarSystem
 import org.stardustmodding.interstellar.impl.Interstellar.LOGGER
 
-object ReloadListener : SynchronousResourceReloader {
-    override fun reload(manager: ResourceManager) {
+object ReloadListener : ResourceManagerReloadListener {
+    override fun onResourceManagerReload(manager: ResourceManager) {
         reloadGases(manager)
         reloadPlanetSettings(manager)
         reloadPlanets(manager)
         reloadStarSystems(manager)
     }
 
-    private fun findResources(manager: ResourceManager, prefix: String): List<Pair<Identifier, Resource>> {
-        return manager.findResources(prefix) { it.path.endsWith(".json") }.map {
+    private fun findResources(manager: ResourceManager, prefix: String): List<Pair<ResourceLocation, Resource>> {
+        return manager.listResources(prefix) { it.path.endsWith(".json") }.map {
             Pair(
                 it.key.withPath(
                     it.key.path.replace(".json", "").removePrefix(
@@ -36,11 +36,11 @@ object ReloadListener : SynchronousResourceReloader {
 
     private fun reloadGases(manager: ResourceManager) {
         for ((id, res) in findResources(manager, "gases")) {
-            val stream = res.reader
+            val stream = res.openAsReader()
             val raw = stream.readText()
             val data = Json.decodeFromString<Gas>(raw)
 
-            if (InterstellarRegistries.GASES.containsId(id)) {
+            if (InterstellarRegistries.GASES.containsKey(id)) {
                 LOGGER.info("Re-registering gas ${id}...")
 
                 RegistryUtil.unregister(InterstellarRegistries.GASES, id)
@@ -55,11 +55,11 @@ object ReloadListener : SynchronousResourceReloader {
 
     private fun reloadPlanetSettings(manager: ResourceManager) {
         for ((id, res) in findResources(manager, "planet_settings")) {
-            val stream = res.reader
+            val stream = res.openAsReader()
             val raw = stream.readText()
             val data = Json.decodeFromString<PlanetSettings>(raw)
 
-            if (InterstellarRegistries.PLANET_SETTINGS.containsId(id)) {
+            if (InterstellarRegistries.PLANET_SETTINGS.containsKey(id)) {
                 LOGGER.info("Re-registering planet settings ${id}...")
 
                 RegistryUtil.unregister(InterstellarRegistries.PLANET_SETTINGS, id)
@@ -74,11 +74,11 @@ object ReloadListener : SynchronousResourceReloader {
 
     private fun reloadPlanets(manager: ResourceManager) {
         for ((id, res) in findResources(manager, "planets")) {
-            val stream = res.reader
+            val stream = res.openAsReader()
             val raw = stream.readText()
             val data = Json.decodeFromString<Planet>(raw)
 
-            if (InterstellarRegistries.PLANETS.containsId(id)) {
+            if (InterstellarRegistries.PLANETS.containsKey(id)) {
                 LOGGER.info("Re-registering planet ${id}...")
 
                 RegistryUtil.unregister(InterstellarRegistries.PLANETS, id)
@@ -93,11 +93,11 @@ object ReloadListener : SynchronousResourceReloader {
 
     private fun reloadStarSystems(manager: ResourceManager) {
         for ((id, res) in findResources(manager, "star_systems")) {
-            val stream = res.reader
+            val stream = res.openAsReader()
             val raw = stream.readText()
             val data = Json.decodeFromString<StarSystem>(raw)
 
-            if (InterstellarRegistries.STAR_SYSTEMS.containsId(id)) {
+            if (InterstellarRegistries.STAR_SYSTEMS.containsKey(id)) {
                 LOGGER.info("Re-registering star system ${id}...")
 
                 RegistryUtil.unregister(InterstellarRegistries.STAR_SYSTEMS, id)

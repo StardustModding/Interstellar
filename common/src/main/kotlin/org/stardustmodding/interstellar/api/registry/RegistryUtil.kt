@@ -2,34 +2,38 @@ package org.stardustmodding.interstellar.api.registry
 
 import com.google.common.collect.ImmutableList
 import com.mojang.serialization.Lifecycle
-import net.minecraft.registry.*
-import net.minecraft.registry.entry.RegistryEntry
-import net.minecraft.util.Identifier
+import net.minecraft.core.DefaultedMappedRegistry
+import net.minecraft.core.DefaultedRegistry
+import net.minecraft.core.Holder
+import net.minecraft.core.MappedRegistry
+import net.minecraft.core.Registry
+import net.minecraft.resources.ResourceKey
+import net.minecraft.resources.ResourceLocation
 import org.stardustmodding.interstellar.impl.Interstellar.LOGGER
 
 object RegistryUtil {
     @JvmStatic
-    fun <T> unregister(registry: Registry<T>, id: Identifier) {
-        if (registry.containsId(id)) {
-            if (registry is SimpleRegistry<T>) {
+    fun <T> unregister(registry: Registry<T>, key: ResourceLocation) {
+        if (registry.containsKey(key)) {
+            if (registry is MappedRegistry<T>) {
                 if (registry is DefaultedRegistry<*>) {
-                    require(registry.defaultId != id) { "Cannot remove default value in registry!" }
+                    require(registry.defaultKey != key) { "Cannot remove default value in registry!" }
                 }
 
-                val type = registry.idToEntry[id]!!.value()
-                val byId = registry.rawIdToEntry
+                val type = registry.byLocation[key]!!.value()
+                val byId = registry.byId
 
-                if (byId.size <= registry.entryToRawId.getInt(type)) {
-                    LOGGER.warn("ID mismatch in registry '{}'", registry.getKey())
+                if (byId.size <= registry.toId.getInt(type)) {
+                    LOGGER.warn("ID mismatch in registry '{}'", registry.key())
                 }
 
-                registry.entryToRawId.removeInt(type)
+                registry.toId.removeInt(type)
 
                 var success = false
                 for (i in byId.indices) {
                     val reference = byId[i]
                     if (reference != null) {
-                        if (reference.registryKey().value == id) {
+                        if (reference.key().location() == key) {
                             byId[i] = null
                             success = true
                             var max = 0
@@ -44,75 +48,73 @@ object RegistryUtil {
                 }
 
                 assert(success)
-                registry.idToEntry.remove(id)
-                registry.keyToEntry.remove(RegistryKey.of(registry.getKey(), id))
-                registry.valueToEntry.remove(type)
-                registry.entryToLifecycle.remove(type)
+                registry.byLocation.remove(key)
+                registry.byKey.remove(ResourceKey.create(registry.key(), key))
+                registry.byValue.remove(type)
+                registry.lifecycles.remove(type)
 
                 val base = Lifecycle.stable()
 
-                for (value in registry.entryToLifecycle.values) {
+                for (value in registry.lifecycles.values) {
                     base.add(value)
                 }
 
-                registry.lifecycle = base
+                registry.registryLifecycle = base
 
-                for (holderSet in registry.tagToEntryList.values) {
-                    val list = ImmutableList.builder<RegistryEntry<T>>()
+                for (holderSet in registry.tags.values) {
+                    val list = ImmutableList.builder<Holder<T>>()
 
-                    for (content in holderSet.entries) {
-                        if (!content.matchesId(id)) list.add(content)
+                    for (content in holderSet.contents) {
+                        if (!content.`is`(key)) list.add(content)
                     }
 
-                    holderSet.entries = list.build()
+                    holderSet.contents = list.build()
                 }
 
-                if (registry.valueToEntry != null) {
-                    registry.valueToEntry!!.remove(type)
-                }
-                registry.cachedEntries = null
+                registry.byValue.remove(type)
+                registry.holdersInOrder = null
             }
         } else {
-            LOGGER.warn("Tried to remove non-existent key {}", id)
+            LOGGER.warn("Tried to remove non-existent key {}", key)
         }
     }
 
     @JvmStatic
-    fun <T> registerUnfreeze(registry: Registry<T>, id: Identifier, value: T): RegistryEntry.Reference<T> {
-        if (!registry.containsId(id)) {
-            if (registry.javaClass == SimpleRegistry::class.java || registry.javaClass == SimpleDefaultedRegistry::class.java) {
-                val mapped = registry as SimpleRegistry<T>
+    fun <T> registerUnfreeze(registry: Registry<T>, id: ResourceLocation, value: T): Holder.Reference<T> {
+        if (!registry.containsKey(id)) {
+            if (registry.javaClass == MappedRegistry::class.java || registry.javaClass == DefaultedMappedRegistry::class.java) {
+                val mapped = registry as MappedRegistry<T>
                 val frozen = registry.frozen
                 if (frozen) registry.frozen = false
-                val ref = mapped.add(RegistryKey.of(registry.getKey(), id), value, Lifecycle.stable())
+                val ref = mapped.register(ResourceKey.create(registry.key(), id), value!!, Lifecycle.stable())
                 if (frozen) registry.freeze()
-                checkNotNull(registry.rawIdToEntry[registry.entryToRawId.getInt(value)])
+                checkNotNull(registry.byId[registry.toId.getInt(value)])
                 return ref
             } else {
-                throw IllegalStateException("Non-vanilla '" + registry.key.value + "' registry! " + registry.javaClass.name)
+                throw IllegalStateException("Non-vanilla '" + registry.key().location() + "' registry! " + registry.javaClass.name)
             }
         } else {
             LOGGER.warn("Tried to add pre-existing key$id")
-            return registry.entryOf(RegistryKey.of(registry.key, id))
+            return registry.getHolderOrThrow(ResourceKey.create(registry.key(), id))
         }
     }
 
     fun <T> registerUnfreezeExact(
         registry: Registry<T?>,
         rawId: Int,
-        id: Identifier,
+        id: ResourceLocation,
         value: T
-    ): RegistryEntry.Reference<T?> {
-        if (!registry.containsId(id)) {
-            if (registry.javaClass == SimpleRegistry::class.java || registry.javaClass == SimpleDefaultedRegistry::class.java) {
-                val mapped = registry as SimpleRegistry<T?>
+    ): Holder.Reference<T?> {
+        if (!registry.containsKey(id)) {
+            if (registry.javaClass == MappedRegistry::class.java || registry.javaClass == DefaultedMappedRegistry::class.java) {
+                val mapped = registry as MappedRegistry<T?>
                 val frozen = registry.frozen
                 if (frozen) registry.frozen = false
-                val ref = mapped.set(rawId, RegistryKey.of(registry.getKey(), id), value, Lifecycle.stable())
+                val ref = mapped.registerMapping(rawId, ResourceKey.create(registry.key(), id), value!!, Lifecycle.stable())
                 if (frozen) registry.freeze()
                 return ref
             } else {
-                throw IllegalStateException("Non-vanilla '" + registry.key.value + "' registry! " + registry.javaClass.name)
+                throw IllegalStateException("Non-vanilla '" + registry.key().location() + "' registry! " + registry.javaClass.name)
             }
         } else {
             LOGGER.warn(
@@ -120,7 +122,7 @@ object RegistryUtil {
                     registry[id]
                 ) + ")"
             )
-            return registry.entryOf(RegistryKey.of(registry.key, id))
+            return registry.getHolderOrThrow(ResourceKey.create(registry.key(), id))
         }
     }
 }

@@ -1,7 +1,7 @@
 package org.stardustmodding.interstellar.api.planet.data
 
-import net.minecraft.nbt.NbtCompound
-import net.minecraft.nbt.NbtElement
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.Tag
 import org.stardustmodding.interstellar.api.data.NbtSerializable
 
 class TerraformationState : NbtSerializable<TerraformationState> {
@@ -9,8 +9,8 @@ class TerraformationState : NbtSerializable<TerraformationState> {
     var water = WaterState()
     var terraformable = false
 
-    override fun read(tag: NbtElement): TerraformationState {
-        val comp = tag as NbtCompound
+    override fun read(tag: Tag): TerraformationState {
+        val comp = tag as CompoundTag
         val state = TerraformationState()
 
         state.atmosphere = AtmosphereState().read(comp.getCompound("atmosphere"))
@@ -20,8 +20,8 @@ class TerraformationState : NbtSerializable<TerraformationState> {
         return state
     }
 
-    override fun write(): NbtCompound {
-        val tag = NbtCompound()
+    override fun write(): CompoundTag {
+        val tag = CompoundTag()
 
         tag.put("atmosphere", atmosphere.write())
         tag.put("water", water.write())

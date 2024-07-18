@@ -1,10 +1,10 @@
 package org.stardustmodding.skyengine.multipart
 
-import net.minecraft.entity.Entity
-import net.minecraft.entity.EntityType
-import net.minecraft.world.World
+import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.EntityType
+import net.minecraft.world.level.Level
 
-abstract class MultipartEntity(type: EntityType<*>?, world: World?) : Entity(type, world) {
+abstract class MultipartEntity(type: EntityType<*>, level: Level) : Entity(type, level) {
     private val parts = mutableListOf<EntityPart>()
 
     fun addPart(part: EntityPart) {

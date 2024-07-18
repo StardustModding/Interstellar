@@ -1,22 +1,22 @@
 package org.stardustmodding.interstellar.impl.client.entity.model
 
+import com.mojang.blaze3d.vertex.PoseStack
+import com.mojang.blaze3d.vertex.VertexConsumer
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
-import net.minecraft.client.MinecraftClient
-import net.minecraft.client.model.ModelData
-import net.minecraft.client.model.TexturedModelData
-import net.minecraft.client.render.VertexConsumer
-import net.minecraft.client.render.entity.model.EntityModel
-import net.minecraft.client.util.math.MatrixStack
+import net.minecraft.client.Minecraft
+import net.minecraft.client.model.EntityModel
+import net.minecraft.client.model.geom.builders.LayerDefinition
+import net.minecraft.client.model.geom.builders.MeshDefinition
 import org.stardustmodding.interstellar.impl.entity.ShipEntity
 import org.stardustmodding.skyengine.math.PosExt.toBlockPos
 import org.stardustmodding.skyengine.math.PosExt.toVec3d
 
 @Environment(EnvType.CLIENT)
-class ShipEntityModel : EntityModel<ShipEntity>() {
+class ShipModel : EntityModel<ShipEntity>() {
     private var entity: ShipEntity? = null
 
-    override fun setAngles(
+    override fun setupAnim(
         entity: ShipEntity,
         limbSwing: Float,
         limbSwingAmount: Float,
@@ -27,8 +27,8 @@ class ShipEntityModel : EntityModel<ShipEntity>() {
         this.entity = entity
     }
 
-    override fun render(
-        stack: MatrixStack,
+    override fun renderToBuffer(
+        stack: PoseStack,
         buffer: VertexConsumer,
         packedLight: Int,
         packedOverlay: Int,
@@ -39,22 +39,21 @@ class ShipEntityModel : EntityModel<ShipEntity>() {
     ) {
         if (entity != null) {
             val blocks = entity!!.blocks?.get() ?: mapOf()
-            val client = MinecraftClient.getInstance()
-            val mgr = client.blockRenderManager
+            val client = Minecraft.getInstance()
+            val mgr = client.blockRenderer
 
             for ((relPos, state) in blocks) {
-                println("Rendering block at $relPos: ${state.registryEntry.key}")
-                stack.push()
+                stack.pushPose()
                 stack.translate(relPos.x.toDouble(), relPos.y.toDouble(), relPos.z.toDouble())
-                mgr.renderBlock(state, entity!!.pos.add(relPos.toVec3d()).toBlockPos(), entity!!.world, stack, buffer, false, entity!!.world.random)
-                stack.pop()
+                mgr.renderBatched(state, entity!!.position.add(relPos.toVec3d()).toBlockPos(), entity!!.level, stack, buffer, false, entity!!.level.random)
+                stack.popPose()
             }
         }
     }
 
     companion object {
-        fun getTexturedModelData(): TexturedModelData {
-            return TexturedModelData.of(ModelData(), 0, 0)
+        fun getTexturedModelData(): LayerDefinition {
+            return LayerDefinition.create(MeshDefinition(), 0, 0)
         }
     }
 }

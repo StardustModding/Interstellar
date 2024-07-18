@@ -1,77 +1,77 @@
 package org.stardustmodding.skyengine.multipart
 
+import com.mojang.blaze3d.vertex.PoseStack
+import com.mojang.blaze3d.vertex.VertexConsumer
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
-import net.minecraft.client.render.VertexConsumer
-import net.minecraft.client.render.WorldRenderer
-import net.minecraft.client.util.math.MatrixStack
-import net.minecraft.entity.Entity
-import net.minecraft.entity.EntityDimensions
-import net.minecraft.entity.EntityPose
-import net.minecraft.entity.damage.DamageSource
-import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NbtCompound
-import net.minecraft.network.listener.ClientPlayPacketListener
-import net.minecraft.network.packet.Packet
-import net.minecraft.util.math.MathHelper
-import net.minecraft.util.math.Vec3d
+import net.minecraft.client.renderer.LevelRenderer
+import net.minecraft.world.entity.Entity
+import net.minecraft.world.entity.EntityDimensions
+import net.minecraft.world.entity.Pose
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.network.protocol.Packet
+import net.minecraft.network.protocol.game.ClientGamePacketListener
+import net.minecraft.util.Mth
+import net.minecraft.world.damagesource.DamageSource
+import net.minecraft.world.item.ItemStack
+import net.minecraft.world.phys.Vec3
 
 
 @Suppress("MemberVisibilityCanBePrivate", "LeakingThis", "unused")
-open class EntityPart(val owner: Entity, val name: String, val dims: EntityDimensions) : Entity(owner.type, owner.world) {
-    var relativePos = Vec3d.ZERO!!
-    var pivot = Vec3d.ZERO!!
+open class EntityPart(val owner: Entity, val name: String, val dims: EntityDimensions) : Entity(owner.type, owner.level) {
+    var relativePos: Vec3 = Vec3.ZERO
+    var pivot: Vec3 = Vec3.ZERO
 
     constructor(owner: Entity, name: String, width: Float, height: Float) : this(
         owner,
         name,
-        EntityDimensions.changing(width, height)
+        EntityDimensions.scalable(width, height)
     )
 
     init {
-        calculateDimensions()
+        refreshDimensions()
     }
 
-    override fun initDataTracker() {}
-    override fun readCustomDataFromNbt(nbt: NbtCompound?) {}
-    override fun writeCustomDataToNbt(nbt: NbtCompound?) {}
+    override fun defineSynchedData() {}
+    override fun readAdditionalSaveData(nbt: CompoundTag) {}
+    override fun addAdditionalSaveData(nbt: CompoundTag) {}
 
-    override fun canHit(): Boolean = true
-    override fun shouldSave(): Boolean = false
-    override fun getPickBlockStack(): ItemStack? = owner.pickBlockStack
-    override fun isPartOf(entity: Entity?): Boolean = this == entity || owner == entity
-    override fun createSpawnPacket(): Packet<ClientPlayPacketListener> = throw UnsupportedOperationException()
-    override fun getDimensions(pose: EntityPose?): EntityDimensions = dims
+    override fun isPickable(): Boolean = true
+    override fun shouldBeSaved(): Boolean = false
+    override fun getPickResult(): ItemStack? = owner.pickResult
+    override fun `is`(entity: Entity): Boolean = this == entity || owner == entity
+    override fun getAddEntityPacket(): Packet<ClientGamePacketListener> = throw UnsupportedOperationException()
+    override fun getDimensions(pose: Pose): EntityDimensions = dims
 
-    override fun damage(source: DamageSource?, amount: Float): Boolean {
+    override fun hurt(source: DamageSource, amount: Float): Boolean {
         return if (isInvulnerableTo(source)) {
             false
         } else {
-            owner.damage(source, amount)
+            owner.hurt(source, amount)
         }
     }
 
-    val absolutePos = owner.pos.add(relativePos)!!
-    val absolutePivot = owner.pos.add(pivot)!!
+    val absolutePos = owner.position.add(relativePos)
+    val absolutePivot = owner.position.add(pivot)
 
-    fun move(distance: Vec3d) {
+    fun move(distance: Vec3) {
         move(distance.x, distance.y, distance.z)
     }
 
     fun move(dx: Double, dy: Double, dz: Double) {
-        lastRenderX = this.x
-        prevX = this.lastRenderX
-        lastRenderY = this.y
-        prevY = this.lastRenderY
-        lastRenderZ = this.z
-        prevZ = this.lastRenderZ
+        xOld = this.x
+        xo = this.xOld
+        yOld = this.y
+        yo = this.yOld
+        zOld = this.z
+        zo = this.zOld
 
         val newPos = absolutePos.add(dx, dy, dz)
 
-        setPosition(newPos)
+        setPos(newPos)
     }
 
-    fun rotate(pivot: Vec3d, pitch: Float, yaw: Float, degrees: Boolean) {
+    fun rotate(pivot: Vec3, pitch: Float, yaw: Float, degrees: Boolean) {
         this.pivot = pivot
 
         rotate(pitch, yaw, degrees)
@@ -80,8 +80,8 @@ open class EntityPart(val owner: Entity, val name: String, val dims: EntityDimen
     fun rotate(pitch: Float, yaw: Float, degrees: Boolean) {
         var rel = absolutePos.subtract(absolutePivot)
 
-        rel = rel.rotateX(-pitch * (if (degrees) Math.PI.toFloat() / 180f else 1f))
-            .rotateY(-yaw * (if (degrees) Math.PI.toFloat() / 180f else 1f))
+        rel = rel.xRot(-pitch * (if (degrees) Math.PI.toFloat() / 180f else 1f))
+            .yRot(-yaw * (if (degrees) Math.PI.toFloat() / 180f else 1f))
 
         val transformedPos = absolutePivot.subtract(absolutePos).add(rel)
 
@@ -90,30 +90,31 @@ open class EntityPart(val owner: Entity, val name: String, val dims: EntityDimen
 
     @Environment(EnvType.CLIENT)
     fun renderHitbox(
-        matrices: MatrixStack,
+        matrices: PoseStack,
         vertices: VertexConsumer,
         ownerX: Double,
         ownerY: Double,
         ownerZ: Double,
         tickDelta: Float
     ) {
-        matrices.push()
+        matrices.pushPose()
 
-        val entityPartX: Double = ownerX + MathHelper.lerp(tickDelta.toDouble(), lastRenderX, x)
-        val entityPartY: Double = ownerY + MathHelper.lerp(tickDelta.toDouble(), lastRenderY, y)
-        val entityPartZ: Double = ownerZ + MathHelper.lerp(tickDelta.toDouble(), lastRenderZ, z)
+        val entityPartX: Double = ownerX + Mth.lerp(tickDelta.toDouble(), xOld, x)
+        val entityPartY: Double = ownerY + Mth.lerp(tickDelta.toDouble(), yOld, y)
+        val entityPartZ: Double = ownerZ + Mth.lerp(tickDelta.toDouble(), zOld, z)
 
         matrices.translate(entityPartX, entityPartY, entityPartZ)
 
-        WorldRenderer.drawBox(
+        LevelRenderer.renderLineBox(
             matrices,
             vertices,
-            boundingBox.offset(-x, -y, -z),
+            boundingBox.move(-x, -y, -z),
             0.25f,
             1.0f,
             0.0f,
             1.0f
         )
-        matrices.pop()
+
+        matrices.popPose()
     }
 }

@@ -6,8 +6,8 @@ import dev.architectury.registry.ReloadListenerRegistry
 import me.shedaniel.autoconfig.AutoConfig
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer
 import me.shedaniel.autoconfig.serializer.Toml4jConfigSerializer
-import net.minecraft.resource.ResourceType
-import net.minecraft.util.Identifier
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.server.packs.PackType
 import org.slf4j.LoggerFactory
 import org.stardustmodding.interstellar.api.registry.InterstellarRegistries
 import org.stardustmodding.interstellar.impl.command.DimensionTpCommand
@@ -32,8 +32,8 @@ object Interstellar {
     )
 
     @JvmStatic
-    fun id(id: String): Identifier {
-        return Identifier(MOD_ID, id)
+    fun id(id: String): ResourceLocation {
+        return ResourceLocation(MOD_ID, id)
     }
 
     fun init() {
@@ -51,7 +51,7 @@ object Interstellar {
 
         eagerInit()
 
-        ReloadListenerRegistry.register(ResourceType.SERVER_DATA, ReloadListener)
+        ReloadListenerRegistry.register(PackType.SERVER_DATA, ReloadListener)
 
         TickEvent.SERVER_LEVEL_POST.register {
             for (planet in InterstellarRegistries.PLANETS) {

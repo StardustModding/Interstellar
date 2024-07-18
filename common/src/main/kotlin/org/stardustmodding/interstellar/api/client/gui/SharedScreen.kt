@@ -1,55 +1,55 @@
 package org.stardustmodding.interstellar.api.client.gui
 
 import dev.architectury.registry.menu.MenuRegistry
-import net.minecraft.client.MinecraftClient
-import net.minecraft.client.gui.DrawContext
-import net.minecraft.client.gui.screen.ingame.HandledScreen
-import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.entity.player.PlayerInventory
-import net.minecraft.registry.Registries
-import net.minecraft.screen.NamedScreenHandlerFactory
-import net.minecraft.screen.ScreenHandler
-import net.minecraft.screen.ScreenHandlerType
-import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.text.Text
+import net.minecraft.client.Minecraft
+import net.minecraft.client.gui.GuiGraphics
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
+import net.minecraft.core.registries.BuiltInRegistries
+import net.minecraft.network.chat.Component
+import net.minecraft.server.level.ServerPlayer
+import net.minecraft.world.MenuProvider
+import net.minecraft.world.entity.player.Inventory
+import net.minecraft.world.entity.player.Player
+import net.minecraft.world.inventory.AbstractContainerMenu
+import net.minecraft.world.inventory.MenuType
 
-open class SharedScreen<H : ScreenHandler>(
+open class SharedScreen<H : AbstractContainerMenu>(
     handler: H,
-    title: Text,
+    title: Component,
     private val screenWidth: Int,
     private val screenHeight: Int
-) : HandledScreen<H>(handler, PlayerInventory(null), title) {
-    private fun renderBg(ctx: DrawContext) {
-        val windowWidth = ctx.scaledWindowWidth
-        val windowHeight = ctx.scaledWindowHeight
+) : AbstractContainerScreen<H>(handler, Inventory(null), title) {
+    private fun renderBg(ctx: GuiGraphics) {
+        val windowWidth = ctx.guiWidth()
+        val windowHeight = ctx.guiHeight()
         val startX = (windowWidth / 2) - screenWidth / 2
         val startY = (windowHeight / 2) - screenHeight / 2
 
         ctx.fill(startX, startY, screenWidth, screenHeight, BG_COLOR)
     }
 
-    private fun renderTitle(ctx: DrawContext) {
-        val client = MinecraftClient.getInstance()
-        val windowWidth = ctx.scaledWindowWidth
-        val windowHeight = ctx.scaledWindowHeight
+    private fun renderTitle(ctx: GuiGraphics) {
+        val client = Minecraft.getInstance()
+        val windowWidth = ctx.guiWidth()
+        val windowHeight = ctx.guiHeight()
         val startX = (windowWidth / 2) - screenWidth / 2
         val startY = (windowHeight / 2) - screenHeight / 2
-        val textHeight = client.textRenderer.fontHeight
+        val textHeight = client.font.lineHeight
         val margin = textHeight / 2
 
-        ctx.drawText(client.textRenderer, title, startX + margin, startY + margin, TEXT_COLOR, false)
+        ctx.drawString(client.font, title, startX + margin, startY + margin, TEXT_COLOR, false)
         ctx.fill(startX + LINE_PADDING, startY + textHeight * 2, startX + screenWidth - LINE_PADDING, 1, BAR_COLOR)
     }
 
-    override fun render(ctx: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    override fun render(ctx: GuiGraphics, mouseX: Int, mouseY: Int, delta: Float) {
         super.render(ctx, mouseX, mouseY, delta)
 
         renderBg(ctx)
         renderTitle(ctx)
     }
 
-    override fun drawBackground(ctx: DrawContext, delta: Float, mouseX: Int, mouseY: Int) {
-        ctx.fill(0, 0, ctx.scaledWindowWidth, ctx.scaledWindowHeight, BG_SHADOW_COLOR)
+    override fun renderBg(ctx: GuiGraphics, delta: Float, mouseX: Int, mouseY: Int) {
+        ctx.fill(0, 0, ctx.guiWidth(), ctx.guiHeight(), BG_SHADOW_COLOR)
     }
 
     companion object {
@@ -60,22 +60,22 @@ open class SharedScreen<H : ScreenHandler>(
         const val LINE_PADDING = 2
 
         @JvmStatic
-        fun open(player: ServerPlayerEntity, handler: ScreenHandlerType<*>) {
-            MenuRegistry.openMenu(player, object : NamedScreenHandlerFactory {
+        fun open(player: ServerPlayer, handler: MenuType<*>) {
+            MenuRegistry.openMenu(player, object : MenuProvider {
                 override fun createMenu(
                     syncId: Int,
-                    playerInventory: PlayerInventory,
-                    player: PlayerEntity
-                ): ScreenHandler {
+                    playerInventory: Inventory,
+                    player: Player
+                ): AbstractContainerMenu {
                     return handler.create(syncId, playerInventory)
                 }
 
-                override fun getDisplayName(): Text {
-                    val reg = Registries.SCREEN_HANDLER
-                    val key = reg.getKey(handler).get().value
+                override fun getDisplayName(): Component {
+                    val reg = BuiltInRegistries.MENU
+                    val key = reg.getResourceKey(handler).get().location()
                     val id = "screen.${key.namespace}.${key.path}"
 
-                    return Text.translatable(id)
+                    return Component.translatable(id)
                 }
             })
         }

@@ -1,23 +1,23 @@
 package org.stardustmodding.ionengine.block
 
-import net.minecraft.block.BlockState
-import net.minecraft.block.entity.BlockEntity
-import net.minecraft.block.entity.BlockEntityType
-import net.minecraft.nbt.NbtCompound
-import net.minecraft.nbt.NbtElement
-import net.minecraft.util.math.BlockPos
+import net.minecraft.core.BlockPos
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.Tag
+import net.minecraft.world.level.block.entity.BlockEntity
+import net.minecraft.world.level.block.entity.BlockEntityType
+import net.minecraft.world.level.block.state.BlockState
 import org.stardustmodding.ionengine.buffer.EnergyBuffered
 import org.stardustmodding.ionengine.operation.EnergyOperation
 
-open class PoweredBlockEntity(type: BlockEntityType<*>?, pos: BlockPos?, state: BlockState?) : BlockEntity(type, pos, state), EnergyBuffered {
+open class PoweredBlockEntity(type: BlockEntityType<*>, pos: BlockPos, state: BlockState) : BlockEntity(type, pos, state), EnergyBuffered {
     override var buffer = 0f
     override val operationQueue = mutableListOf<EnergyOperation>()
 
-    override fun readNbt(nbt: NbtCompound) {
-        load(nbt.getList("queue", NbtElement.STRING_TYPE.toInt()))
+    override fun load(tag: CompoundTag) {
+        load(tag.getList("queue", Tag.TAG_STRING.toInt()))
     }
 
-    override fun writeNbt(nbt: NbtCompound) {
+    override fun saveAdditional(nbt: CompoundTag) {
         nbt.put("queue", save())
     }
 }

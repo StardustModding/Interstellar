@@ -2,9 +2,9 @@ package org.stardustmodding.skyengine.sim
 
 import com.google.common.collect.Sets
 import kotlinx.coroutines.*
-import net.minecraft.server.world.ServerWorld
-import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.Direction
+import net.minecraft.core.BlockPos
+import net.minecraft.core.Direction
+import net.minecraft.server.level.ServerLevel
 import org.stardustmodding.skyengine.data.WorldExt.getPressureState
 import org.stardustmodding.skyengine.data.WorldExt.savePressureState
 import org.stardustmodding.skyengine.data.WorldExt.setPressureState
@@ -32,7 +32,7 @@ class PressureUpdater {
 
     fun start(
         pos: BlockPos,
-        world: ServerWorld,
+        world: ServerLevel,
         iterations: Int = DEFAULT_ITERATIONS,
         maxDist: Double = DEFAULT_MAX_DISTANCE
     ) = runBlocking {
@@ -53,7 +53,8 @@ class PressureUpdater {
         origin = null
     }
 
-    private suspend fun updateSingleBlock(pos: BlockPos, world: ServerWorld, maxDist: Double) {
+    private suspend fun updateSingleBlock(pos: BlockPos, world: ServerLevel, maxDist: Double) {
+        if (origin == null) return
         if (!world.getBlockState(pos).isAir) return
         if (pos !in checked) checked.add(pos)
 
@@ -67,8 +68,8 @@ class PressureUpdater {
         val split = mutableListOf<Pair<BlockPos, GasComposition>>()
 
         for (item in listOf(up, down, north, east, south, west)) {
-            if (item in checked || !world.getBlockState(item).isAir || !item.isWithinDistance(
-                    origin?.toVec(),
+            if (item in checked || !world.getBlockState(item).isAir || !item.closerThan(
+                    origin!!.toVec(),
                     maxDist
                 )
             ) continue

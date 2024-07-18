@@ -1,7 +1,7 @@
 package org.stardustmodding.ionengine
 
-import net.minecraft.util.Identifier
+import net.minecraft.resources.ResourceLocation
 
 object IonEngine {
-    fun id(value: String) = Identifier("ionengine", value)
+    fun id(value: String) = ResourceLocation("ionengine", value)
 }

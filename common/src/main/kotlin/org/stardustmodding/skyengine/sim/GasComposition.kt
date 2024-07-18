@@ -1,14 +1,14 @@
 package org.stardustmodding.skyengine.sim
 
-import net.minecraft.nbt.NbtElement
-import net.minecraft.nbt.NbtList
-import net.minecraft.util.Identifier
+import net.minecraft.nbt.Tag
+import net.minecraft.nbt.ListTag
+import net.minecraft.resources.ResourceLocation
 import org.stardustmodding.interstellar.api.data.NbtSerializable
 import org.stardustmodding.interstellar.api.gas.GasData
 import org.stardustmodding.interstellar.api.planet.PlanetSettings
 
 class GasComposition(val gases: MutableList<GasData> = mutableListOf()) : NbtSerializable<GasComposition>,
-    Iterable<Identifier> {
+    Iterable<ResourceLocation> {
     companion object {
         val EMPTY = GasComposition(mutableListOf())
 
@@ -17,9 +17,9 @@ class GasComposition(val gases: MutableList<GasData> = mutableListOf()) : NbtSer
         }
     }
 
-    operator fun get(id: Identifier) = gases.find { it.id == id }?.amount ?: 0f
+    operator fun get(id: ResourceLocation) = gases.find { it.id == id }?.amount ?: 0f
 
-    operator fun set(id: Identifier, amount: Float) {
+    operator fun set(id: ResourceLocation, amount: Float) {
         if (gases.find { it.id == id } == null) {
             gases.add(GasData(id, amount))
         } else {
@@ -27,9 +27,9 @@ class GasComposition(val gases: MutableList<GasData> = mutableListOf()) : NbtSer
         }
     }
 
-    override fun read(tag: NbtElement): GasComposition {
+    override fun read(tag: Tag): GasComposition {
         val comp = GasComposition()
-        val list = tag as NbtList
+        val list = tag as ListTag
 
         for (item in list) {
             comp.gases.add(GasData().read(item))
@@ -38,8 +38,8 @@ class GasComposition(val gases: MutableList<GasData> = mutableListOf()) : NbtSer
         return comp
     }
 
-    override fun write(): NbtElement {
-        val list = NbtList()
+    override fun write(): Tag {
+        val list = ListTag()
 
         for (gas in gases) {
             list.add(gas.write())
@@ -48,5 +48,5 @@ class GasComposition(val gases: MutableList<GasData> = mutableListOf()) : NbtSer
         return list
     }
 
-    override fun iterator(): Iterator<Identifier> = gases.map { it.id }.iterator()
+    override fun iterator(): Iterator<ResourceLocation> = gases.map { it.id }.iterator()
 }

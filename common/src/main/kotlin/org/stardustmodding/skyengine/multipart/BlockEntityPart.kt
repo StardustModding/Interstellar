@@ -1,20 +1,20 @@
 package org.stardustmodding.skyengine.multipart
 
-import net.minecraft.block.BlockState
-import net.minecraft.entity.EntityDimensions
-import net.minecraft.util.math.BlockPos
-import net.minecraft.world.BlockView
+import net.minecraft.world.entity.EntityDimensions
+import net.minecraft.core.BlockPos
+import net.minecraft.world.level.BlockGetter
+import net.minecraft.world.level.block.state.BlockState
 
 class BlockEntityPart(owner: BlockAggregateEntity, val pos: BlockPos, val state: BlockState) :
-    EntityPart(owner, "_block_${pos}", calcBlockDimensions(owner.world, pos, state)) {
+    EntityPart(owner, "_block_${pos}", calcBlockDimensions(owner.level, pos, state)) {
 
     companion object {
-        fun calcBlockDimensions(world: BlockView, pos: BlockPos, state: BlockState): EntityDimensions {
-            val bounds = state.getCollisionShape(world, pos).boundingBox
+        fun calcBlockDimensions(world: BlockGetter, pos: BlockPos, state: BlockState): EntityDimensions {
+            val bounds = state.getCollisionShape(world, pos).bounds()
             val width = bounds.maxX - bounds.minX
             val height = bounds.maxY - bounds.minY
 
-            return EntityDimensions.changing(width.toFloat(), height.toFloat())
+            return EntityDimensions.scalable(width.toFloat(), height.toFloat())
         }
     }
 }

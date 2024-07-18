@@ -4,22 +4,27 @@ import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry
 import dev.architectury.registry.client.level.entity.EntityRendererRegistry
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
-import net.minecraft.client.MinecraftClient
-import net.minecraft.client.render.entity.model.EntityModelLayer
+import net.minecraft.client.Minecraft
+import net.minecraft.client.model.geom.ModelLayerLocation
 import org.stardustmodding.interstellar.api.init.InitializedClient
-import org.stardustmodding.interstellar.impl.client.entity.model.ShipEntityModel
-import org.stardustmodding.interstellar.impl.client.entity.renderer.ShipEntityRenderer
+import org.stardustmodding.interstellar.impl.client.entity.model.ShipModel
+import org.stardustmodding.interstellar.impl.client.entity.renderer.PlanetRenderer
+import org.stardustmodding.interstellar.impl.client.entity.renderer.ShipRenderer
 import org.stardustmodding.interstellar.impl.init.Entities
 
 @Environment(EnvType.CLIENT)
 object ClientEntities : InitializedClient {
-    var MODEL_SHIP_LAYER = EntityModelLayer(ShipEntityRenderer.textureId(), "main")
+    private var MODEL_SHIP_LAYER = ModelLayerLocation(ShipRenderer.textureId(), "main")
 
-    override fun init(it: MinecraftClient) {
+    override fun init(it: Minecraft) {
         EntityRendererRegistry.register({ Entities.SHIP }) { ctx ->
-            ShipEntityRenderer(ctx)
+            ShipRenderer(ctx)
         }
 
-        EntityModelLayerRegistry.register(MODEL_SHIP_LAYER, ShipEntityModel::getTexturedModelData)
+        EntityRendererRegistry.register({ Entities.PLANET }) { ctx ->
+            PlanetRenderer(ctx)
+        }
+
+        EntityModelLayerRegistry.register(MODEL_SHIP_LAYER, ShipModel::getTexturedModelData)
     }
 }

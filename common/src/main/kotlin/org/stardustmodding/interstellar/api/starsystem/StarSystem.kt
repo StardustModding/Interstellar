@@ -1,10 +1,10 @@
 package org.stardustmodding.interstellar.api.starsystem
 
 import kotlinx.serialization.Serializable
-import net.minecraft.util.Identifier
-import org.stardustmodding.interstellar.api.serde.IdentifierSerializer
+import net.minecraft.resources.ResourceLocation
+import org.stardustmodding.interstellar.api.serde.ResourceLocationSerializer
 
 @Serializable
 class StarSystem {
-    var planets: MutableList<@Serializable(with = IdentifierSerializer::class) Identifier> = mutableListOf()
+    var planets: MutableList<@Serializable(with = ResourceLocationSerializer::class) ResourceLocation> = mutableListOf()
 }

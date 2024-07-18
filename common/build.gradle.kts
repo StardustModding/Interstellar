@@ -13,18 +13,15 @@ loom {
 }
 
 dependencies {
-    annotationProcessor("io.wispforest:owo-lib:${project.property("owo_version")}")
-    modImplementation("io.wispforest:owo-lib:${project.property("owo_version")}")
-
     compileOnly("net.fabricmc:fabric-loader:${rootProject.property("fabric_loader_version")}")
     compileOnly("com.google.code.gson:gson:2.10.1")
+    compileOnly("foundry.veil:Veil-mojmap-${rootProject.property("minecraft_version")}:${rootProject.property("veil_version")}")
+
+    implementation("com.github.stephengold:Libbulletjme:21.2.1")
 
     modApi("dev.architectury:architectury:${rootProject.property("architectury_version")}")
     modApi("me.shedaniel.cloth:cloth-config:${rootProject.property("cloth_config_version")}")
-    modImplementation("foundry.veil:Veil-common-${rootProject.property("minecraft_version")}:${rootProject.property("veil_version")}")
     modCompileOnly("lol.bai:badpackets:fabric-${rootProject.property("badpackets_version")}")
-
-    include("io.wispforest:owo-sentinel:${project.property("owo_version")}")
 }
 
 tasks.processResources {

@@ -1,8 +1,8 @@
 package org.stardustmodding.ionengine.buffer
 
-import net.minecraft.nbt.NbtList
+import net.minecraft.nbt.ListTag
 import net.minecraft.server.MinecraftServer
-import net.minecraft.util.Identifier
+import net.minecraft.resources.ResourceLocation
 import org.stardustmodding.ionengine.operation.EnergyOperation
 
 interface EnergyBuffered {
@@ -29,19 +29,19 @@ interface EnergyBuffered {
         }
     }
 
-    fun save(): NbtList {
-        val list = NbtList()
+    fun save(): ListTag {
+        val list = ListTag()
 
         operationQueue.forEach { list.add(it.write()) }
 
         return list
     }
 
-    fun load(list: NbtList) {
+    fun load(list: ListTag) {
         for (item in list) {
-            val it = EnergyOperation.tryLoadOperation(Identifier.tryParse(item.asString()))
+            val it = EnergyOperation.tryLoadOperation(ResourceLocation.tryParse(item.asString)!!)
 
-            if (it != null) operationQueue.add(it)
+            operationQueue.add(it)
         }
     }
 }

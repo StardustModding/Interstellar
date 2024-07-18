@@ -1,11 +1,11 @@
 package org.stardustmodding.skyengine.sim
 
-import net.minecraft.nbt.NbtCompound
-import net.minecraft.nbt.NbtElement
-import net.minecraft.nbt.NbtHelper
-import net.minecraft.nbt.NbtList
-import net.minecraft.util.Identifier
-import net.minecraft.util.math.BlockPos
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.Tag
+import net.minecraft.nbt.NbtUtils
+import net.minecraft.nbt.ListTag
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.core.BlockPos
 import org.stardustmodding.interstellar.api.data.SavedState
 import org.stardustmodding.skyengine.SkyEngine.id
 
@@ -26,13 +26,13 @@ class PressureState : SavedState() {
         return states[pos]!!
     }
 
-    override fun read(tag: NbtCompound): SavedState {
-        val list = tag.getList("data", NbtElement.COMPOUND_TYPE.toInt())
+    override fun read(tag: CompoundTag): SavedState {
+        val list = tag.getList("data", Tag.TAG_COMPOUND.toInt())
         val me = PressureState()
 
         for (el in list) {
-            val comp = el as NbtCompound
-            val pos = NbtHelper.toBlockPos(comp.getCompound("pos"))
+            val comp = el as CompoundTag
+            val pos = NbtUtils.readBlockPos(comp.getCompound("pos"))
             val gcomp = GasComposition().read(comp.getCompound("data"))
 
             me.states[pos] = gcomp
@@ -43,13 +43,13 @@ class PressureState : SavedState() {
         return me
     }
 
-    override fun write(nbt: NbtCompound): NbtCompound {
-        val list = NbtList()
+    override fun write(nbt: CompoundTag): CompoundTag {
+        val list = ListTag()
 
         for ((key, value) in states) {
-            val comp = NbtCompound()
+            val comp = CompoundTag()
 
-            comp.put("pos", NbtHelper.fromBlockPos(key))
+            comp.put("pos", NbtUtils.writeBlockPos(key))
             comp.put("data", value.write())
 
             list.add(comp)
@@ -62,6 +62,6 @@ class PressureState : SavedState() {
     }
 
     override fun default(): SavedState = PressureState()
-    override val id: Identifier = id("pressure_state")
+    override val id: ResourceLocation = id("pressure_state")
     override val shouldWrite: Boolean get() = dirty
 }
