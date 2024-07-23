@@ -6,8 +6,8 @@ import java.net.URL
 
 plugins {
     id("java")
-    kotlin("jvm") version "2.0.0"
-    kotlin("plugin.serialization") version "2.0.0"
+    kotlin("jvm") version "1.9.24"
+    kotlin("plugin.serialization") version "1.9.24"
     id("org.jetbrains.dokka") version "1.9.20"
     id("architectury-plugin") version "3.4-SNAPSHOT"
     id("dev.architectury.loom") version "1.6-SNAPSHOT" apply false
@@ -116,7 +116,7 @@ allprojects {
 
     dependencies {
         compileOnly("org.jetbrains.kotlin:kotlin-stdlib")
-        compileOnly("org.jetbrains.kotlin:kotlin-reflect:2.0.0")
+        compileOnly("org.jetbrains.kotlin:kotlin-reflect:1.9.24")
 
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0-RC")
         implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
@@ -158,92 +158,6 @@ allprojects {
                 )
             }
         }
-    }
-
-    tasks.register<Javadoc>("javadocAll") {
-        val docletProj = rootProject.project("doclet")
-        val classes = docletProj.layout.buildDirectory.get().dir("classes").asFileTree
-        val resources = docletProj.sourceSets.main.get().resources.asFileTree
-
-        isFailOnError = false
-        setMaxMemory("2G")
-
-        val opts = options as StandardJavadocDocletOptions
-
-        opts.source = "17"
-        opts.encoding = "UTF-8"
-        opts.charSet = "UTF-8"
-        opts.memberLevel = JavadocMemberLevel.PRIVATE
-        opts.splitIndex(true)
-
-        opts.links(
-            "https://guava.dev/releases/31.1-jre/api/docs/",
-            "https://asm.ow2.io/javadoc/",
-            "https://docs.oracle.com/en/java/javase/17/docs/api/",
-            "https://jenkins.liteloader.com/job/Mixin/javadoc/",
-            "https://maven.fabricmc.net/docs/yarn-${rootProject.property("yarn_mappings")}/"
-        )
-
-        opts.tags(
-            "author:a",
-            "reason:m:\"Reason:\"",
-            "apiNote:a:API Note:",
-            "implSpec:a:Implementation Requirements:",
-            "implNote:a:Implementation Note:",
-        )
-
-        opts.taglets("org.stardustmodding.docs.taglet.MappingTaglet")
-        opts.use()
-        opts.addBooleanOption("-allow-script-in-comments", true)
-        opts.classpath(classes.toList())
-        opts.addBooleanOption("Xdoclint:html", true)
-        opts.addBooleanOption("Xdoclint:syntax", true)
-        opts.addBooleanOption("Xdoclint:reference", true)
-        opts.addBooleanOption("Xdoclint:accessibility", true)
-        opts.addStringOption("-notimestamp")
-        opts.addStringOption("Xdoclint:none", "-quiet")
-
-        dependsOn(docletProj.tasks.named("build"))
-
-        source(subprojects.map {
-            it.sourceSets.main.get().allJava
-        })
-
-        classpath = files(subprojects.map {
-            it.sourceSets.main.get().compileClasspath
-        })
-
-        doFirst {
-            @Suppress("NAME_SHADOWING") val opts = options as StandardJavadocDocletOptions
-
-            opts.tagletPath = docletProj.sourceSets.main.get().output.classesDirs.files.toList()
-            opts.header(resources.filter { it.name == "javadoc_header.txt" }.singleFile.readText().trim())
-            opts.addFileOption("-add-stylesheet", resources.filter { it.name == "style.css" }.singleFile)
-        }
-
-        doLast {
-            project.copy {
-                from(resources)
-                include("copy_on_click.js")
-                into(destinationDir!!.path)
-            }
-        }
-
-        setDestinationDir(file("${layout.buildDirectory.get()}/docs/javadoc"))
-    }
-
-    tasks.register<Jar>("javadocJar") {
-        dependsOn(tasks.named("javadocAll"))
-        from(tasks.named<Javadoc>("javadocAll").get().destinationDir)
-
-        if (project.name == rootProject.name) {
-            archiveBaseName.set(archiveBaseName.get())
-        } else {
-            archiveBaseName.set(archiveBaseName.get() + "-" + project.name)
-        }
-
-        archiveClassifier.set("javadoc")
-        archiveVersion.set("${version}+${rootProject.property("minecraft_version")}")
     }
 
     tasks.register<DokkaTask>("dokkaAll") {
@@ -324,7 +238,6 @@ allprojects {
     }
 
     tasks.named("shadowJar").get().finalizedBy(
-        tasks.named("javadocJar"),
         tasks.named("dokkaJar"),
         tasks.named("prodJar"),
         tasks.kotlinSourcesJar,
@@ -352,7 +265,6 @@ allprojects {
                 artifact(tasks.kotlinSourcesJar)
                 artifact(tasks.named("prodJar"))
                 artifact(tasks.named("dokkaJar"))
-                artifact(tasks.named("javadocJar"))
             }
         }
 

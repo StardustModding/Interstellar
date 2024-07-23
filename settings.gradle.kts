@@ -16,4 +16,3 @@ plugins {
 include("common")
 include("fabric")
 include("forge")
-include("doclet")

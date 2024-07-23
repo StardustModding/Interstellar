@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.model.EntityModel
 import net.minecraft.client.model.geom.builders.LayerDefinition
 import net.minecraft.client.model.geom.builders.MeshDefinition
+import org.stardustmodding.interstellar.api.util.LightedBlockGetter
 import org.stardustmodding.interstellar.impl.entity.ShipEntity
 import org.stardustmodding.skyengine.math.PosExt.toBlockPos
 import org.stardustmodding.skyengine.math.PosExt.toVec3d
@@ -45,7 +46,8 @@ class ShipModel : EntityModel<ShipEntity>() {
             for ((relPos, state) in blocks) {
                 stack.pushPose()
                 stack.translate(relPos.x.toDouble(), relPos.y.toDouble(), relPos.z.toDouble())
-                mgr.renderBatched(state, entity!!.position.add(relPos.toVec3d()).toBlockPos(), entity!!.level, stack, buffer, false, entity!!.level.random)
+//                mgr.renderBatched(state, entity!!.position.add(relPos.toVec3d()).toBlockPos(), LightedBlockGetter(entity!!.level), stack, buffer, false, entity!!.level.random)
+                mgr.renderSingleBlock(state, stack, { buffer }, packedLight, packedOverlay)
                 stack.popPose()
             }
         }

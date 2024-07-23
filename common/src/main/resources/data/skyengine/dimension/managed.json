@@ -1,0 +1,13 @@
+{
+  "type": "skyengine:managed",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "skyengine:void",
+      "lakes": false,
+      "features": false,
+      "layers": [],
+      "structure_overrides": []
+    }
+  }
+}

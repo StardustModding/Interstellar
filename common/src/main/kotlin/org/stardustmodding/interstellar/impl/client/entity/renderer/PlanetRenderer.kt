@@ -21,10 +21,10 @@ class PlanetRenderer(ctx: EntityRendererProvider.Context) : EntityRenderer<Plane
         buffer: MultiBufferSource,
         packedLight: Int
     ) {
-        val shader = VeilRenderSystem.setShader(PLANET_SHADER) ?: return
-
-        shader.bind()
-        ShaderProgram.unbind()
+//        val shader = VeilRenderSystem.setShader(PLANET_SHADER) ?: return
+//
+//        shader.bind()
+//        ShaderProgram.unbind()
     }
 
     companion object {
