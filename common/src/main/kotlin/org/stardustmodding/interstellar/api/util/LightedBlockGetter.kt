@@ -11,11 +11,12 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.lighting.LevelLightEngine
 import net.minecraft.world.level.material.FluidState
 
-class LightedBlockGetter(private var level: Level) : BlockAndTintGetter {
+class LightedBlockGetter(private var level: Level, private var block: BlockState) : BlockAndTintGetter {
     override fun getHeight(): Int = level.height
     override fun getMinBuildHeight(): Int = level.minBuildHeight
     override fun getBlockEntity(pos: BlockPos): BlockEntity? = level.getBlockEntity(pos)
-    override fun getBlockState(pos: BlockPos): BlockState = level.getBlockState(pos)
+//    override fun getBlockState(pos: BlockPos): BlockState = level.getBlockState(pos)
+    override fun getBlockState(pos: BlockPos): BlockState = block
     override fun getFluidState(pos: BlockPos): FluidState = level.getFluidState(pos)
     override fun getShade(direction: Direction, shade: Boolean): Float = level.getShade(direction, shade)
     override fun getBlockTint(blockPos: BlockPos, colorResolver: ColorResolver): Int = level.getBlockTint(blockPos, colorResolver)
