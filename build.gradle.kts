@@ -27,7 +27,7 @@ tasks.build.get().finalizedBy(tasks.named("shadowJar"))
 tasks.processResources {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
-    for (file in listOf("fabric.mod.json", "mods.toml", "pack.mcmeta")) {
+    for (file in listOf("fabric.mod.json", "META-INF/mods.toml", "pack.mcmeta")) {
         filesMatching(file) {
             expand(
                 mapOf(
@@ -142,7 +142,7 @@ allprojects {
     tasks.processResources {
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
-        for (file in listOf("fabric.mod.json", "mods.toml", "pack.mcmeta")) {
+        for (file in listOf("fabric.mod.json", "META-INF/mods.toml", "pack.mcmeta")) {
             filesMatching(file) {
                 expand(
                     mapOf(
@@ -220,27 +220,27 @@ allprojects {
         archiveVersion.set("${version}+${rootProject.property("minecraft_version")}")
     }
 
-    tasks.kotlinSourcesJar {
-        from(subprojects.map {
-            it.sourceSets.main.get().allSource
-        })
-
-        duplicatesStrategy = DuplicatesStrategy.INCLUDE
-
-        if (project.name == rootProject.name) {
-            archiveBaseName.set(archiveBaseName.get())
-        } else {
-            archiveBaseName.set(archiveBaseName.get() + "-" + project.name)
-        }
-
-        archiveClassifier.set("sources")
-        archiveVersion.set("${version}+${rootProject.property("minecraft_version")}")
-    }
+//    tasks.kotlinSourcesJar {
+//        from(subprojects.map {
+//            it.sourceSets.main.get().allSource
+//        })
+//
+//        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+//
+//        if (project.name == rootProject.name) {
+//            archiveBaseName.set(archiveBaseName.get())
+//        } else {
+//            archiveBaseName.set(archiveBaseName.get() + "-" + project.name)
+//        }
+//
+//        archiveClassifier.set("sources")
+//        archiveVersion.set("${version}+${rootProject.property("minecraft_version")}")
+//    }
 
     tasks.named("shadowJar").get().finalizedBy(
         tasks.named("dokkaJar"),
         tasks.named("prodJar"),
-        tasks.kotlinSourcesJar,
+//        tasks.kotlinSourcesJar,
     )
 
     configure<PublishingExtension> {
@@ -262,7 +262,7 @@ allprojects {
                     artifact(tasks.named("shadowJar"))
                 }
 
-                artifact(tasks.kotlinSourcesJar)
+//                artifact(tasks.kotlinSourcesJar)
                 artifact(tasks.named("prodJar"))
                 artifact(tasks.named("dokkaJar"))
             }
@@ -290,6 +290,8 @@ subprojects {
     apply(plugin = "dev.architectury.loom")
 
     val loom = project.extensions.getByName<LoomGradleExtensionAPI>("loom")
+
+    loom.silentMojangMappingsLicense()
 
     repositories {
         mavenLocal()
